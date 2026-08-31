@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroSection from './sections/HeroSection'
-import LiveDarshanPreview from './sections/LiveDarshanPreview'
+import SwamaniPreview from './sections/SwamaniPreview'
 import DarshanTimingWidget from './sections/DarshanTimingWidget'
 import QuickActions from './sections/QuickActions'
 import AboutShyam from './sections/AboutShyam'
@@ -13,11 +13,11 @@ import BlogPreview from './sections/BlogPreview'
 import ContactStrip from './sections/ContactStrip'
 import './Home.css'
 
-export default function Home() {
+export default function Home({ onContactClick }) {
   return (
     <div className="home-page">
-      <HeroSection />
-      <LiveDarshanPreview />
+      <HeroSection onContactClick={onContactClick} />
+      <SwamaniPreview />
       <DarshanTimingWidget />
       <QuickActions />
       <AboutShyam />
@@ -27,7 +27,7 @@ export default function Home() {
       <GalleryPreview />
       <TravelPreview />
       <BlogPreview />
-      <ContactStrip />
+      <ContactStrip onContactClick={onContactClick} />
     </div>
   )
 }

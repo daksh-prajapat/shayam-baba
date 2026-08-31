@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FiPhone } from 'react-icons/fi'
-import { MdLiveTv } from 'react-icons/md'
+import { FaConciergeBell } from 'react-icons/fa'
+import { GiTempleGate } from 'react-icons/gi'
 import './HeroSection.css'
 
-export default function HeroSection() {
+export default function HeroSection({ onContactClick }) {
   const particlesRef = useRef(null)
 
   useEffect(() => {
@@ -65,10 +66,9 @@ export default function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="hero-buttons">
-          <Link to="/live-darshan" className="hero-btn-live">
-            <MdLiveTv className="btn-icon" />
-            <span className="hindi-text">Live दर्शन करें</span>
-            <span className="live-badge">LIVE</span>
+          <Link to="/swamani" className="hero-btn-live">
+            <FaConciergeBell className="btn-icon" />
+            <span className="hindi-text">स्वामणी भोग बुकिंग</span>
           </Link>
           <Link to="/prasad-puja" className="btn-secondary">
             <span className="hindi-text">प्रसाद बुकिंग</span>

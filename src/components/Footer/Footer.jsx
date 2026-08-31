@@ -38,7 +38,7 @@ export default function Footer() {
             <ul className="footer-links">
               {[
                 ['/', 'होम'],
-                ['/live-darshan', 'Live दर्शन'],
+                ['/swamani', '👑 स्वामणी भोग'],
                 ['/darshan-timings', 'दर्शन समय'],
                 ['/katha-parichay', 'कथा परिचय'],
                 ['/prasad-puja', 'प्रसाद बुकिंग'],
@@ -57,11 +57,11 @@ export default function Footer() {
             <ul className="footer-links">
               {[
                 ['/travel-guide', 'यात्रा गाइड'],
-                ['/stay-food', 'रहना खाना'],
                 ['/festivals', 'त्यौहार'],
                 ['/nishan-mannat', 'निशान मन्नत'],
                 ['/gallery', 'गैलरी'],
                 ['/blog', 'ब्लॉग'],
+                ['/contact', 'सम्पर्क'],
               ].map(([path, label]) => (
                 <li key={path}>
                   <Link to={path} className="footer-link hindi-text">✦ {label}</Link>

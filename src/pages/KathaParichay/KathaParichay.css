@@ -1,6 +1,8 @@
 .katha-hero {
-  background: linear-gradient(135deg, rgba(123,45,139,0.2), rgba(212,160,23,0.15));
-  padding: 60px 0;
+  background: 
+    linear-gradient(135deg, rgba(123,45,139,0.75), rgba(10,3,16,0.85)),
+    url('/images/temple-hero.jpg') center/cover no-repeat;
+  padding: 70px 0;
   text-align: center;
   border-bottom: var(--border-gold);
 }

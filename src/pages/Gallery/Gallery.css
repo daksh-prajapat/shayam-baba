@@ -1,4 +1,11 @@
-.gallery-hero { background: linear-gradient(135deg, rgba(233,30,140,0.15), rgba(123,45,139,0.15)); padding: 60px 0; text-align: center; border-bottom: var(--border-gold); }
+.gallery-hero {
+  background: 
+    linear-gradient(135deg, rgba(233,30,140,0.6), rgba(123,45,139,0.6)),
+    url('/images/temple-hero.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
 .gallery-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
 .gallery-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
 

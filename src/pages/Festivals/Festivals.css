@@ -1,4 +1,11 @@
-.festivals-hero { background: linear-gradient(135deg, rgba(232,85,45,0.15), rgba(212,160,23,0.15)); padding: 60px 0; text-align: center; border-bottom: var(--border-gold); }
+.festivals-hero {
+  background: 
+    linear-gradient(135deg, rgba(232,85,45,0.7), rgba(10,3,16,0.85)),
+    url('/images/festival.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
 .festivals-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
 .festivals-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
 

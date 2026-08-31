@@ -5,10 +5,10 @@ import { FiPhone, FiArrowRight } from 'react-icons/fi'
 import './SwamaniPreview.css'
 
 const featured = [
-  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=300&h=200&fit=crop' },
-  { name: 'चूरमा', price: 9500, icon: '🍯', img: 'https://images.unsplash.com/photo-1555505689-185fe3e05b31?w=300&h=200&fit=crop' },
-  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: 'https://images.unsplash.com/photo-1571167050261-5e4b6d4baa8d?w=300&h=200&fit=crop' },
-  { name: '✨ स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: 'https://images.unsplash.com/photo-1604413191066-4dd20bedf486?w=300&h=200&fit=crop', special: true },
+  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/bhog.jpg' },
+  { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/churma.jpg' },
+  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/swamani2.jpg' },
+  { name: '✨ स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', special: true },
 ]
 
 export default function SwamaniPreview() {

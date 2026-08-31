@@ -1,5 +1,7 @@
 .timings-page .page-hero {
-  background: linear-gradient(135deg, rgba(212,160,23,0.15), rgba(123,45,139,0.15));
+  background: 
+    linear-gradient(135deg, rgba(212,160,23,0.15), rgba(123,45,139,0.15)),
+    url('/images/temple2.jpg') center/cover no-repeat;
   padding: 60px 0;
   text-align: center;
   border-bottom: var(--border-gold);

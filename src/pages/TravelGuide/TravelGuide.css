@@ -1,4 +1,11 @@
-.travel-hero { background: linear-gradient(135deg, rgba(33,150,243,0.15), rgba(212,160,23,0.1)); padding: 60px 0; text-align: center; border-bottom: var(--border-gold); }
+.travel-hero {
+  background: 
+    linear-gradient(135deg, rgba(33,150,243,0.6), rgba(10,3,16,0.85)),
+    url('/images/temple2.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
 .travel-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
 .travel-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
 

@@ -61,7 +61,7 @@ export default function HeroSection({ onContactClick }) {
 
         <p className="hero-desc hindi-text">
           बर्बरीक से खाटू श्याम — शीश दानी, कलियुग के भगवान।<br />
-          Live दर्शन, भजन, प्रसाद बुकिंग — सब कुछ एक जगह।
+          स्वामणी भोग, प्रसाद बुकिंग, भजन — सब कुछ एक जगह।
         </p>
 
         {/* CTA Buttons */}

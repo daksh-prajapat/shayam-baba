@@ -1,4 +1,11 @@
-.bhajan-hero { background: linear-gradient(135deg, rgba(123,45,139,0.25), rgba(212,160,23,0.1)); padding: 60px 0; text-align: center; border-bottom: var(--border-gold); }
+.bhajan-hero {
+  background: 
+    linear-gradient(135deg, rgba(123,45,139,0.8), rgba(10,3,16,0.88)),
+    url('/images/aarti.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
 .bhajan-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
 .bhajan-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
 

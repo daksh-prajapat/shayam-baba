@@ -1,0 +1,213 @@
+.live-hero {
+  background: linear-gradient(135deg, rgba(200,0,0,0.2), rgba(123,45,139,0.2));
+  padding: 60px 0;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,50,50,0.2);
+}
+
+.live-badge-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #cc0000;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+
+.live-dot-big {
+  width: 9px; height: 9px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:0.2} }
+
+.live-hero h1 {
+  font-family: var(--font-hindi);
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.live-hero p {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* Player Section */
+.main-player-section {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.main-player-box {
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,50,50,0.3);
+}
+
+.player-header {
+  background: rgba(0,0,0,0.9);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,50,50,0.2);
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #cc0000;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+}
+
+.live-dot-anim {
+  width: 7px; height: 7px;
+  background: white; border-radius: 50%;
+  animation: blink 1.2s infinite;
+}
+
+.player-header span {
+  font-family: var(--font-hindi);
+  color: white;
+  font-size: 0.9rem;
+}
+
+.iframe-16-9 {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.iframe-16-9 iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* Info Col */
+.live-info-col { display: flex; flex-direction: column; gap: 16px; }
+
+.live-info-card h3,
+.aarti-timing-card h3 {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  font-size: 1rem;
+}
+
+.live-info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.live-info-list li {
+  font-family: var(--font-hindi);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.aarti-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.88rem;
+}
+
+.aarti-row span:nth-child(2) {
+  font-family: var(--font-hindi);
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.aarti-t {
+  color: var(--secondary);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+/* Recent */
+.recent-section { margin-top: 20px; }
+
+.recent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.recent-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--gradient-card);
+  border: var(--border-gold);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.recent-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+
+.recent-thumb {
+  height: 100px;
+  background: linear-gradient(135deg, #cc0000, #7B2D8B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yt-icon { font-size: 2.5rem; color: white; }
+
+.recent-info { padding: 10px 12px 14px; }
+
+.recent-title {
+  font-family: var(--font-hindi);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.recent-date {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .main-player-section { grid-template-columns: 1fr; }
+  .recent-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .recent-grid { grid-template-columns: 1fr; }
+}

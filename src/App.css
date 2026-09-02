@@ -7,11 +7,17 @@
 
 .main-content {
   flex: 1;
-  padding-top: 80px; /* navbar height */
+  padding-top: 76px; /* matches navbar height */
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding-bottom: 70px; /* mobile nav height */
+    padding-bottom: 70px; /* mobile bottom nav */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-top: 66px;
   }
 }

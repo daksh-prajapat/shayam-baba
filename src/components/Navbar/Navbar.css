@@ -267,23 +267,27 @@
   pointer-events: all;
 }
 
-/* Side Drawer — slides in from right */
+/* Side Drawer — slides in from right, OUTSIDE nav stacking context */
 .mobile-menu-drawer {
   position: fixed;
   top: 0;
   right: 0;
-  /* CRITICAL: full height, flex column so footer sticks to bottom */
-  height: 100%;
+  /* Use dvh for mobile browsers where 100vh includes address bar */
+  height: 100dvh;
+  height: 100vh; /* fallback */
   width: min(300px, 82vw);
   background: linear-gradient(180deg, #120820 0%, #0e0618 100%);
   border-left: 1px solid rgba(212,160,23,0.18);
   z-index: 1099;
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  /* flex column: header | scrollable body | footer */
+  /* flex column: header (fixed) | body (scrolls) | footer (fixed) */
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* don't scroll the whole drawer */
+  overflow: hidden;
+  /* Ensure footer is always reachable */
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
 .mobile-menu-drawer.open {
@@ -355,14 +359,15 @@
   color: #ff8888;
 }
 
-/* ── Drawer Body (scrollable) ── */
+/* ── Drawer Body (scrollable, takes remaining space) ── */
 .mobile-menu-body {
-  flex: 1;
+  flex: 1 1 0%;          /* grow but can shrink */
+  min-height: 0;         /* CRITICAL: allows flex child to shrink below content size */
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  overflow-y: auto; /* only body scrolls */
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -440,15 +445,17 @@
   background: rgba(212,160,23,0.06);
 }
 
-/* ── Drawer Footer (ALWAYS visible at bottom) ── */
+/* ── Drawer Footer (PINNED to bottom, NEVER hidden) ── */
 .mobile-menu-footer {
-  padding: 14px 12px 20px;
+  padding: 14px 12px 22px;
   border-top: 1px solid rgba(212,160,23,0.13);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex-shrink: 0; /* never shrink — always at bottom */
-  background: linear-gradient(0deg, #0a0412 0%, transparent 100%);
+  flex-shrink: 0;          /* NEVER compress this */
+  background: #0e0618;     /* solid bg so body content doesn't bleed through */
+  /* Safe area for iOS notch/home bar */
+  padding-bottom: max(22px, env(safe-area-inset-bottom, 22px));
 }
 
 .mobile-call-btn {

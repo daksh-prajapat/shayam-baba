@@ -11,7 +11,7 @@ export default function ContactStrip({ onContactClick }) {
         <div className="strip-inner">
           <div className="strip-text">
             <h3 className="hindi-text">प्रसाद, स्वामणी भोग, पूजा — किसी भी सेवा के लिए सम्पर्क करें</h3>
-            <p className="hindi-text">हम 24/7 उपलब्ध हैं — Video Call पर Live दर्शन की सुविधा</p>
+            <p className="hindi-text">हम 24/7 उपलब्ध हैं — Call या WhatsApp पर बुकिंग करें</p>
           </div>
           <div className="strip-actions">
             <a href="tel:9929975116" className="strip-btn-call">

@@ -36,12 +36,12 @@ export default function Swamani() {
           <div className="swamani-hero-badge hindi-text">👑 खाटू श्याम जी</div>
           <h1 className="hindi-text">स्वामणी भोग सेवा</h1>
           <p className="hindi-text swamani-hero-sub">
-            बाबा श्याम को भोग चढ़ाएं — Video Call पर देखें
+            बाबा श्याम को भोग चढ़ाएं — घर बैठे Online बुकिंग
           </p>
           <div className="swamani-hero-info">
-            <span className="hindi-text">📌 घर बैठे Online बुकिंग उपलब्ध</span>
-            <span className="hindi-text">📹 Video Call पर Live देखें</span>
-            <span className="hindi-text">🙏 प्रसाद घर पहुंचाएं</span>
+            <span className="hindi-text">📌 घर बैठे Online बुकिंग</span>
+            <span className="hindi-text">🙏 बाबा को भोग चढ़ाएं</span>
+            <span className="hindi-text">🏠 प्रसाद घर पहुंचाएं</span>
           </div>
           <div className="swamani-hero-btns">
             <a href="tel:9929975116" className="sh-call-btn">
@@ -59,7 +59,7 @@ export default function Swamani() {
         <div className="container">
           <p className="hindi-text">
             📌 अगर आप दूर हैं और मंदिर आकर प्रसाद नहीं चढ़वा सकते, तो आप Online बुकिंग करके
-            स्वामणी भोग चढ़वा सकते हैं। आपको पूरी प्रक्रिया <strong>Video Call</strong> के माध्यम से Live दिखाई जाएगी।
+            स्वामणी भोग चढ़वा सकते हैं। Call या WhatsApp पर बुकिंग करें।
           </p>
         </div>
       </div>
@@ -151,7 +151,7 @@ export default function Swamani() {
         <div className="swamani-cta-box">
           <div className="swamani-cta-text">
             <h3 className="hindi-text">बुकिंग के लिए सम्पर्क करें</h3>
-            <p className="hindi-text">हम 24/7 उपलब्ध हैं। Video Call पर भोग सेवा उपलब्ध।</p>
+            <p className="hindi-text">हम 24/7 उपलब्ध हैं। Call या WhatsApp पर बुकिंग करें।</p>
           </div>
           <div className="swamani-cta-btns">
             <a href="tel:9929975116" className="cta-call">

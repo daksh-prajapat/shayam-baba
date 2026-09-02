@@ -38,7 +38,7 @@ export default function PrasadSection() {
 
         <div className="prasad-info-box hindi-text">
           📌 अगर आप दूर हैं और मंदिर आकर प्रसाद नहीं चढ़वा सकते, तो आप Online बुकिंग करके प्रसाद चढ़वा सकते हैं। 
-          आपको पूरी प्रक्रिया Video Call के माध्यम से Live दिखाई जाएगी।
+          Call या WhatsApp करके बुकिंग करें।
         </div>
 
         {/* Tabs */}

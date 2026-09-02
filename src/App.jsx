@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar'
 import MobileNav from './components/MobileNav/MobileNav'
@@ -23,6 +23,14 @@ import './App.css'
 function App() {
   const [showNotification, setShowNotification] = useState(true)
   const [showContactPopup, setShowContactPopup] = useState(false)
+
+  // Show contact popup 3 seconds after page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContactPopup(true)
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <Router>

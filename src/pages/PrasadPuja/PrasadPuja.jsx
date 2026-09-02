@@ -9,9 +9,9 @@ const prasadItems = [
     name: 'चूरमा प्रसाद',
     price: 501,
     icon: '🍯',
-    image: '/images/churma.jpg',
+    image: '/images/prasad1.jpg',
     desc: 'बाबा का सबसे प्रिय प्रसाद — शुद्ध देशी घी का मीठा चूरमा।',
-    details: 'गेहूं के आटे में देशी घी और गुड़ मिलाकर बनाया जाता है। यह बाबा श्याम को अत्यंत प्रिय है।',
+    details: 'गेहूं के आटे में देशी घी और गुड़ मिलाकर बनाया जाता है। यह बाबा श्याम को अत्यंत प्रिय है। Online बुकिंग पर Video Call पर Live देखें।',
     heading: 'Khatu Shyam Churma Prasad Online Booking'
   },
   {
@@ -19,7 +19,7 @@ const prasadItems = [
     name: 'पेड़ा प्रसाद',
     price: 501,
     icon: '🍮',
-    image: '/images/peda.jpg',
+    image: '/images/orange-flowers.jpg',
     desc: 'मावे का शुद्ध पेड़ा — मीठा और स्वादिष्ट।',
     details: 'शुद्ध मावे से बना पेड़ा। खाटू श्याम जी के प्रसाद में पेड़ा विशेष महत्व रखता है।',
     heading: 'Khatu Shyam Peda Prasad Online Booking'
@@ -29,7 +29,7 @@ const prasadItems = [
     name: 'लड्डू प्रसाद',
     price: 501,
     icon: '🟡',
-    image: '/images/laddu.jpg',
+    image: '/images/marigold.jpg',
     desc: 'बेसन के ताजे लड्डू — सबसे लोकप्रिय प्रसाद।',
     details: 'देशी घी में बने बेसन के लड्डू। बाबा के प्रसाद में लड्डू सर्वाधिक लोकप्रिय है।',
     heading: 'Khatu Shyam Laddu Prasad Online Booking'
@@ -39,7 +39,7 @@ const prasadItems = [
     name: 'ड्राई फ्रूट प्रसाद',
     price: 501,
     icon: '🌰',
-    image: '/images/dryfruit.jpg',
+    image: '/images/diya.jpg',
     desc: 'काजू, बादाम, किशमिश — विशेष मेवा प्रसाद।',
     details: 'उत्तम गुणवत्ता के ड्राई फ्रूट्स का मिश्रण। स्वास्थ्यवर्धक और स्वादिष्ट प्रसाद।',
     heading: 'Khatu Shyam Dry Fruit Prasad Online Booking'

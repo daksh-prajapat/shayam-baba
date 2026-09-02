@@ -5,9 +5,9 @@ import { FiPhone, FiArrowRight } from 'react-icons/fi'
 import './SwamaniPreview.css'
 
 const featured = [
-  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/bhog.jpg' },
-  { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/churma.jpg' },
-  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/swamani2.jpg' },
+  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/orange-flowers.jpg' },
+  { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/marigold.jpg' },
+  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/diya.jpg' },
   { name: '✨ स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', special: true },
 ]
 

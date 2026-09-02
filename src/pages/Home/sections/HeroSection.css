@@ -8,8 +8,8 @@
   overflow: hidden;
   padding: 100px 20px 80px !important;
   background: 
-    linear-gradient(135deg, rgba(10,3,16,0.82) 0%, rgba(123,45,139,0.4) 50%, rgba(10,3,16,0.82) 100%),
-    url('/images/temple-hero.jpg') center/cover no-repeat;
+    linear-gradient(135deg, rgba(10,3,16,0.75) 0%, rgba(123,45,139,0.35) 50%, rgba(10,3,16,0.75) 100%),
+    url('/images/temple-hero2.jpg') center/cover no-repeat;
 }
 
 /* Mandala */

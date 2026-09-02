@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FiX, FiPhone, FiUser, FiMessageSquare } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
+import { GiLotus } from 'react-icons/gi'
 import './ContactPopup.css'
 
 export default function ContactPopup({ onClose }) {
@@ -12,6 +13,13 @@ export default function ContactPopup({ onClose }) {
     return () => { document.body.style.overflow = '' }
   }, [])
 
+  // Close on Escape key
+  useEffect(() => {
+    const fn = (e) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', fn)
+    return () => window.removeEventListener('keydown', fn)
+  }, [onClose])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const msg = `🙏 नमस्ते! बुकिंग/जानकारी चाहिए।%0A%0A👤 नाम: ${form.name}%0A📞 फोन: ${form.phone}%0A🛕 सेवा: ${form.service}%0A💬 संदेश: ${form.message}`
@@ -20,59 +28,73 @@ export default function ContactPopup({ onClose }) {
   }
 
   return (
-    <div className="popup-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="popup-overlay"
+      onClick={(e) => e.target === e.currentTarget && onClose()}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Contact Form"
+    >
       <div className="popup-box">
+        {/* Decorative top bar */}
+        <div className="popup-top-bar" />
+
         {/* Header */}
         <div className="popup-header">
           <div className="popup-header-left">
-            <span className="popup-icon">🙏</span>
+            <div className="popup-lotus-wrap">
+              <GiLotus className="popup-lotus" />
+            </div>
             <div>
-              <h2 className="hindi-text">सम्पर्क करें</h2>
-              <p className="hindi-text">हम आपकी सेवा में तत्पर हैं</p>
+              <h2 className="hindi-text">जय श्री श्याम 🙏</h2>
+              <p className="hindi-text">प्रसाद, भोग, पूजा — Online बुकिंग करें</p>
             </div>
           </div>
-          <button className="popup-close" onClick={onClose} aria-label="Close">
+          <button className="popup-close" onClick={onClose} aria-label="बंद करें">
             <FiX />
           </button>
         </div>
 
         {!submitted ? (
-          <>
-            {/* Quick Contact */}
-            <div className="popup-quick-contact">
-              <a href="tel:9929975116" className="quick-call-btn">
+          <div className="popup-body">
+            {/* Quick contact buttons */}
+            <div className="popup-quick">
+              <a href="tel:9929975116" className="pq-call">
                 <FiPhone /> <span>9929975116</span>
               </a>
-              <a href="https://wa.me/919929975116" target="_blank" rel="noopener noreferrer" className="quick-wa-btn">
+              <a
+                href="https://wa.me/919929975116?text=नमस्ते! बुकिंग करनी है।"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pq-wa"
+              >
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
               </a>
             </div>
 
-            <div className="popup-divider"><span className="hindi-text">या फॉर्म भरें</span></div>
+            <div className="popup-or"><span className="hindi-text">— या फॉर्म भरें —</span></div>
 
             {/* Form */}
             <form className="popup-form" onSubmit={handleSubmit}>
-              <div className="popup-form-row">
-                <div className="popup-field">
-                  <label className="hindi-text">आपका नाम *</label>
-                  <div className="input-wrap">
-                    <FiUser className="input-icon" />
+              <div className="pf-row">
+                <div className="pf-field">
+                  <div className="pf-input-wrap">
+                    <FiUser className="pf-icon" />
                     <input
                       type="text"
-                      placeholder="नाम लिखें"
+                      placeholder="आपका नाम *"
                       value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })}
                       required
                     />
                   </div>
                 </div>
-                <div className="popup-field">
-                  <label className="hindi-text">मोबाइल नंबर *</label>
-                  <div className="input-wrap">
-                    <FiPhone className="input-icon" />
+                <div className="pf-field">
+                  <div className="pf-input-wrap">
+                    <FiPhone className="pf-icon" />
                     <input
                       type="tel"
-                      placeholder="10 अंकों का नंबर"
+                      placeholder="मोबाइल नंबर *"
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       required
@@ -82,17 +104,17 @@ export default function ContactPopup({ onClose }) {
                 </div>
               </div>
 
-              <div className="popup-field">
-                <label className="hindi-text">सेवा चुनें</label>
+              <div className="pf-field">
                 <select
-                  className="popup-select"
+                  className="pf-select"
                   value={form.service}
                   onChange={e => setForm({ ...form, service: e.target.value })}
                 >
-                  <option value="">सेवा का प्रकार</option>
-                  <option>🍯 प्रसाद बुकिंग (₹501)</option>
-                  <option>👑 स्वामणी भोग बुकिंग</option>
-                  <option>✨ छप्पन भोग (₹31000)</option>
+                  <option value="">🛕 सेवा चुनें (वैकल्पिक)</option>
+                  <option>🍯 चूरमा प्रसाद ₹501</option>
+                  <option>🟡 लड्डू प्रसाद ₹501</option>
+                  <option>👑 लड्डू पूरी सब्जी ₹8100</option>
+                  <option>✨ छप्पन भोग ₹31000</option>
                   <option>🪔 विशेष पूजा बुकिंग</option>
                   <option>🚩 निशान यात्रा</option>
                   <option>📍 यात्रा जानकारी</option>
@@ -100,12 +122,11 @@ export default function ContactPopup({ onClose }) {
                 </select>
               </div>
 
-              <div className="popup-field">
-                <label className="hindi-text">संदेश</label>
-                <div className="input-wrap">
-                  <FiMessageSquare className="input-icon" style={{ top: 14 }} />
+              <div className="pf-field">
+                <div className="pf-input-wrap">
+                  <FiMessageSquare className="pf-icon pf-icon-top" />
                   <textarea
-                    placeholder="कोई विशेष जानकारी या सन्देश..."
+                    placeholder="संदेश / कोई विशेष जानकारी..."
                     value={form.message}
                     onChange={e => setForm({ ...form, message: e.target.value })}
                     rows={3}
@@ -113,18 +134,22 @@ export default function ContactPopup({ onClose }) {
                 </div>
               </div>
 
-              <button type="submit" className="popup-submit hindi-text">
+              <button type="submit" className="pf-submit hindi-text">
                 <FaWhatsapp /> WhatsApp पर भेजें
               </button>
             </form>
-          </>
+
+            <p className="popup-skip hindi-text" onClick={onClose}>
+              अभी नहीं — बाद में करूंगा/करूंगी
+            </p>
+          </div>
         ) : (
           <div className="popup-success">
-            <span className="success-icon">✅</span>
+            <div className="success-circle">✅</div>
             <h3 className="hindi-text">WhatsApp खुल गया!</h3>
-            <p className="hindi-text">आपका संदेश तैयार है। भेज दें और हम जल्द जवाब देंगे।</p>
-            <button className="popup-submit hindi-text" onClick={onClose} style={{ marginTop: 16 }}>
-              ठीक है
+            <p className="hindi-text">संदेश भेज दें। हम जल्द जवाब देंगे।</p>
+            <button className="pf-submit hindi-text" onClick={onClose}>
+              ठीक है — बंद करें
             </button>
           </div>
         )}

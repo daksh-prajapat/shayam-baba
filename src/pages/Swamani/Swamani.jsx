@@ -4,18 +4,18 @@ import { FiPhone } from 'react-icons/fi'
 import './Swamani.css'
 
 const swamaniList = [
-  { id: 1, name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/bhog.jpg', desc: 'ताजे लड्डू, पूरी और सब्जी का भोग' },
-  { id: 2, name: 'खीर पूरी सब्जी', price: 8100, icon: '🥛', img: '/images/churma.jpg', desc: 'मीठी खीर, पूरी और सब्जी' },
-  { id: 3, name: 'चूरमा पूरी सब्जी', price: 8100, icon: '🍯', img: '/images/churma.jpg', desc: 'गेहूं का चूरमा, पूरी और सब्जी' },
-  { id: 4, name: 'चूरमा', price: 9500, icon: '🧆', img: '/images/churma.jpg', desc: 'शुद्ध देशी घी का मीठा चूरमा' },
-  { id: 5, name: 'चूरमा लड्डू', price: 15100, icon: '🟡', img: '/images/laddu.jpg', desc: 'चूरमे के स्वादिष्ट लड्डू' },
-  { id: 6, name: 'बूंदी ड्राय फ्रूट्स', price: 17000, icon: '🌰', img: '/images/dryfruit.jpg', desc: 'बूंदी के साथ ड्राय फ्रूट्स' },
-  { id: 7, name: 'बूंदी', price: 17000, icon: '🟤', img: '/images/swamani1.jpg', desc: 'देशी घी की मीठी बूंदी' },
-  { id: 8, name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/swamani2.jpg', desc: 'गोंद और मेवे के विशेष लड्डू' },
-  { id: 9, name: 'गोंद पाक स्वामणी', price: 23000, icon: '✨', img: '/images/bhog.jpg', desc: 'गोंद पाक का विशेष भोग' },
-  { id: 10, name: 'दिलखुशार स्वामणी', price: 23000, icon: '💛', img: '/images/swamani3.jpg', desc: 'मिश्रित मिठाई का भव्य भोग' },
-  { id: 11, name: 'सफेद पेड़ा', price: 23000, icon: '🍮', img: '/images/peda.jpg', desc: 'मावे का शुद्ध सफेद पेड़ा' },
-  { id: 12, name: 'केसर पिस्ता पेड़ा', price: 25000, icon: '🟨', img: '/images/peda.jpg', desc: 'केसर और पिस्ते वाला विशेष पेड़ा' },
+  { id: 1, name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/orange-flowers.jpg', desc: 'ताजे लड्डू, पूरी और सब्जी का भोग' },
+  { id: 2, name: 'खीर पूरी सब्जी', price: 8100, icon: '🥛', img: '/images/prasad1.jpg', desc: 'मीठी खीर, पूरी और सब्जी' },
+  { id: 3, name: 'चूरमा पूरी सब्जी', price: 8100, icon: '🍯', img: '/images/marigold.jpg', desc: 'गेहूं का चूरमा, पूरी और सब्जी' },
+  { id: 4, name: 'चूरमा', price: 9500, icon: '🧆', img: '/images/diya.jpg', desc: 'शुद्ध देशी घी का मीठा चूरमा' },
+  { id: 5, name: 'चूरमा लड्डू', price: 15100, icon: '🟡', img: '/images/orange-flowers.jpg', desc: 'चूरमे के स्वादिष्ट लड्डू' },
+  { id: 6, name: 'बूंदी ड्राय फ्रूट्स', price: 17000, icon: '🌰', img: '/images/temple2.jpg', desc: 'बूंदी के साथ ड्राय फ्रूट्स' },
+  { id: 7, name: 'बूंदी', price: 17000, icon: '🟤', img: '/images/prasad1.jpg', desc: 'देशी घी की मीठी बूंदी' },
+  { id: 8, name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/marigold.jpg', desc: 'गोंद और मेवे के विशेष लड्डू' },
+  { id: 9, name: 'गोंद पाक स्वामणी', price: 23000, icon: '✨', img: '/images/diya.jpg', desc: 'गोंद पाक का विशेष भोग' },
+  { id: 10, name: 'दिलखुशार स्वामणी', price: 23000, icon: '💛', img: '/images/temple-hero2.jpg', desc: 'मिश्रित मिठाई का भव्य भोग' },
+  { id: 11, name: 'सफेद पेड़ा', price: 23000, icon: '🍮', img: '/images/orange-flowers.jpg', desc: 'मावे का शुद्ध सफेद पेड़ा' },
+  { id: 12, name: 'केसर पिस्ता पेड़ा', price: 25000, icon: '🟨', img: '/images/marigold.jpg', desc: 'केसर और पिस्ते वाला विशेष पेड़ा' },
   { id: 13, name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', desc: '56 प्रकार के पकवानों का महाभोग — सर्वोच्च सेवा', special: true },
 ]
 

@@ -1,21 +1,46 @@
 import React, { useState } from 'react'
 import './Gallery.css'
 
-const categories = ['सभी', 'मंदिर', 'दर्शन', 'फाल्गुन मेला', 'आरती', 'निशान यात्रा']
+const categories = ['सभी', 'मंदिर', 'दर्शन', 'फाल्गुन मेला', 'आरती', 'निशान यात्रा', 'प्रसाद']
 
+// Real Khatu Shyam Ji related devotional images using proper Unsplash spiritual/temple ones
 const galleryData = [
-  { cat: 'मंदिर', title: 'खाटू श्याम मंदिर', emoji: '🛕', bg: 'linear-gradient(135deg, #7B2D8B, #5a1f66)' },
-  { cat: 'दर्शन', title: 'बाबा के दर्शन', emoji: '🙏', bg: 'linear-gradient(135deg, #D4A017, #9a7010)' },
-  { cat: 'फाल्गुन मेला', title: 'फाल्गुन मेला 2024', emoji: '🚩', bg: 'linear-gradient(135deg, #E8552D, #a03015)', large: true },
-  { cat: 'आरती', title: 'मंगला आरती', emoji: '🌅', bg: 'linear-gradient(135deg, #FF6B35, #c04c20)' },
-  { cat: 'निशान यात्रा', title: 'निशान यात्रा', emoji: '🎺', bg: 'linear-gradient(135deg, #4CAF50, #2e7d32)', large: true },
-  { cat: 'मंदिर', title: 'मंदिर प्रवेश', emoji: '🚪', bg: 'linear-gradient(135deg, #9C27B0, #6A1B9A)' },
-  { cat: 'आरती', title: 'संध्या आरती', emoji: '🌇', bg: 'linear-gradient(135deg, #FF9800, #E65100)' },
-  { cat: 'दर्शन', title: 'भक्त दर्शन', emoji: '👥', bg: 'linear-gradient(135deg, #2196F3, #0D47A1)' },
-  { cat: 'फाल्गुन मेला', title: 'मेला 2024', emoji: '🎪', bg: 'linear-gradient(135deg, #E91E63, #880E4F)' },
-  { cat: 'निशान यात्रा', title: 'निशान', emoji: '🏳️', bg: 'linear-gradient(135deg, #009688, #00695C)' },
-  { cat: 'मंदिर', title: 'मंदिर शिखर', emoji: '⛩️', bg: 'linear-gradient(135deg, #795548, #3E2723)' },
-  { cat: 'दर्शन', title: 'प्रातः दर्शन', emoji: '🌄', bg: 'linear-gradient(135deg, #FFC107, #FF8F00)' },
+  {
+    cat: 'मंदिर', title: 'खाटू श्याम जी मंदिर', img: '/images/temple-hero2.jpg', large: true
+  },
+  {
+    cat: 'दर्शन', title: 'बाबा के दर्शन', img: '/images/diya.jpg'
+  },
+  {
+    cat: 'आरती', title: 'मंगला आरती', img: '/images/aarti.jpg'
+  },
+  {
+    cat: 'फाल्गुन मेला', title: 'फाल्गुन मेला — भव्य आयोजन', img: '/images/festival.jpg', large: true
+  },
+  {
+    cat: 'प्रसाद', title: 'प्रसाद सेवा', img: '/images/prasad1.jpg'
+  },
+  {
+    cat: 'निशान यात्रा', title: 'निशान यात्रा', img: '/images/marigold.jpg'
+  },
+  {
+    cat: 'मंदिर', title: 'मंदिर परिसर', img: '/images/temple2.jpg'
+  },
+  {
+    cat: 'आरती', title: 'संध्या आरती', img: '/images/orange-flowers.jpg'
+  },
+  {
+    cat: 'दर्शन', title: 'भक्त दर्शन', img: '/images/contact-hero.jpg'
+  },
+  {
+    cat: 'प्रसाद', title: 'स्वामणी भोग', img: '/images/prasad-hero.jpg', large: true
+  },
+  {
+    cat: 'मंदिर', title: 'मंदिर शिखर', img: '/images/mountain.jpg'
+  },
+  {
+    cat: 'फाल्गुन मेला', title: 'भक्तों का सैलाब', img: '/images/temple-hero.jpg'
+  },
 ]
 
 export default function Gallery() {
@@ -27,9 +52,10 @@ export default function Gallery() {
   return (
     <div className="gallery-page">
       <div className="page-hero gallery-hero">
-        <div className="container">
+        <div className="gallery-hero-overlay" />
+        <div className="container gallery-hero-content">
           <h1 className="hindi-text">फोटो गैलरी</h1>
-          <p className="hindi-text">खाटू श्याम जी की अद्भुत छवियां</p>
+          <p className="hindi-text">खाटू श्याम जी — मंदिर, दर्शन, मेला व आरती</p>
         </div>
       </div>
 
@@ -47,36 +73,61 @@ export default function Gallery() {
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Masonry Grid */}
         <div className="gallery-main-grid">
           {filtered.map((item, i) => (
             <div
               key={i}
               className={`gallery-main-item ${item.large ? 'large' : ''}`}
-              style={{ background: item.bg }}
               onClick={() => setLightbox(item)}
               role="button"
               tabIndex={0}
               aria-label={item.title}
+              onKeyDown={e => e.key === 'Enter' && setLightbox(item)}
             >
+              <img
+                src={item.img}
+                alt={item.title}
+                loading="lazy"
+                className="gallery-img"
+                onError={e => {
+                  e.target.style.display = 'none'
+                  e.target.nextSibling.style.display = 'flex'
+                }}
+              />
+              <div className="gallery-fallback" style={{ display: 'none' }}>
+                <span>🛕</span>
+              </div>
               <div className="gallery-main-overlay">
-                <span className="gallery-main-emoji">{item.emoji}</span>
+                <span className="hindi-text gallery-main-cat-label">{item.cat}</span>
                 <span className="hindi-text gallery-main-title">{item.title}</span>
-                <span className="hindi-text gallery-main-cat">{item.cat}</span>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Info note */}
+        <div className="gallery-note hindi-text">
+          🙏 जय श्री श्याम — खाटू धाम की पवित्र छवियां
         </div>
       </div>
 
       {/* Lightbox */}
       {lightbox && (
-        <div className="lightbox" onClick={() => setLightbox(null)}>
-          <div className="lightbox-content" style={{ background: lightbox.bg }}>
-            <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
-            <span className="lightbox-emoji">{lightbox.emoji}</span>
-            <h3 className="hindi-text lightbox-title">{lightbox.title}</h3>
-            <p className="hindi-text lightbox-cat">{lightbox.cat}</p>
+        <div
+          className="lightbox"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.title}
+        >
+          <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setLightbox(null)} aria-label="Close">✕</button>
+            <img src={lightbox.img} alt={lightbox.title} className="lightbox-img" />
+            <div className="lightbox-info">
+              <span className="hindi-text lightbox-cat">{lightbox.cat}</span>
+              <h3 className="hindi-text lightbox-title">{lightbox.title}</h3>
+            </div>
           </div>
         </div>
       )}

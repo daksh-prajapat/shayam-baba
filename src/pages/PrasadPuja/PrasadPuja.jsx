@@ -11,7 +11,7 @@ const prasadItems = [
     icon: '🍯',
     image: '/images/prasad1.jpg',
     desc: 'बाबा का सबसे प्रिय प्रसाद — शुद्ध देशी घी का मीठा चूरमा।',
-    details: 'गेहूं के आटे में देशी घी और गुड़ मिलाकर बनाया जाता है। यह बाबा श्याम को अत्यंत प्रिय है। Online बुकिंग पर Video Call पर Live देखें।',
+    details: 'गेहूं के आटे में देशी घी और गुड़ मिलाकर बनाया जाता है। यह बाबा श्याम को अत्यंत प्रिय है। Online बुकिंग पर घर बैठे प्रसाद चढ़वाएं।',
     heading: 'Khatu Shyam Churma Prasad Online Booking'
   },
   {
@@ -85,13 +85,13 @@ export default function PrasadPuja() {
           <div className="prasad-hero-badge hindi-text">🙏 खाटू श्याम जी</div>
           <h1 className="hindi-text prasad-main-h1">प्रसाद & पूजा Online Booking</h1>
           <p className="hindi-text prasad-hero-tagline">
-            Khatu Shyam Ji Prasad, Puja & Bhog Online Booking — Video Call Live Darshan
+            Khatu Shyam Ji Prasad, Puja &amp; Bhog Online Booking — घर बैठे बुकिंग करें
           </p>
           <div className="prasad-hero-chips">
             <span className="hindi-text">🍯 प्रसाद बुकिंग ₹501</span>
             <span className="hindi-text">👑 स्वामणी भोग ₹8100+</span>
-            <span className="hindi-text">📹 Video Call Live</span>
-            <span className="hindi-text">🏠 घर पर प्रसाद</span>
+            <span className="hindi-text">🏠 प्रसाद घर पहुंचाएं</span>
+            <span className="hindi-text">📞 Call पर बुकिंग</span>
           </div>
           <div className="prasad-hero-actions">
             <a href="tel:9929975116" className="prasad-hero-call hindi-text">
@@ -109,8 +109,8 @@ export default function PrasadPuja() {
         <div className="container">
           <p className="hindi-text">
             📌 <strong>अगर आप दूर हैं</strong> और मंदिर आकर प्रसाद नहीं चढ़वा सकते, तो आप Online बुकिंग करके
-            प्रसाद चढ़वा सकते हैं। आपको पूरी प्रक्रिया <strong>Video Call</strong> के माध्यम से Live दिखाई जाएगी।
-            बुकिंग के लिए Call या WhatsApp करें: <a href="tel:9929975116">9929975116</a>
+            प्रसाद चढ़वा सकते हैं। Call या WhatsApp पर बुकिंग करें।
+            बुकिंग के लिए सम्पर्क करें: <a href="tel:9929975116">9929975116</a>
           </p>
         </div>
       </div>
@@ -189,7 +189,7 @@ export default function PrasadPuja() {
                         <div className="prasad-detail-heading-tag">{item.heading}</div>
                         <p className="hindi-text prasad-detail-text">{item.details}</p>
                         <div className="prasad-detail-points">
-                          <div className="dp-point hindi-text">✅ Video Call पर Live देखें</div>
+                          <div className="dp-point hindi-text">✅ Online बुकिंग उपलब्ध</div>
                           <div className="dp-point hindi-text">✅ घर बैठे बुकिंग करें</div>
                           <div className="dp-point hindi-text">✅ प्रसाद घर पहुंचाएं</div>
                           <div className="dp-point hindi-text">✅ Receipt / Certificate मिलेगा</div>
@@ -294,8 +294,8 @@ export default function PrasadPuja() {
               </div>
               <div className="card contact-card-v2 highlight-contact">
                 <div className="contact-highlight-badge hindi-text">✨ खास सुविधा</div>
-                <h4 className="hindi-text">Video Call Live Darshan</h4>
-                <p className="hindi-text">बुकिंग के बाद बाबा को प्रसाद चढ़ते हुए Video Call पर Live देखें।</p>
+                <h4 className="hindi-text">घर बैठे प्रसाद बुकिंग</h4>
+                <p className="hindi-text">दूर रहकर भी बाबा को प्रसाद चढ़वाएं। Call या WhatsApp पर बुकिंग करें।</p>
               </div>
             </div>
           </div>

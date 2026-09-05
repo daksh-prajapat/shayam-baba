@@ -286,10 +286,10 @@
 .mobile-menu-body {
   flex: 1 1 0%;
   min-height: 0;
-  padding: 10px 12px;
+  padding: 6px 12px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 1px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -297,13 +297,13 @@
 .mobile-nav-link {
   display: flex;
   align-items: center;
-  padding: 12px 14px;
+  padding: 10px 14px;
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 9px;
   border: 1px solid transparent;
   font-family: var(--font-hindi);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: all 0.2s;
 }
 .mobile-nav-link:hover,
@@ -320,14 +320,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 14px;
+  padding: 10px 14px;
   color: var(--text-secondary);
   background: none;
   border: 1px solid transparent;
   border-radius: 9px;
   cursor: pointer;
   font-family: var(--font-hindi);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   text-align: left;
   width: 100%;
   transition: all 0.2s;

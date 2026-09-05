@@ -1,0 +1,36 @@
+.travel-hero {
+  background: 
+    linear-gradient(135deg, rgba(33,150,243,0.6), rgba(10,3,16,0.85)),
+    url('/images/temple2.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
+.travel-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
+.travel-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
+
+.travel-map-box { border-radius: 16px; overflow: hidden; border: var(--border-gold); box-shadow: var(--shadow-purple); }
+
+.routes-table { border: var(--border-gold); border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+.routes-header { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr 1fr; padding: 14px 20px; background: rgba(212,160,23,0.15); font-family: var(--font-hindi); color: var(--secondary); font-weight: 700; font-size: 0.88rem; gap: 10px; }
+.route-row { display: grid; grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr 1fr; padding: 12px 20px; border-bottom: 1px solid rgba(212,160,23,0.1); gap: 10px; align-items: center; transition: background 0.2s; }
+.route-row:hover { background: rgba(212,160,23,0.05); }
+.route-city { font-family: var(--font-hindi); color: var(--text-primary); font-weight: 600; }
+.route-val { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.88rem; }
+.route-val.small { font-size: 0.8rem; color: var(--text-muted); }
+
+.transport-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.transport-card { padding: 24px 18px; }
+.tc-icon { font-size: 2rem; color: var(--secondary); margin-bottom: 12px; }
+.transport-card h3 { font-family: var(--font-hindi); color: var(--secondary); font-size: 1rem; margin-bottom: 12px; }
+.tc-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.tc-points li { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.82rem; line-height: 1.4; }
+
+.travel-tips { margin-top: 50px; background: rgba(212,160,23,0.06); border: var(--border-gold); border-radius: 16px; padding: 30px; }
+.tips-title { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.2rem; margin-bottom: 20px; }
+.tip-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+.tip-num { width: 28px; height: 28px; min-width: 28px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+.tip-row span:last-child { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; padding-top: 3px; }
+
+@media (max-width: 900px) { .transport-grid { grid-template-columns: repeat(2, 1fr); } .routes-header, .route-row { grid-template-columns: 1fr 0.7fr 0.8fr; } .routes-header span:nth-child(4), .routes-header span:nth-child(5), .route-row span:nth-child(4), .route-row span:nth-child(5) { display: none; } }
+@media (max-width: 600px) { .transport-grid { grid-template-columns: 1fr; } }

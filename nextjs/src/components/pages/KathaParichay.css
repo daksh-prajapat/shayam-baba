@@ -1,0 +1,62 @@
+.katha-hero {
+  background: 
+    linear-gradient(135deg, rgba(123,45,139,0.75), rgba(10,3,16,0.85)),
+    url('/images/temple-hero.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
+.katha-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
+.katha-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
+
+.katha-container { padding: 50px 20px; }
+
+.katha-layout { display: grid; grid-template-columns: 280px 1fr; gap: 30px; margin-bottom: 60px; }
+
+.katha-sidebar { display: flex; flex-direction: column; gap: 10px; }
+
+.katha-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,160,23,0.15);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s;
+  font-family: var(--font-hindi);
+  font-size: 0.88rem;
+}
+
+.katha-nav-btn:hover { background: rgba(212,160,23,0.08); border-color: rgba(212,160,23,0.3); }
+.katha-nav-btn.active { background: rgba(212,160,23,0.12); border-color: rgba(212,160,23,0.5); color: var(--secondary); }
+.katha-nav-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+.katha-content-box { padding: 36px; }
+
+.katha-content-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid rgba(212,160,23,0.2); }
+.katha-big-icon { font-size: 2.5rem; }
+.katha-content-header h2 { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.5rem; }
+
+.katha-para { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.98rem; line-height: 1.9; margin-bottom: 16px; }
+
+/* Naam */
+.naam-section { margin-top: 20px; }
+.naam-grid { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.naam-chip {
+  font-family: var(--font-hindi);
+  background: rgba(123,45,139,0.15);
+  border: 1px solid rgba(123,45,139,0.35);
+  color: var(--text-secondary);
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  cursor: default;
+}
+.naam-chip:hover { background: rgba(123,45,139,0.3); color: white; }
+
+@media (max-width: 900px) { .katha-layout { grid-template-columns: 1fr; } }

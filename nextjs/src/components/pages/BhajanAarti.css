@@ -1,0 +1,43 @@
+.bhajan-hero {
+  background: 
+    linear-gradient(135deg, rgba(123,45,139,0.8), rgba(10,3,16,0.88)),
+    url('/images/aarti.jpg') center/cover no-repeat;
+  padding: 70px 0;
+  text-align: center;
+  border-bottom: var(--border-gold);
+}
+.bhajan-hero h1 { font-family: var(--font-hindi); font-size: 2rem; color: var(--secondary); margin-bottom: 8px; }
+.bhajan-hero p { font-family: var(--font-hindi); color: var(--text-muted); }
+
+.cat-filter { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+.cat-btn { padding: 8px 20px; border-radius: 20px; border: 1px solid rgba(212,160,23,0.3); background: transparent; color: var(--text-muted); cursor: pointer; font-family: var(--font-hindi); font-size: 0.88rem; transition: all 0.3s; }
+.cat-btn:hover { border-color: var(--secondary); color: var(--secondary); }
+.cat-btn.active { background: var(--gradient-gold); color: var(--bg-dark); border-color: transparent; font-weight: 600; }
+
+.bhajan-page-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+
+.bhajan-page-card { text-decoration: none; display: flex; flex-direction: column; overflow: hidden; }
+.bp-thumb { height: 130px; background: linear-gradient(135deg, #1a0a24, #7B2D8B); display: flex; align-items: center; justify-content: center; position: relative; transition: all 0.3s; }
+.bhajan-page-card:hover .bp-thumb { filter: brightness(1.2); }
+.bp-yt { font-size: 2.5rem; color: rgba(255,255,255,0.3); }
+.bp-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; font-size: 2.5rem; color: white; transition: opacity 0.3s; }
+.bhajan-page-card:hover .bp-play { opacity: 1; }
+.bp-info { padding: 12px; background: rgba(255,255,255,0.03); border: var(--border-gold); border-top: none; border-radius: 0 0 12px 12px; }
+.bp-title { font-family: var(--font-hindi); color: var(--text-primary); font-size: 0.9rem; margin-bottom: 8px; }
+.bp-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.bp-cat-badge { font-family: var(--font-hindi); font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: rgba(123,45,139,0.3); color: var(--text-secondary); }
+.bp-cat-badge.आरती { background: rgba(232,85,45,0.3); }
+.bp-cat-badge.चालीसा { background: rgba(212,160,23,0.2); color: var(--secondary); }
+.bp-singer { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.75rem; flex: 1; }
+.bp-dur { color: var(--secondary); font-size: 0.75rem; font-weight: 600; }
+
+/* Chalisa */
+.chalisa-box { padding: 40px; max-width: 700px; margin: 0 auto; }
+.chalisa-title { font-family: var(--font-hindi); color: var(--secondary); text-align: center; font-size: 1.5rem; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid rgba(212,160,23,0.2); }
+.chalisa-text { line-height: 2; }
+.chalisa-heading { font-family: var(--font-hindi); color: var(--secondary); font-weight: 700; font-size: 1rem; margin-top: 16px; }
+.chalisa-line { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.95rem; }
+
+@media (max-width: 900px) { .bhajan-page-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .bhajan-page-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 400px) { .bhajan-page-grid { grid-template-columns: 1fr; } }

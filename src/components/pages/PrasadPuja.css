@@ -597,27 +597,33 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   margin-bottom: 50px;
+  width: 100%;
 }
 
 .prasad-pkg-card {
   background: var(--gradient-card);
   border: var(--border-gold);
   border-radius: 16px;
-  padding: 22px 18px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 12px;
   position: relative;
   transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 .prasad-pkg-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-glow); border-color: rgba(212,160,23,0.5); }
 .prasad-pkg-special { border-color: rgba(212,160,23,0.6); background: linear-gradient(145deg, rgba(212,160,23,0.1), rgba(123,45,139,0.12)); }
 
 .prasad-pkg-ribbon {
-  position: absolute; top: 12px; right: -4px;
+  position: absolute; top: 10px; right: 10px;
   background: var(--gradient-gold); color: var(--bg-dark);
   font-family: var(--font-hindi); font-size: 0.7rem; font-weight: 700;
-  padding: 4px 12px 4px 8px; border-radius: 4px 0 0 4px;
+  padding: 4px 10px; border-radius: 10px; z-index: 5;
 }
 
 .prasad-pkg-top { display: flex; align-items: center; justify-content: space-between; }
@@ -676,13 +682,14 @@
 /* ── Responsive ── */
 @media (max-width: 1100px) { .prasad-pkg-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) {
-  .prasad-pkg-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .prasad-pkg-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .prasad-pkg-body { padding: 10px 12px 12px; }
   .prasad-table-box { overflow-x: auto; }
-  .prasad-table-header, .prasad-table-row { grid-template-columns: 1fr 60px 36px; padding: 10px 12px; font-size: 0.78rem; }
+  .prasad-table-header, .prasad-table-row { grid-template-columns: 1fr 60px 36px; padding: 10px 10px; font-size: 0.75rem; }
   .prasad-table-header span:nth-child(2),
   .prasad-table-row .prasad-table-items { display: none; }
 }
-@media (max-width: 400px) {
+@media (max-width: 380px) {
   .prasad-pkg-grid { grid-template-columns: 1fr; }
 }
 

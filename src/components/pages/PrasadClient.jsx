@@ -2,8 +2,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { FiPhone, FiCheck, FiArrowRight, FiEdit3 } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
+import { saveBooking } from '@/lib/bookingStorage'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './PrasadPuja.css'
 
 const pujaServices = [
@@ -18,6 +20,28 @@ const pujaServices = [
 export default function PrasadClient() {
   const [activeTab, setActiveTab] = useState('prasad')
   const [form, setForm] = useState({ name: '', phone: '', service: '', date: '' })
+  const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
+  const [customOpen, setCustomOpen] = useState(false)
+  const [customDone, setCustomDone] = useState(false)
+  const [receipt, setReceipt] = useState(null)
+
+  const handleCustomBook = (e) => {
+    e.preventDefault()
+    const booking = saveBooking({
+      serviceName: `कस्टम प्रसाद — ${customForm.details.slice(0, 40)}`,
+      serviceType: 'prasad',
+      amount: 0,
+      name: customForm.name,
+      phone: customForm.phone,
+      date: customForm.date,
+      occasion: customForm.occasion,
+      address: customForm.address,
+      icon: '✏️',
+      note: customForm.details,
+    })
+    setCustomDone(true)
+    setReceipt(booking)
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -27,6 +51,7 @@ export default function PrasadClient() {
 
   return (
     <div className="prasad-page-v2">
+      {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
       {/* Hero */}
       <div className="prasad-hero-v2">
         <div className="prasad-hero-overlay"></div>
@@ -154,6 +179,199 @@ export default function PrasadClient() {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Custom / Other Booking */}
+            <div className="prasad-custom-section">
+              <button className="prasad-custom-header" onClick={() => setCustomOpen(o => !o)}>
+                <span className="prasad-custom-header-left">
+                  <FiEdit3 className="prasad-custom-icon" />
+                  <span>
+                    <strong className="hindi-text">कुछ और बुक करें?</strong>
+                    <small className="hindi-text">ऊपर दी सूची के अलावा कोई विशेष प्रसाद या पूजा सामग्री चाहिए?</small>
+                  </span>
+                </span>
+                <span className="prasad-custom-chevron">{customOpen ? '▲' : '▼'}</span>
+              </button>
+
+              {customOpen && (
+                <div className="prasad-custom-body">
+                  {!customDone ? (
+                    <form className="prasad-custom-form" onSubmit={handleCustomBook}>
+                      <p className="hindi-text prasad-custom-hint">
+                        कोई भी विशेष प्रसाद, सामग्री या सेवा जो ऊपर नहीं है — नीचे लिखें। हम arrange करेंगे।
+                      </p>
+                      <div className="prasad-custom-field">
+                        <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
+                        <textarea rows={3}
+                          placeholder="जैसे: विशेष लड्डू, मोरछड़ी, चुनरी, विशेष पूजा सामग्री..."
+                          value={customForm.details}
+                          onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
+                          required />
+                      </div>
+                      <div className="prasad-custom-row">
+                        <div className="prasad-custom-field">
+                          <label className="hindi-text">आपका नाम *</label>
+                          <input type="text" placeholder="पूरा नाम"
+                            value={customForm.name}
+                            onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
+                            required />
+                        </div>
+                        <div className="prasad-custom-field">
+                          <label className="hindi-text">मोबाइल नंबर *</label>
+                          <input type="tel" placeholder="10 अंक" maxLength={10}
+                            value={customForm.phone}
+                            onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
+                            required />
+                        </div>
+                      </div>
+                      <div className="prasad-custom-row">
+                        <div className="prasad-custom-field">
+                          <label className="hindi-text">पसंदीदा दिनांक</label>
+                          <input type="date" value={customForm.date}
+                            onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
+                        </div>
+                        <div className="prasad-custom-field">
+                          <label className="hindi-text">अवसर (वैकल्पिक)</label>
+                          <input type="text" placeholder="जन्मदिन, मनोकामना..."
+                            value={customForm.occasion}
+                            onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                        </div>
+                      </div>
+                      <div className="prasad-custom-field">
+                        <label className="hindi-text">पता (delivery के लिए)</label>
+                        <input type="text" placeholder="घर का पता..."
+                          value={customForm.address}
+                          onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                      </div>
+                      <div className="prasad-custom-actions">
+                        <button type="submit" className="prasad-custom-submit hindi-text">
+                          ✅ Submit करें
+                        </button>
+                        <a href="tel:9929975116" className="prasad-custom-call">
+                          <FiPhone /> Call करें
+                        </a>
+                      </div>
+                    </form>
+                  ) : (
+                    <div className="prasad-custom-done">
+                      <span>✅</span>
+                      <div>
+                        <p className="hindi-text">Request submit हो गई! हम जल्द संपर्क करेंगे।</p>
+                        <button className="prasad-custom-reset hindi-text"
+                          onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
+                          नई request करें
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="prasad-bottom-cta">
+              <div className="prasad-cta-text">
+                <h3 className="hindi-text">बुकिंग के लिए सम्पर्क करें</h3>
+                <p className="hindi-text">हम 24/7 उपलब्ध हैं — Call या WhatsApp पर बुकिंग करें</p>
+              </div>
+              <div className="prasad-cta-btns">
+                <a href="tel:9929975116" className="prasad-cta-call"><FiPhone /> 9929975116</a>
+                <a href="https://wa.me/919929975116?text=प्रसाद बुकिंग करनी है" className="prasad-cta-wa"
+                  target="_blank" rel="noopener noreferrer">
+                  <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Custom / Other Booking Section */}
+            <div className="swamani-custom-section">
+              <button className="swamani-custom-header" onClick={() => setCustomOpen(o => !o)}>
+                <span className="swamani-custom-header-left">
+                  <FiEdit3 className="swamani-custom-icon" />
+                  <span>
+                    <strong className="hindi-text">कुछ और बुक करें?</strong>
+                    <small className="hindi-text">ऊपर दी सूची के अलावा कोई विशेष प्रसाद / सेवा चाहिए?</small>
+                  </span>
+                </span>
+                <span className="swamani-custom-chevron">{customOpen ? '▲' : '▼'}</span>
+              </button>
+
+              {customOpen && (
+                <div className="swamani-custom-body">
+                  {!customDone ? (
+                    <form className="swamani-custom-form" onSubmit={handleCustomBook}>
+                      <p className="hindi-text swamani-custom-hint">
+                        कोई भी विशेष प्रसाद, पूजा सामग्री, या अन्य सेवा जो list में नहीं है — नीचे लिखें। हम arrange करेंगे।
+                      </p>
+                      <div className="swamani-custom-grid">
+                        <div className="swamani-custom-field">
+                          <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
+                          <textarea rows={3}
+                            placeholder="जैसे: विशेष लड्डू, मोरछड़ी, विशेष पूजा सामग्री, मनपसंद प्रसाद..."
+                            value={customForm.details}
+                            onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
+                            required />
+                        </div>
+                        <div className="swamani-custom-row">
+                          <div className="swamani-custom-field">
+                            <label className="hindi-text">आपका नाम *</label>
+                            <input type="text" placeholder="पूरा नाम"
+                              value={customForm.name}
+                              onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
+                              required />
+                          </div>
+                          <div className="swamani-custom-field">
+                            <label className="hindi-text">मोबाइल नंबर *</label>
+                            <input type="tel" placeholder="10 अंक" maxLength={10}
+                              value={customForm.phone}
+                              onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
+                              required />
+                          </div>
+                        </div>
+                        <div className="swamani-custom-row">
+                          <div className="swamani-custom-field">
+                            <label className="hindi-text">पसंदीदा दिनांक</label>
+                            <input type="date" value={customForm.date}
+                              onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
+                          </div>
+                          <div className="swamani-custom-field">
+                            <label className="hindi-text">अवसर (वैकल्पिक)</label>
+                            <input type="text" placeholder="जन्मदिन, मनोकामना..."
+                              value={customForm.occasion}
+                              onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                          </div>
+                        </div>
+                        <div className="swamani-custom-field">
+                          <label className="hindi-text">पता (प्रसाद delivery के लिए)</label>
+                          <input type="text" placeholder="घर का पता..."
+                            value={customForm.address}
+                            onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                        </div>
+                      </div>
+                      <div className="swamani-custom-actions">
+                        <button type="submit" className="swamani-custom-wa-btn hindi-text">
+                          ✅ Submit करें
+                        </button>
+                        <a href="tel:9929975116" className="swamani-custom-call-btn">
+                          <FiPhone /> Call करें
+                        </a>
+                      </div>
+                    </form>
+                  ) : (
+                    <div className="swamani-custom-done">
+                      <span>✅</span>
+                      <div>
+                        <p className="hindi-text">बुकिंग request भेज दी! हम जल्द संपर्क करेंगे।</p>
+                        <button className="swamani-custom-reset hindi-text"
+                          onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
+                          नई request करें
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         )}

@@ -834,3 +834,170 @@
 .prasad-view-detail { display: flex; align-items: center; gap: 4px; font-family: var(--font-hindi); color: var(--secondary); font-size: 0.78rem; font-weight: 600; }
 .prasad-table-link { text-decoration: none; color: var(--text-primary); font-weight: 600; transition: color 0.2s; }
 .prasad-table-link:hover { color: var(--secondary); }
+
+/* ═══════════════════════════════════════
+   PRASAD CUSTOM / OTHER BOOKING SECTION
+═══════════════════════════════════════ */
+.prasad-custom-section {
+  background: var(--gradient-card);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+
+.prasad-custom-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 14px;
+  transition: background 0.2s;
+}
+.prasad-custom-header:hover { background: rgba(212,160,23,0.05); }
+
+.prasad-custom-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.prasad-custom-icon {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+.prasad-custom-header-left strong {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  font-size: 1.05rem;
+  display: block;
+}
+
+.prasad-custom-header-left small {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 3px;
+}
+
+.prasad-custom-chevron {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.prasad-custom-body {
+  padding: 0 24px 24px;
+  border-top: 1px solid rgba(212,160,23,0.15);
+}
+
+.prasad-custom-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 14px 0 6px;
+}
+
+.prasad-custom-form { display: flex; flex-direction: column; gap: 14px; padding-top: 8px; }
+
+.prasad-custom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.prasad-custom-field { display: flex; flex-direction: column; gap: 6px; }
+.prasad-custom-field label {
+  font-family: var(--font-hindi);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+}
+.prasad-custom-field input,
+.prasad-custom-field textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: var(--text-primary);
+  font-family: var(--font-hindi);
+  font-size: 0.9rem;
+  outline: none;
+  resize: none;
+  transition: border-color 0.25s;
+  width: 100%;
+}
+.prasad-custom-field input:focus,
+.prasad-custom-field textarea:focus {
+  border-color: rgba(212,160,23,0.5);
+  background: rgba(255,255,255,0.07);
+}
+
+.prasad-custom-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.prasad-custom-submit {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  background: var(--gradient-gold); color: var(--bg-dark);
+  border: none; padding: 13px 20px; border-radius: 11px;
+  font-family: var(--font-hindi); font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; min-width: 140px;
+}
+.prasad-custom-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,160,23,0.35); }
+
+.prasad-custom-call {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.3);
+  color: var(--secondary); padding: 13px 22px; border-radius: 11px;
+  text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.3s; white-space: nowrap;
+}
+.prasad-custom-call:hover { background: rgba(212,160,23,0.1); }
+
+.prasad-custom-done {
+  display: flex; align-items: center; gap: 16px; padding: 20px 0 8px;
+}
+.prasad-custom-done > span { font-size: 2.5rem; flex-shrink: 0; }
+.prasad-custom-done p { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.9rem; margin-bottom: 10px; }
+
+.prasad-custom-reset {
+  background: none; border: 1px solid rgba(212,160,23,0.35);
+  color: var(--secondary); font-family: var(--font-hindi); font-size: 0.82rem;
+  padding: 7px 16px; border-radius: 20px; cursor: pointer; transition: all 0.2s;
+}
+.prasad-custom-reset:hover { background: rgba(212,160,23,0.1); }
+
+/* ── Bottom CTA ── */
+.prasad-bottom-cta {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  background: linear-gradient(135deg, rgba(212,160,23,0.1), rgba(123,45,139,0.12));
+  border: var(--border-gold); border-radius: 18px;
+  padding: 24px 28px; flex-wrap: wrap; margin-top: 32px;
+}
+.prasad-bottom-cta h3 { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.1rem; margin-bottom: 4px; }
+.prasad-bottom-cta p { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.85rem; }
+.prasad-cta-btns { display: flex; gap: 10px; }
+.prasad-cta-call, .prasad-cta-wa {
+  display: flex; align-items: center; gap: 8px;
+  padding: 11px 20px; border-radius: 25px; text-decoration: none;
+  font-weight: 700; font-size: 0.9rem; transition: all 0.3s;
+}
+.prasad-cta-call { background: var(--gradient-gold); color: var(--bg-dark); }
+.prasad-cta-wa { background: #25d366; color: white; font-family: var(--font-hindi); }
+.prasad-cta-call:hover, .prasad-cta-wa:hover { transform: translateY(-2px); }
+
+@media (max-width: 600px) {
+  .prasad-custom-header { padding: 16px; }
+  .prasad-custom-body { padding: 0 16px 16px; }
+  .prasad-custom-row { grid-template-columns: 1fr; }
+  .prasad-custom-actions { flex-direction: column; }
+  .prasad-bottom-cta { flex-direction: column; }
+  .prasad-cta-btns { width: 100%; justify-content: center; }
+}

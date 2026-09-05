@@ -159,3 +159,187 @@
   .bh-cta-box { flex-direction: column; }
   .bh-cta-btns { width: 100%; justify-content: center; }
 }
+
+/* ═══════════════════════════════════════
+   PHONE VERIFY GATE
+═══════════════════════════════════════ */
+.bh-gate-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px 80px;
+}
+
+.bh-gate-card {
+  background: var(--gradient-card);
+  border: 1px solid rgba(212,160,23,0.28);
+  border-radius: 22px;
+  padding: 40px 36px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.bh-gate-icon {
+  font-size: 3rem;
+  margin-bottom: 14px;
+}
+
+.bh-gate-card h2 {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.bh-gate-sub {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.bh-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bh-gate-field {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s;
+}
+.bh-gate-field:focus-within {
+  border-color: rgba(212,160,23,0.6);
+  background: rgba(255,255,255,0.08);
+}
+
+.bh-gate-prefix {
+  padding: 0 14px;
+  color: var(--secondary);
+  font-size: 1rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.bh-gate-field input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-hindi);
+  font-size: 1.1rem;
+  padding: 14px 14px 14px 0;
+  letter-spacing: 1px;
+}
+.bh-gate-field input::placeholder { color: var(--text-muted); font-size: 0.88rem; letter-spacing: 0; }
+
+.bh-gate-error {
+  color: #ff8888;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: left;
+  padding: 2px 4px;
+}
+
+.bh-gate-btn {
+  background: var(--gradient-gold);
+  color: var(--bg-dark);
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-family: var(--font-hindi);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.bh-gate-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(212,160,23,0.35);
+}
+.bh-gate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.bh-gate-note {
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(212,160,23,0.12);
+}
+.bh-gate-note p {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.bh-gate-note a {
+  color: var(--secondary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ═══════════════════════════════════════
+   USER BAR (after verify)
+═══════════════════════════════════════ */
+.bh-user-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(212,160,23,0.07);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 12px;
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bh-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-hindi);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+.bh-user-icon, .bh-owner-icon {
+  color: var(--secondary);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.bh-owner-icon { color: #25d366; }
+
+.bh-user-info strong { color: var(--secondary); }
+
+.bh-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text-muted);
+  font-family: var(--font-hindi);
+  font-size: 0.8rem;
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.bh-logout-btn:hover {
+  background: rgba(255,80,80,0.1);
+  border-color: rgba(255,80,80,0.25);
+  color: #ff8888;
+}
+
+@media (max-width: 480px) {
+  .bh-gate-card { padding: 28px 20px; }
+  .bh-user-bar { flex-direction: column; align-items: flex-start; }
+}

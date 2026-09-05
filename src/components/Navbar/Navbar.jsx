@@ -16,6 +16,7 @@ const navLinks = [
       { path: '/prasad-puja', label: '🍯 प्रसाद बुकिंग' },
       { path: '/nishan-mannat', label: '🚩 निशान मन्नत' },
       { path: '/bhandara', label: '🍽️ विशाल भंडारा' },
+      { path: '/booking-history', label: '📋 मेरी बुकिंग' },
     ]
   },
   { path: '/booking', label: '💳 बुकिंग' },
@@ -32,7 +33,6 @@ const navLinks = [
     ]
   },
   { path: '/contact', label: 'सम्पर्क' },
-  { path: '/booking-history', label: '📋 इतिहास' },
 ]
 
 export default function Navbar({ onContactClick }) {

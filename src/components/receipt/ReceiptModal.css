@@ -164,3 +164,33 @@
   .rm-actions { gap: 8px; }
   .rm-btn { font-size: 0.75rem; padding: 10px 8px; }
 }
+
+/* ── Bottom Actions (history + close) ── */
+.rm-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 20px 6px;
+  flex-wrap: wrap;
+}
+
+.rm-history-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,160,23,0.1);
+  border: 1px solid rgba(212,160,23,0.35);
+  color: var(--secondary);
+  font-family: var(--font-hindi);
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 22px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.rm-history-btn:hover {
+  background: rgba(212,160,23,0.18);
+  transform: translateY(-1px);
+}

@@ -1,8 +1,9 @@
 'use client'
 import { useRef } from 'react'
+import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiDownload, FiPrinter, FiX, FiCheck, FiShare2 } from 'react-icons/fi'
-import { formatDate } from '@/lib/bookingStorage'
+import { FiDownload, FiPrinter, FiX, FiCheck, FiShare2, FiClock } from 'react-icons/fi'
+import { formatDate, setVerifiedPhone } from '@/lib/bookingStorage'
 import './ReceiptModal.css'
 
 export default function ReceiptModal({ booking, onClose }) {
@@ -181,8 +182,21 @@ export default function ReceiptModal({ booking, onClose }) {
           </div>
         </div>
 
-        {/* Close */}
-        <div style={{ textAlign: 'center', padding: '14px 0 4px' }}>
+        {/* Close + History */}
+        <div className="rm-bottom-actions">
+          <Link
+            href="/booking-history"
+            className="rm-history-btn hindi-text"
+            onClick={() => {
+              // Pre-verify phone so history page opens directly
+              if (booking?.phone) {
+                const clean = booking.phone.replace(/\D/g, '').slice(-10)
+                if (clean.length === 10) setVerifiedPhone(clean)
+              }
+            }}
+          >
+            <FiClock /> अपनी सभी बुकिंग देखें
+          </Link>
           <button className="rm-close-btn hindi-text" onClick={onClose}>बंद करें</button>
         </div>
       </div>

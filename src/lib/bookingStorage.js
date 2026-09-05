@@ -1,8 +1,13 @@
 // ── Booking Storage Utility ──────────────────────────────
 // Saves all bookings to localStorage
+// Owner phone: 9929975116 — can see ALL bookings
+// Others: sirf apne phone number se apni bookings
 
 const STORAGE_KEY = 'khatu_shyam_bookings'
+const SESSION_KEY = 'khatu_shyam_verified_phone'
+export const OWNER_PHONE = '9929975116'
 
+// ── ID generator ──
 export function generateBookingId() {
   const now = new Date()
   const date = now.toISOString().slice(0, 10).replace(/-/g, '')
@@ -10,6 +15,7 @@ export function generateBookingId() {
   return `KS-${date}-${random}`
 }
 
+// ── Save booking ──
 export function saveBooking(booking) {
   if (typeof window === 'undefined') return null
   try {
@@ -20,7 +26,7 @@ export function saveBooking(booking) {
       createdAt: new Date().toISOString(),
       status: 'Confirmed',
     }
-    existing.unshift(newBooking) // latest first
+    existing.unshift(newBooking)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
     return newBooking
   } catch (e) {
@@ -29,6 +35,7 @@ export function saveBooking(booking) {
   }
 }
 
+// ── Get ALL bookings (raw) ──
 export function getAllBookings() {
   if (typeof window === 'undefined') return []
   try {
@@ -39,6 +46,41 @@ export function getAllBookings() {
   }
 }
 
+// ── Get bookings by phone ──
+// Owner gets everything, others get only their own
+export function getBookingsByPhone(phone) {
+  if (!phone) return []
+  const clean = phone.replace(/\D/g, '').slice(-10)
+  if (clean === OWNER_PHONE) return getAllBookings()
+  return getAllBookings().filter(b => {
+    const bp = (b.phone || '').replace(/\D/g, '').slice(-10)
+    return bp === clean
+  })
+}
+
+// ── Check if phone is owner ──
+export function isOwner(phone) {
+  if (!phone) return false
+  return phone.replace(/\D/g, '').slice(-10) === OWNER_PHONE
+}
+
+// ── Session: save verified phone (tab session only) ──
+export function setVerifiedPhone(phone) {
+  if (typeof window === 'undefined') return
+  sessionStorage.setItem(SESSION_KEY, phone)
+}
+
+export function getVerifiedPhone() {
+  if (typeof window === 'undefined') return null
+  return sessionStorage.getItem(SESSION_KEY) || null
+}
+
+export function clearVerifiedPhone() {
+  if (typeof window === 'undefined') return
+  sessionStorage.removeItem(SESSION_KEY)
+}
+
+// ── Misc ──
 export function getBookingById(id) {
   return getAllBookings().find(b => b.id === id) || null
 }

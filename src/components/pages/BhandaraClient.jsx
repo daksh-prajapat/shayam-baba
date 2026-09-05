@@ -134,8 +134,7 @@ export default function BhandaraClient() {
       note: customForm.details,
     })
     setCustomDone(true)
-    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम भंडारा / विशेष बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `📍 स्थान: *${customForm.address}*%0A` : ''}%0Aकृपया Quotation और जानकारी दें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    setReceipt(booking)
   }
 
   const handleBook = (pkg) => {
@@ -149,8 +148,7 @@ export default function BhandaraClient() {
       persons: pkg.persons + ' व्यक्ति',
       note: 'मूल्य संपर्क पर तय होगा',
     })
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *खाटू श्याम विशाल भंडारा बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 भंडारा: *${pkg.title}*%0A👥 व्यक्ति: *${pkg.persons.toLocaleString('hi-IN')}*%0A%0Aकृपया Quotation और जानकारी दें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    setReceipt(booking)
   }
 
   const handleFormSubmit = (e) => {
@@ -169,8 +167,6 @@ export default function BhandaraClient() {
       note: 'मूल्य संपर्क पर तय होगा',
     })
     setReceipt(booking)
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *भंडारा बुकिंग फॉर्म*%0A%0A🔖 Booking ID: *${booking.id}*%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A👥 व्यक्ति संख्या: *${form.persons}*%0A📅 दिनांक: *${form.date}*%0A📍 स्थान: *${form.place}*%0A🎊 अवसर: *${form.occasion}*%0A%0Aकृपया संपर्क करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
   return (
@@ -274,7 +270,7 @@ export default function BhandaraClient() {
 
               <div className="bhandara-card-actions">
                 <button className="bhandara-wa-book hindi-text" onClick={(e) => { e.stopPropagation(); handleBook(pkg) }}>
-                  <FaWhatsapp /> अभी बुक करें
+                  ✅ अभी बुक करें
                 </button>
                 <a href="tel:9929975116" className="bhandara-call-small" onClick={e => e.stopPropagation()}>
                   <FiPhone />
@@ -332,7 +328,7 @@ export default function BhandaraClient() {
                   <input type="text" placeholder="जैसे: मनोकामना पूर्ति, जन्मदिन, विवाह..." value={form.occasion} onChange={e => setForm({ ...form, occasion: e.target.value })} />
                 </div>
                 <button type="submit" className="bhandara-submit-btn hindi-text">
-                  <FaWhatsapp /> WhatsApp पर बुकिंग करें
+                  ✅ बुकिंग Submit करें
                 </button>
                 <a href="tel:9929975116" className="bhandara-form-call">
                   <FiPhone /> 9929975116 पर Call करें
@@ -450,7 +446,7 @@ export default function BhandaraClient() {
 
                   <div className="bhandara-custom-actions">
                     <button type="submit" className="bhandara-custom-wa-btn hindi-text">
-                      <FaWhatsapp /> WhatsApp पर भेजें
+                      ✅ Submit करें
                     </button>
                     <a href="tel:9929975116" className="bhandara-custom-call-btn">
                       <FiPhone /> Call करें

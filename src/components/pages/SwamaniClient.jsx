@@ -5,12 +5,14 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowRight, FiEdit3, FiCheck } from 'react-icons/fi'
 import { swamaniList } from '@/lib/swamaniData'
 import { saveBooking } from '@/lib/bookingStorage'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Swamani.css'
 
 export default function SwamaniClient() {
   const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
   const [customDone, setCustomDone] = useState(false)
   const [customOpen, setCustomOpen] = useState(false)
+  const [receipt, setReceipt] = useState(null)
 
   const handleBook = (e, item) => {
     e.preventDefault()
@@ -34,12 +36,12 @@ export default function SwamaniClient() {
       note: customForm.details,
     })
     setCustomDone(true)
-    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम स्वामणी / विशेष बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `🏠 पता: *${customForm.address}*%0A` : ''}%0Aकृपया confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    setReceipt(booking)
   }
 
   return (
     <div className="swamani-page">
+      {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
       {/* Hero */}
       <div className="swamani-hero">
         <div className="swamani-hero-overlay"></div>
@@ -223,7 +225,7 @@ export default function SwamaniClient() {
                   </div>
                   <div className="swamani-custom-actions">
                     <button type="submit" className="swamani-custom-wa-btn hindi-text">
-                      <FaWhatsapp /> WhatsApp पर भेजें
+                      ✅ Submit करें
                     </button>
                     <a href="tel:9929975116" className="swamani-custom-call-btn">
                       <FiPhone /> Call करें

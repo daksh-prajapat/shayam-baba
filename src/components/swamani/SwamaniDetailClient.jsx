@@ -25,22 +25,6 @@ export default function SwamaniDetailClient({ item }) {
       icon: item.icon,
     })
     setReceipt(booking)
-
-    const msg = `🙏 *जय श्री श्याम*%0A%0A` +
-      `👑 *स्वामणी भोग बुकिंग*%0A` +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `🔖 Booking ID: *${booking.id}*%0A` +
-      `📌 स्वामणी: *${item.name}*%0A` +
-      `💰 राशि: *₹${item.price.toLocaleString('hi-IN')}*%0A` +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `👤 नाम: *${form.name}*%0A` +
-      `📞 फोन: *${form.phone}*%0A` +
-      (form.date ? `📅 दिनांक: *${form.date}*%0A` : '') +
-      (form.occasion ? `🎊 अवसर: *${form.occasion}*%0A` : '') +
-      (form.address ? `🏠 पता: *${form.address}*%0A` : '') +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `कृपया बुकिंग confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
   const others = swamaniList.filter(s => s.id !== item.id).slice(0, 4)
@@ -187,7 +171,7 @@ export default function SwamaniDetailClient({ item }) {
                     onClick={handleBook}
                     disabled={!form.name || !form.phone}
                   >
-                    <FaWhatsapp /> WhatsApp पर बुकिंग करें
+                    ✅ बुकिंग Submit करें
                   </button>
                   <a href="tel:9929975116" className="sd-call-btn">
                     <FiPhone /> 9929975116 पर Call करें

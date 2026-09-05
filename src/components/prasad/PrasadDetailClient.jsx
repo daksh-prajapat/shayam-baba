@@ -29,12 +29,10 @@ export default function PrasadDetailClient({ item }) {
       note: customForm.details,
     })
     setCustomDone(true)
-    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम प्रसाद बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `🏠 पता: *${customForm.address}*%0A` : ''}%0Aकृपया confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    setReceipt(booking)
   }
 
   const handleBook = () => {
-    // Save to localStorage
     const booking = saveBooking({
       serviceName: item.name,
       serviceType: 'prasad',
@@ -47,10 +45,6 @@ export default function PrasadDetailClient({ item }) {
       icon: item.icon,
     })
     setReceipt(booking)
-
-    // WhatsApp message
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍯 *प्रसाद बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 प्रसाद: *${item.name}*%0A💰 मूल्य: *₹${item.price}*%0A%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A${form.date ? `📅 दिनांक: *${form.date}*%0A` : ''}${form.occasion ? `🎊 अवसर: *${form.occasion}*%0A` : ''}${form.address ? `🏠 पता: *${form.address}*%0A` : ''}%0Aकृपया बुकिंग confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
   const others = prasadList.filter(p => p.id !== item.id).slice(0, 4)
@@ -190,7 +184,7 @@ export default function PrasadDetailClient({ item }) {
 
                   <button className="pd-wa-btn hindi-text" onClick={handleBook}
                     disabled={!form.name || !form.phone}>
-                    <FaWhatsapp /> WhatsApp पर बुकिंग करें
+                    ✅ बुकिंग Submit करें
                   </button>
                   <a href="tel:9929975116" className="pd-call-btn">
                     <FiPhone /> 9929975116 पर Call करें
@@ -278,7 +272,7 @@ export default function PrasadDetailClient({ item }) {
                       <button className="pd-wa-btn hindi-text" style={{ marginTop: 4 }}
                         onClick={handleCustomBook}
                         disabled={!customForm.name || !customForm.phone || !customForm.details}>
-                        <FaWhatsapp /> WhatsApp पर भेजें
+                        ✅ Submit करें
                       </button>
                     </>
                   ) : (

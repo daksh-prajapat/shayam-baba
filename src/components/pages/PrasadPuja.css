@@ -111,7 +111,7 @@
 .prasad-info-banner a { color: var(--secondary); text-decoration: none; font-weight: 700; }
 
 /* Main Container */
-.prasad-main-container { padding: 50px 20px 70px; }
+.prasad-main-container { padding: 50px 20px 70px; max-width: 100%; overflow-x: hidden; }
 
 /* Tabs */
 .prasad-tabs-v2 {
@@ -579,12 +579,13 @@
 }
 
 @media (max-width: 600px) {
-  .prasad-row-main { grid-template-columns: 120px 1fr; }
-  .prasad-row-img { height: 120px; }
-  .puja-services-grid { grid-template-columns: 1fr; }
+  .prasad-row-main { grid-template-columns: 100px 1fr; }
+  .prasad-row-img { height: 100px; }
+  .puja-services-grid { grid-template-columns: 1fr 1fr; }
   .booking-row { grid-template-columns: 1fr; }
-  .prasad-tabs-v2 { flex-direction: column; }
-  .prasad-tab-v2 { min-width: unset; }
+  .prasad-tabs-v2 { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+  .prasad-tab-v2 { min-width: unset; flex: 1; padding: 10px 14px; }
+  .prasad-main-container { padding: 30px 14px 60px; }
 }
 
 /* ── Prasad Packages Section ── */
@@ -675,8 +676,14 @@
 /* ── Responsive ── */
 @media (max-width: 1100px) { .prasad-pkg-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) {
+  .prasad-pkg-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .prasad-table-box { overflow-x: auto; }
+  .prasad-table-header, .prasad-table-row { grid-template-columns: 1fr 60px 36px; padding: 10px 12px; font-size: 0.78rem; }
+  .prasad-table-header span:nth-child(2),
+  .prasad-table-row .prasad-table-items { display: none; }
+}
+@media (max-width: 400px) {
   .prasad-pkg-grid { grid-template-columns: 1fr; }
-  .prasad-table-header, .prasad-table-row { grid-template-columns: 1.2fr 1.5fr 70px 40px; padding: 10px 12px; font-size: 0.78rem; }
 }
 
 /* ── Prasad Accordion ── */

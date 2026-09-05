@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin } from 'react-icons/fi'
+import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin, FiEdit3 } from 'react-icons/fi'
 import { saveBooking } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Bhandara.css'
@@ -115,6 +115,28 @@ export default function BhandaraClient() {
   const [form, setForm] = useState({ name: '', phone: '', date: '', place: '', persons: '', occasion: '' })
   const [openFaq, setOpenFaq] = useState(null)
   const [receipt, setReceipt] = useState(null)
+  const [customOpen, setCustomOpen] = useState(false)
+  const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
+  const [customDone, setCustomDone] = useState(false)
+
+  const handleCustomBook = (e) => {
+    e.preventDefault()
+    const booking = saveBooking({
+      serviceName: `कस्टम भंडारा — ${customForm.details.slice(0, 40)}`,
+      serviceType: 'bhandara',
+      amount: 0,
+      name: customForm.name,
+      phone: customForm.phone,
+      date: customForm.date,
+      occasion: customForm.occasion,
+      address: customForm.address,
+      icon: '✏️',
+      note: customForm.details,
+    })
+    setCustomDone(true)
+    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम भंडारा / विशेष बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `📍 स्थान: *${customForm.address}*%0A` : ''}%0Aकृपया Quotation और जानकारी दें। 🙏`
+    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+  }
 
   const handleBook = (pkg) => {
     const booking = saveBooking({
@@ -356,6 +378,99 @@ export default function BhandaraClient() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Custom / Other Booking */}
+        <div className="bhandara-custom-section">
+          <button className="bhandara-custom-header" onClick={() => setCustomOpen(o => !o)}>
+            <span className="bhandara-custom-header-left">
+              <FiEdit3 className="bhandara-custom-icon" />
+              <span>
+                <strong className="hindi-text">कुछ और चाहिए?</strong>
+                <small className="hindi-text">ऊपर दिए package के अलावा कोई विशेष आयोजन, custom menu, या अलग व्यवस्था?</small>
+              </span>
+            </span>
+            <span className="bhandara-custom-chevron">{customOpen ? '▲' : '▼'}</span>
+          </button>
+
+          {customOpen && (
+            <div className="bhandara-custom-body">
+              {!customDone ? (
+                <form className="bhandara-custom-form" onSubmit={handleCustomBook}>
+                  <p className="hindi-text bhandara-custom-hint">
+                    1000 से कम या ज़्यादा व्यक्ति, custom menu, विशेष तारीख, या कोई भी अन्य आवश्यकता — नीचे लिखें। हम Quotation देंगे।
+                  </p>
+
+                  <div className="bhandara-custom-field">
+                    <label className="hindi-text"><FiEdit3 /> क्या चाहिए? (विवरण) *</label>
+                    <textarea rows={3}
+                      placeholder="जैसे: 500 व्यक्ति भंडारा, custom menu, विशेष मिठाई, घर पर आयोजन..."
+                      value={customForm.details}
+                      onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
+                      required />
+                  </div>
+
+                  <div className="bhandara-form-row">
+                    <div className="bhandara-custom-field">
+                      <label className="hindi-text"><FiUsers /> आपका नाम *</label>
+                      <input type="text" placeholder="पूरा नाम"
+                        value={customForm.name}
+                        onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
+                        required />
+                    </div>
+                    <div className="bhandara-custom-field">
+                      <label className="hindi-text"><FiPhone /> मोबाइल नंबर *</label>
+                      <input type="tel" placeholder="10 अंक" maxLength={10}
+                        value={customForm.phone}
+                        onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
+                        required />
+                    </div>
+                  </div>
+
+                  <div className="bhandara-form-row">
+                    <div className="bhandara-custom-field">
+                      <label className="hindi-text"><FiCalendar /> पसंदीदा दिनांक</label>
+                      <input type="date" value={customForm.date}
+                        onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
+                    </div>
+                    <div className="bhandara-custom-field">
+                      <label className="hindi-text">🎊 अवसर / कारण</label>
+                      <input type="text" placeholder="मनोकामना, विवाह, जन्मदिन..."
+                        value={customForm.occasion}
+                        onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                    </div>
+                  </div>
+
+                  <div className="bhandara-custom-field">
+                    <label className="hindi-text"><FiMapPin /> स्थान / पता</label>
+                    <input type="text" placeholder="भंडारे का स्थान / पता"
+                      value={customForm.address}
+                      onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                  </div>
+
+                  <div className="bhandara-custom-actions">
+                    <button type="submit" className="bhandara-custom-wa-btn hindi-text">
+                      <FaWhatsapp /> WhatsApp पर भेजें
+                    </button>
+                    <a href="tel:9929975116" className="bhandara-custom-call-btn">
+                      <FiPhone /> Call करें
+                    </a>
+                  </div>
+                </form>
+              ) : (
+                <div className="bhandara-custom-done">
+                  <span>✅</span>
+                  <div>
+                    <p className="hindi-text">Request भेज दी! हम जल्द Quotation के साथ संपर्क करेंगे।</p>
+                    <button className="bhandara-custom-reset hindi-text"
+                      onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
+                      नई request करें
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Bottom CTA */}

@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiArrowLeft, FiCheck } from 'react-icons/fi'
+import { FiPhone, FiArrowLeft, FiCheck, FiEdit3 } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
 import { saveBooking } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
@@ -11,6 +11,27 @@ import './PrasadDetail.css'
 export default function PrasadDetailClient({ item }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '', address: '' })
   const [receipt, setReceipt] = useState(null)
+  const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
+  const [customOpen, setCustomOpen] = useState(false)
+  const [customDone, setCustomDone] = useState(false)
+
+  const handleCustomBook = () => {
+    const booking = saveBooking({
+      serviceName: `कस्टम प्रसाद — ${customForm.details.slice(0, 40)}`,
+      serviceType: 'prasad',
+      amount: 0,
+      name: customForm.name,
+      phone: customForm.phone,
+      date: customForm.date,
+      occasion: customForm.occasion,
+      address: customForm.address,
+      icon: '✏️',
+      note: customForm.details,
+    })
+    setCustomDone(true)
+    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम प्रसाद बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `🏠 पता: *${customForm.address}*%0A` : ''}%0Aकृपया confirm करें। 🙏`
+    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+  }
 
   const handleBook = () => {
     // Save to localStorage
@@ -202,6 +223,75 @@ export default function PrasadDetailClient({ item }) {
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
               </a>
               <p className="hindi-text pd-qc-note">सुबह 6 बजे – रात 10 बजे</p>
+            </div>
+
+            {/* Custom / Other Booking */}
+            <div className="card pd-custom-card">
+              <button className="pd-custom-toggle" onClick={() => setCustomOpen(o => !o)}>
+                <span className="pd-custom-toggle-left">
+                  <FiEdit3 className="pd-custom-icon" />
+                  <span>
+                    <strong className="hindi-text">कुछ और चाहिए?</strong>
+                    <small className="hindi-text">अपनी मनपसंद चीज़ बुक करें</small>
+                  </span>
+                </span>
+                <span className="pd-custom-chevron">{customOpen ? '▲' : '▼'}</span>
+              </button>
+
+              {customOpen && (
+                <div className="pd-custom-body">
+                  {!customDone ? (
+                    <>
+                      <p className="hindi-text pd-custom-hint">
+                        ऊपर दिए गए प्रसाद के अलावा कुछ और चाहिए? — नीचे लिखें, हम arrange करेंगे।
+                      </p>
+                      <div className="pd-field">
+                        <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
+                        <textarea rows={3} placeholder="जैसे: विशेष लड्डू, मोरछड़ी, विशेष पूजा सामग्री..." value={customForm.details}
+                          onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))} />
+                      </div>
+                      <div className="pd-field">
+                        <label className="hindi-text">आपका नाम *</label>
+                        <input type="text" placeholder="पूरा नाम" value={customForm.name}
+                          onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))} />
+                      </div>
+                      <div className="pd-field">
+                        <label className="hindi-text">मोबाइल नंबर *</label>
+                        <input type="tel" placeholder="10 अंक" maxLength={10} value={customForm.phone}
+                          onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))} />
+                      </div>
+                      <div className="pd-field">
+                        <label className="hindi-text">पसंदीदा दिनांक</label>
+                        <input type="date" value={customForm.date}
+                          onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
+                      </div>
+                      <div className="pd-field">
+                        <label className="hindi-text">अवसर (वैकल्पिक)</label>
+                        <input type="text" placeholder="जन्मदिन, मनोकामना..." value={customForm.occasion}
+                          onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                      </div>
+                      <div className="pd-field">
+                        <label className="hindi-text">पता (delivery के लिए)</label>
+                        <textarea rows={2} placeholder="घर का पता..." value={customForm.address}
+                          onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                      </div>
+                      <button className="pd-wa-btn hindi-text" style={{ marginTop: 4 }}
+                        onClick={handleCustomBook}
+                        disabled={!customForm.name || !customForm.phone || !customForm.details}>
+                        <FaWhatsapp /> WhatsApp पर भेजें
+                      </button>
+                    </>
+                  ) : (
+                    <div className="pd-custom-done">
+                      <span className="pd-custom-done-icon">✅</span>
+                      <p className="hindi-text">बुकिंग request भेज दी! हम जल्द संपर्क करेंगे।</p>
+                      <button className="pd-call-btn" onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
+                        नई request
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

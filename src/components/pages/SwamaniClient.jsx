@@ -1,15 +1,40 @@
 'use client'
+import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiArrowRight } from 'react-icons/fi'
+import { FiPhone, FiArrowRight, FiEdit3, FiCheck } from 'react-icons/fi'
 import { swamaniList } from '@/lib/swamaniData'
+import { saveBooking } from '@/lib/bookingStorage'
 import './Swamani.css'
 
 export default function SwamaniClient() {
+  const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
+  const [customDone, setCustomDone] = useState(false)
+  const [customOpen, setCustomOpen] = useState(false)
+
   const handleBook = (e, item) => {
     e.preventDefault()
     e.stopPropagation()
     const msg = `🙏 नमस्ते! स्वामणी बुकिंग करनी है।%0A%0A👑 स्वामणी: ${item.name}%0A💰 मूल्य: ₹${item.price.toLocaleString('hi-IN')}%0A%0Aकृपया बुकिंग की जानकारी दें।`
+    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+  }
+
+  const handleCustomBook = (e) => {
+    e.preventDefault()
+    const booking = saveBooking({
+      serviceName: `कस्टम स्वामणी — ${customForm.details.slice(0, 40)}`,
+      serviceType: 'swamani',
+      amount: 0,
+      name: customForm.name,
+      phone: customForm.phone,
+      date: customForm.date,
+      occasion: customForm.occasion,
+      address: customForm.address,
+      icon: '✏️',
+      note: customForm.details,
+    })
+    setCustomDone(true)
+    const msg = `🙏 *जय श्री श्याम*%0A%0A✏️ *कस्टम स्वामणी / विशेष बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 विवरण: *${customForm.details}*%0A%0A👤 नाम: *${customForm.name}*%0A📞 फोन: *${customForm.phone}*%0A${customForm.date ? `📅 दिनांक: *${customForm.date}*%0A` : ''}${customForm.occasion ? `🎊 अवसर: *${customForm.occasion}*%0A` : ''}${customForm.address ? `🏠 पता: *${customForm.address}*%0A` : ''}%0Aकृपया confirm करें। 🙏`
     window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
@@ -129,6 +154,96 @@ export default function SwamaniClient() {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Custom / Other Booking Section */}
+        <div className="swamani-custom-section">
+          <button className="swamani-custom-header" onClick={() => setCustomOpen(o => !o)}>
+            <span className="swamani-custom-header-left">
+              <FiEdit3 className="swamani-custom-icon" />
+              <span>
+                <strong className="hindi-text">कुछ और बुक करें?</strong>
+                <small className="hindi-text">ऊपर दी सूची के अलावा कोई विशेष भोग / सेवा चाहिए?</small>
+              </span>
+            </span>
+            <span className="swamani-custom-chevron">{customOpen ? '▲' : '▼'}</span>
+          </button>
+
+          {customOpen && (
+            <div className="swamani-custom-body">
+              {!customDone ? (
+                <form className="swamani-custom-form" onSubmit={handleCustomBook}>
+                  <p className="hindi-text swamani-custom-hint">
+                    कोई भी विशेष भोग, पूजा सामग्री, या अन्य सेवा जो list में नहीं है — नीचे लिखें। हम arrange करेंगे।
+                  </p>
+                  <div className="swamani-custom-grid">
+                    <div className="swamani-custom-field">
+                      <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
+                      <textarea rows={3}
+                        placeholder="जैसे: विशेष छप्पन भोग, अपनी पसंद का मेनू, विशेष तारीख पर पूजा..."
+                        value={customForm.details}
+                        onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
+                        required />
+                    </div>
+                    <div className="swamani-custom-row">
+                      <div className="swamani-custom-field">
+                        <label className="hindi-text">आपका नाम *</label>
+                        <input type="text" placeholder="पूरा नाम"
+                          value={customForm.name}
+                          onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
+                          required />
+                      </div>
+                      <div className="swamani-custom-field">
+                        <label className="hindi-text">मोबाइल नंबर *</label>
+                        <input type="tel" placeholder="10 अंक" maxLength={10}
+                          value={customForm.phone}
+                          onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
+                          required />
+                      </div>
+                    </div>
+                    <div className="swamani-custom-row">
+                      <div className="swamani-custom-field">
+                        <label className="hindi-text">पसंदीदा दिनांक</label>
+                        <input type="date" value={customForm.date}
+                          onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
+                      </div>
+                      <div className="swamani-custom-field">
+                        <label className="hindi-text">अवसर (वैकल्पिक)</label>
+                        <input type="text" placeholder="जन्मदिन, मनोकामना..."
+                          value={customForm.occasion}
+                          onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                      </div>
+                    </div>
+                    <div className="swamani-custom-field">
+                      <label className="hindi-text">पता (प्रसाद delivery के लिए)</label>
+                      <input type="text" placeholder="घर का पता..."
+                        value={customForm.address}
+                        onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                    </div>
+                  </div>
+                  <div className="swamani-custom-actions">
+                    <button type="submit" className="swamani-custom-wa-btn hindi-text">
+                      <FaWhatsapp /> WhatsApp पर भेजें
+                    </button>
+                    <a href="tel:9929975116" className="swamani-custom-call-btn">
+                      <FiPhone /> Call करें
+                    </a>
+                  </div>
+                </form>
+              ) : (
+                <div className="swamani-custom-done">
+                  <span>✅</span>
+                  <div>
+                    <p className="hindi-text">बुकिंग request भेज दी! हम जल्द संपर्क करेंगे।</p>
+                    <button className="swamani-custom-reset hindi-text"
+                      onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
+                      नई request करें
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* CTA */}

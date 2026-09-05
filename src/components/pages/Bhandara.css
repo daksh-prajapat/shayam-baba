@@ -262,3 +262,187 @@
   .bhandara-hero h1 { font-size: 1.7rem; }
   .bhandara-container { padding: 36px 14px 60px; }
 }
+
+/* ═══════════════════════════════════════
+   CUSTOM / OTHER BOOKING SECTION
+═══════════════════════════════════════ */
+.bhandara-custom-section {
+  background: var(--gradient-card);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.bhandara-custom-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 14px;
+  transition: background 0.2s;
+}
+.bhandara-custom-header:hover { background: rgba(212,160,23,0.05); }
+
+.bhandara-custom-header-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+
+.bhandara-custom-icon {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  flex-shrink: 0;
+}
+
+.bhandara-custom-header-left strong {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  font-size: 1.05rem;
+  display: block;
+}
+
+.bhandara-custom-header-left small {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  display: block;
+  margin-top: 3px;
+}
+
+.bhandara-custom-chevron {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.bhandara-custom-body {
+  padding: 0 24px 24px;
+  border-top: 1px solid rgba(212,160,23,0.15);
+}
+
+.bhandara-custom-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  padding: 14px 0 6px;
+}
+
+.bhandara-custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.bhandara-custom-field { display: flex; flex-direction: column; gap: 6px; }
+.bhandara-custom-field label {
+  font-family: var(--font-hindi);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bhandara-custom-field input,
+.bhandara-custom-field textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: var(--text-primary);
+  font-family: var(--font-hindi);
+  font-size: 0.9rem;
+  outline: none;
+  resize: none;
+  transition: border-color 0.25s;
+  width: 100%;
+}
+.bhandara-custom-field input:focus,
+.bhandara-custom-field textarea:focus {
+  border-color: rgba(212,160,23,0.5);
+  background: rgba(255,255,255,0.07);
+}
+
+.bhandara-custom-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bhandara-custom-wa-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 13px 20px;
+  border-radius: 11px;
+  font-family: var(--font-hindi);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 160px;
+}
+.bhandara-custom-wa-btn:hover { background: #1aad52; transform: translateY(-2px); }
+
+.bhandara-custom-call-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--gradient-gold);
+  color: var(--bg-dark);
+  padding: 13px 22px;
+  border-radius: 11px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.bhandara-custom-call-btn:hover { transform: translateY(-2px); }
+
+.bhandara-custom-done {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0 8px;
+}
+.bhandara-custom-done > span { font-size: 2.5rem; flex-shrink: 0; }
+.bhandara-custom-done p {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.bhandara-custom-reset {
+  background: none;
+  border: 1px solid rgba(212,160,23,0.35);
+  color: var(--secondary);
+  font-family: var(--font-hindi);
+  font-size: 0.82rem;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.bhandara-custom-reset:hover { background: rgba(212,160,23,0.1); }
+
+@media (max-width: 600px) {
+  .bhandara-custom-header { padding: 16px; }
+  .bhandara-custom-body { padding: 0 16px 16px; }
+  .bhandara-custom-actions { flex-direction: column; }
+  .bhandara-custom-wa-btn { min-width: unset; }
+}

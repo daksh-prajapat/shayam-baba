@@ -6,8 +6,9 @@ export function generateStaticParams() {
   return swamaniList.map(s => ({ slug: s.slug }))
 }
 
-export function generateMetadata({ params }) {
-  const item = getSwamaniBySlug(params.slug)
+export async function generateMetadata({ params }) {
+  const { slug } = await params
+  const item = getSwamaniBySlug(slug)
   if (!item) return { title: 'Not Found' }
   return {
     title: `${item.name} | स्वामणी भोग | खाटू श्याम जी`,
@@ -15,8 +16,9 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function SwamaniDetailPage({ params }) {
-  const item = getSwamaniBySlug(params.slug)
+export default async function SwamaniDetailPage({ params }) {
+  const { slug } = await params
+  const item = getSwamaniBySlug(slug)
   if (!item) notFound()
   return <SwamaniDetailClient item={item} />
 }

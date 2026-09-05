@@ -48,6 +48,7 @@ export default function Footer() {
                 ['/nishan-mannat','निशान यात्रा'],
                 ['/ekadashi','एकादशी कैलेंडर'],
                 ['/festivals','Events & Mela'],
+                ['/bhandara','🍽️ विशाल भंडारा'],
               ].map(([path, label]) => (
                 <li key={label}><Link href={path} className="footer-link hindi-text">✦ {label}</Link></li>
               ))}

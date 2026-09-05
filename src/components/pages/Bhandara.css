@@ -1,0 +1,264 @@
+/* ── Hero ── */
+.bhandara-hero {
+  position: relative;
+  min-height: 460px;
+  background:
+    linear-gradient(135deg, rgba(10,3,16,0.88) 0%, rgba(212,160,23,0.35) 50%, rgba(10,3,16,0.88) 100%),
+    url('/images/temple-hero2.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+}
+.bhandara-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(10,3,16,0.88) 0%, rgba(212,160,23,0.3) 50%, rgba(10,3,16,0.88) 100%);
+}
+.bhandara-hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 70px 20px;
+}
+.bhandara-hero-badge {
+  display: inline-block;
+  background: rgba(212,160,23,0.15); border: 1px solid rgba(212,160,23,0.4);
+  color: var(--secondary); font-family: var(--font-hindi); font-size: 0.85rem;
+  padding: 5px 18px; border-radius: 20px; margin-bottom: 16px;
+}
+.bhandara-hero h1 {
+  font-family: var(--font-hindi); font-size: clamp(1.9rem, 5vw, 3.2rem);
+  color: var(--secondary); margin-bottom: 12px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+.bhandara-hero-sub {
+  font-family: var(--font-hindi); color: var(--text-secondary);
+  font-size: 1.05rem; margin-bottom: 28px;
+}
+.bhandara-hero-stats {
+  display: flex; align-items: center; justify-content: center;
+  gap: 24px; margin-bottom: 28px; flex-wrap: wrap;
+}
+.bhandara-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.bhandara-stat-num { font-size: 1.8rem; font-weight: 800; color: var(--secondary); }
+.bhandara-stat-label { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.78rem; }
+.bhandara-stat-divider { width: 1px; height: 40px; background: rgba(212,160,23,0.3); }
+.bhandara-hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.bhandara-call-btn, .bhandara-wa-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: 30px; text-decoration: none;
+  font-weight: 700; font-size: 1rem; transition: all 0.3s;
+}
+.bhandara-call-btn { background: var(--gradient-gold); color: var(--bg-dark); }
+.bhandara-call-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,0.4); }
+.bhandara-wa-btn { background: #25d366; color: white; font-family: var(--font-hindi); }
+.bhandara-wa-btn:hover { background: #1aad52; transform: translateY(-2px); }
+
+/* ── Info Strip ── */
+.bhandara-info-strip {
+  background: rgba(212,160,23,0.08);
+  border-top: 1px solid rgba(212,160,23,0.2);
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  padding: 14px 0;
+}
+.bhandara-info-strip p {
+  font-family: var(--font-hindi); color: var(--text-secondary);
+  font-size: 0.92rem; text-align: center; line-height: 1.7;
+}
+.bhandara-info-strip a { color: var(--secondary); font-weight: 700; text-decoration: none; }
+
+/* ── Container ── */
+.bhandara-container { padding: 50px 20px 80px; }
+
+/* ── Packages Grid ── */
+.bhandara-pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.bhandara-pkg-card {
+  background: var(--gradient-card);
+  border: var(--border-gold);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; cursor: pointer;
+  transition: all 0.3s;
+}
+.bhandara-pkg-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-glow); border-color: rgba(212,160,23,0.5); }
+.bhandara-pkg-special { border-color: rgba(212,160,23,0.55); background: linear-gradient(145deg, rgba(212,160,23,0.1), rgba(123,45,139,0.12)); }
+.bhandara-pkg-selected { border-color: var(--secondary) !important; box-shadow: 0 0 0 2px rgba(212,160,23,0.3), var(--shadow-glow); }
+
+.bhandara-ribbon {
+  position: absolute; top: 14px; right: -4px;
+  background: var(--gradient-gold); color: var(--bg-dark);
+  font-family: var(--font-hindi); font-size: 0.7rem; font-weight: 700;
+  padding: 4px 14px 4px 10px; border-radius: 4px 0 0 4px;
+}
+
+.bhandara-card-top { display: flex; align-items: center; justify-content: space-between; }
+.bhandara-card-icon { font-size: 2.8rem; }
+.bhandara-persons-badge {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--font-hindi); font-size: 0.8rem; font-weight: 700;
+  padding: 5px 12px; border-radius: 20px; border: 1px solid;
+}
+
+.bhandara-pkg-title { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.2rem; font-weight: 700; }
+.bhandara-pkg-desc { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.83rem; line-height: 1.7; }
+
+/* Menu */
+.bhandara-menu-section { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 12px 14px; }
+.bhandara-menu-title { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 10px; }
+.bhandara-menu-items { display: flex; flex-wrap: wrap; gap: 6px; }
+.bhandara-menu-item {
+  font-family: var(--font-hindi); font-size: 0.75rem; color: var(--text-muted);
+  background: rgba(212,160,23,0.08); border: 1px solid rgba(212,160,23,0.2);
+  padding: 3px 10px; border-radius: 12px;
+}
+
+/* Includes */
+.bhandara-includes { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid rgba(212,160,23,0.15); padding-top: 14px; }
+.bhandara-inc-title { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.85rem; margin-bottom: 4px; }
+.bhandara-inc-item { display: flex; align-items: center; gap: 8px; }
+.bhandara-check { color: #25d366; font-size: 0.85rem; flex-shrink: 0; }
+.bhandara-inc-item span { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.83rem; }
+
+/* Steps */
+.bhandara-step { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.bhandara-step-num {
+  width: 24px; height: 24px; min-width: 24px;
+  background: var(--gradient-gold); color: var(--bg-dark);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.75rem;
+}
+.bhandara-step span { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.83rem; }
+
+.bhandara-note { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.75rem; font-style: italic; }
+.bhandara-expand-hint { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.75rem; text-align: center; opacity: 0.7; }
+
+.bhandara-card-actions { display: flex; gap: 8px; align-items: center; margin-top: auto; }
+.bhandara-wa-book {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #25d366; color: white; border: none; padding: 12px;
+  border-radius: 10px; font-family: var(--font-hindi); font-size: 0.88rem;
+  font-weight: 700; cursor: pointer; transition: all 0.3s;
+}
+.bhandara-wa-book:hover { background: #1aad52; transform: translateY(-2px); }
+.bhandara-call-small {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(212,160,23,0.12); border: 1px solid rgba(212,160,23,0.3);
+  color: var(--secondary); display: flex; align-items: center; justify-content: center;
+  text-decoration: none; font-size: 1rem; transition: all 0.3s; flex-shrink: 0;
+}
+.bhandara-call-small:hover { background: rgba(212,160,23,0.25); }
+
+/* ── Booking Form ── */
+.bhandara-form-section { margin-bottom: 60px; }
+.bhandara-form-layout {
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 28px; align-items: start; margin-top: 32px;
+}
+.bhandara-form-card { padding: 28px; }
+.bhandara-form-title { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.1rem; margin-bottom: 6px; }
+.bhandara-form { display: flex; flex-direction: column; gap: 16px; margin-top: 16px; }
+.bhandara-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bhandara-field { display: flex; flex-direction: column; gap: 6px; }
+.bhandara-field label { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
+.bhandara-field input, .bhandara-field select {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 10px; padding: 11px 13px; color: var(--text-primary);
+  font-family: var(--font-hindi); font-size: 0.9rem; outline: none;
+  transition: border-color 0.25s;
+}
+.bhandara-field input:focus, .bhandara-field select:focus { border-color: rgba(212,160,23,0.5); background: rgba(255,255,255,0.07); }
+.bhandara-field select option { background: #1a0a24; color: var(--text-primary); }
+
+.bhandara-submit-btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  background: #25d366; color: white; border: none; padding: 14px;
+  border-radius: 12px; font-family: var(--font-hindi); font-size: 1rem;
+  font-weight: 700; cursor: pointer; transition: all 0.3s; margin-top: 4px;
+}
+.bhandara-submit-btn:hover { background: #1aad52; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+.bhandara-form-call {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--gradient-gold); color: var(--bg-dark); padding: 13px;
+  border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: all 0.3s;
+}
+.bhandara-form-call:hover { transform: translateY(-2px); }
+
+/* Sidebar */
+.bhandara-form-sidebar { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 90px; }
+.bhandara-sidebar-card { padding: 20px; }
+.bhandara-sidebar-card h4 { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.95rem; margin-bottom: 14px; }
+.bhandara-sidebar-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.bhandara-sidebar-item span { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.85rem; }
+.bhandara-contact-card { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.bhandara-contact-card h4 { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.95rem; }
+.bhandara-big-call {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--gradient-gold); color: var(--bg-dark); padding: 12px;
+  border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: all 0.25s;
+}
+.bhandara-big-wa {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #25d366; color: white; padding: 12px;
+  border-radius: 10px; text-decoration: none; font-family: var(--font-hindi); font-weight: 700; font-size: 0.9rem; transition: all 0.25s;
+}
+.bhandara-big-call:hover, .bhandara-big-wa:hover { transform: translateY(-2px); }
+.bhandara-timing-note { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.72rem; text-align: center; }
+
+/* ── FAQ ── */
+.bhandara-faq-section { margin-bottom: 50px; }
+.bhandara-faq-list { max-width: 760px; margin: 28px auto 0; display: flex; flex-direction: column; gap: 10px; }
+.bhandara-faq-item { border: var(--border-gold); border-radius: 12px; overflow: hidden; transition: all 0.3s; }
+.bhandara-faq-item.open { border-color: rgba(212,160,23,0.5); }
+.bhandara-faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 18px; background: none; border: none;
+  color: var(--text-primary); font-family: var(--font-hindi); font-size: 0.92rem;
+  font-weight: 600; cursor: pointer; text-align: left; gap: 12px;
+  transition: background 0.2s;
+}
+.bhandara-faq-q:hover { background: rgba(212,160,23,0.05); }
+.faq-chevron { color: var(--secondary); flex-shrink: 0; font-size: 0.75rem; }
+.bhandara-faq-a {
+  font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.87rem;
+  line-height: 1.8; padding: 0 18px 16px;
+}
+
+/* ── CTA ── */
+.bhandara-cta-box {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; background: linear-gradient(135deg, rgba(212,160,23,0.12), rgba(123,45,139,0.15));
+  border: var(--border-gold); border-radius: 20px; padding: 28px 30px; flex-wrap: wrap;
+}
+.bhandara-cta-text h3 { font-family: var(--font-hindi); color: var(--secondary); font-size: 1.2rem; margin-bottom: 5px; }
+.bhandara-cta-text p { font-family: var(--font-hindi); color: var(--text-muted); font-size: 0.88rem; }
+.bhandara-cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.bhandara-cta-call, .bhandara-cta-wa {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 22px; border-radius: 30px; text-decoration: none;
+  font-weight: 700; font-size: 0.95rem; transition: all 0.3s;
+}
+.bhandara-cta-call { background: var(--gradient-gold); color: var(--bg-dark); }
+.bhandara-cta-call:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,23,0.4); }
+.bhandara-cta-wa { background: #25d366; color: white; font-family: var(--font-hindi); }
+.bhandara-cta-wa:hover { background: #1aad52; transform: translateY(-2px); }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .bhandara-pkg-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+  .bhandara-form-layout { grid-template-columns: 1fr; }
+  .bhandara-form-sidebar { position: static; }
+}
+@media (max-width: 768px) {
+  .bhandara-form-row { grid-template-columns: 1fr; }
+  .bhandara-hero-stats { gap: 16px; }
+  .bhandara-stat-divider { display: none; }
+  .bhandara-cta-box { flex-direction: column; text-align: center; }
+  .bhandara-cta-btns { justify-content: center; width: 100%; }
+}
+@media (max-width: 480px) {
+  .bhandara-hero h1 { font-size: 1.7rem; }
+  .bhandara-container { padding: 36px 14px 60px; }
+}

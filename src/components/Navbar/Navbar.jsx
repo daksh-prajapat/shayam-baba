@@ -15,6 +15,7 @@ const navLinks = [
       { path: '/swamani', label: '👑 स्वामणी भोग' },
       { path: '/prasad-puja', label: '🍯 प्रसाद बुकिंग' },
       { path: '/nishan-mannat', label: '🚩 निशान मन्नत' },
+      { path: '/bhandara', label: '🍽️ विशाल भंडारा' },
     ]
   },
   { path: '/booking', label: '💳 बुकिंग' },

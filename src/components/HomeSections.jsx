@@ -157,10 +157,10 @@ const swamaniItems = [
   { name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true },
 ]
 const prasadItems2 = [
-  { name: 'चूरमा प्रसाद', price: 501, icon: '🍯', img: '/images/prasad1.jpg' },
-  { name: 'पेड़ा प्रसाद', price: 501, icon: '🍮', img: '/images/orange-flowers.jpg' },
-  { name: 'लड्डू प्रसाद', price: 501, icon: '🟡', img: '/images/marigold.jpg' },
-  { name: 'ड्राई फ्रूट प्रसाद', price: 501, icon: '🌰', img: '/images/diya.jpg' },
+  { name: 'अर्जी + नारियल', price: 101, icon: '🥥', img: '/images/prasad1.jpg', tag: 'सबसे सरल' },
+  { name: 'पंचमेवा, मोरछड़ी & इत्र', price: 501, icon: '🌸', img: '/images/orange-flowers.jpg', tag: 'लोकप्रिय' },
+  { name: 'पूर्ण प्रसाद थाली', price: 1100, icon: '🍯', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true },
+  { name: 'विशेष पूर्ण थाली', price: 2100, icon: '👑', img: '/images/marigold-offerings.jpg', tag: 'महा विशेष', special: true },
 ]
 function SwamaniPrasadSection() {
   const [tab, setTab] = useState('swamani')
@@ -209,17 +209,19 @@ function SwamaniPrasadSection() {
         {tab === 'prasad' && (
           <div className="spm-grid">
             {prasadItems2.map((item, i) => (
-              <Link key={i} href="/prasad-puja" className="spm-card card">
+              <Link key={i} href="/prasad-puja" className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
+                {item.special && <span className="spm-ribbon hindi-text">⭐ {item.tag}</span>}
                 <div className="spm-img">
                   <img src={item.img} alt={item.name} loading="lazy"
                     onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
                   <div className="spm-fb"><span>{item.icon}</span></div>
+                  <div className="spm-tag hindi-text">{item.tag}</div>
                 </div>
                 <div className="spm-body">
                   <h3 className="hindi-text spm-name">{item.name}</h3>
                   <div className="spm-price-row">
                     <span className="spm-price">₹{item.price}</span>
-                    <span className="hindi-text spm-per">प्रति भाग</span>
+                    <span className="hindi-text spm-per">प्रति थाली</span>
                   </div>
                   <span className="spm-click hindi-text">बुकिंग के लिए क्लिक करें →</span>
                 </div>

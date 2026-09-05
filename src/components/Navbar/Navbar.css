@@ -231,7 +231,7 @@
   right: 0;
   width: min(300px, 82vw);
   height: 100vh;
-  height: 100dvh;
+  height: 92dvh;
   background: linear-gradient(160deg, #130921 0%, #0d0617 100%);
   border-left: 1px solid rgba(212,160,23,0.18);
   z-index: 1099;

@@ -1,0 +1,11 @@
+{
+  "name": "shayam-baba",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd nextjs && npm install && npm run build",
+    "vercel-build": "cd nextjs && npm install && npm run build",
+    "dev": "cd nextjs && npm run dev",
+    "start": "cd nextjs && npm run start"
+  }
+}

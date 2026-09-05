@@ -417,9 +417,11 @@
   /* phone shows icon only */
   .navbar-phone span { display: none; }
   .navbar-phone { padding: 7px 10px; border-radius: 9px; }
-  /* space between logo and right controls */
+  /* logo left, call+hamburger right side paas paas */
   .navbar-container { justify-content: space-between; }
   .navbar-logo { margin-right: 0; }
+  .navbar-right { gap: 6px; margin-left: auto; }
+  .hamburger { margin-left: 6px; }
 }
 
 @media (max-width: 480px) {

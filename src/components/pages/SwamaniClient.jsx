@@ -91,10 +91,12 @@ export default function SwamaniClient() {
                 >
                   <FaWhatsapp /> अभी बुक करें
                 </button>
-                <a href="tel:9929975116" className="swamani-call-btn"
-                  onClick={e => e.stopPropagation()} aria-label="Call">
+                <button
+                  className="swamani-call-btn"
+                  onClick={e => { e.preventDefault(); e.stopPropagation(); window.location.href = 'tel:9929975116' }}
+                  aria-label="Call">
                   <FiPhone />
-                </a>
+                </button>
               </div>
             </Link>
           ))}

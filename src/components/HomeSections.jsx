@@ -157,10 +157,10 @@ const swamaniItems = [
   { name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true },
 ]
 const prasadItems2 = [
-  { name: 'अर्जी + नारियल', price: 101, icon: '🥥', img: '/images/prasad1.jpg', tag: 'सबसे सरल' },
-  { name: 'पंचमेवा, मोरछड़ी & इत्र', price: 501, icon: '🌸', img: '/images/orange-flowers.jpg', tag: 'लोकप्रिय' },
-  { name: 'पूर्ण प्रसाद थाली', price: 1100, icon: '🍯', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true },
-  { name: 'विशेष पूर्ण थाली', price: 2100, icon: '👑', img: '/images/marigold-offerings.jpg', tag: 'महा विशेष', special: true },
+  { name: 'अर्जी + नारियल', price: 101, icon: '🥥', img: '/images/prasad1.jpg', tag: 'सबसे सरल', slug: 'arji-nariyal' },
+  { name: 'पंचमेवा, मोरछड़ी & इत्र', price: 501, icon: '🌸', img: '/images/marigold-offerings.jpg', tag: 'लोकप्रिय', slug: 'panchmewa-morchadi-itra' },
+  { name: 'पूर्ण प्रसाद थाली', price: 1100, icon: '🍯', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true, slug: 'poorn-prasad-thali' },
+  { name: 'विशेष पूर्ण थाली', price: 2100, icon: '👑', img: '/images/temple-hero2.jpg', tag: 'महा विशेष', special: true, slug: 'vishal-poorn-thali' },
 ]
 function SwamaniPrasadSection() {
   const [tab, setTab] = useState('swamani')
@@ -209,7 +209,7 @@ function SwamaniPrasadSection() {
         {tab === 'prasad' && (
           <div className="spm-grid">
             {prasadItems2.map((item, i) => (
-              <Link key={i} href="/prasad-puja" className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
+              <Link key={i} href={`/prasad-puja/${item.slug}`} className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
                 {item.special && <span className="spm-ribbon hindi-text">⭐ {item.tag}</span>}
                 <div className="spm-img">
                   <img src={item.img} alt={item.name} loading="lazy"

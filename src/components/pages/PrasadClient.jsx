@@ -1,61 +1,10 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiCheck, FiChevronDown } from 'react-icons/fi'
+import { FiPhone, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { prasadList } from '@/lib/prasadData'
 import './PrasadPuja.css'
-
-const prasadPackages = [
-  {
-    id: 1,
-    name: 'अर्जी + नारियल',
-    price: 101,
-    icon: '🥥',
-    color: '#e67e22',
-    tag: 'सबसे सरल',
-    items: ['अर्जी (मनोकामना पत्र)', 'नारियल'],
-    desc: 'बाबा के चरणों में अर्जी और नारियल चढ़ाएं — मनोकामना पूर्ति के लिए।',
-    fullDesc: 'अर्जी एक मनोकामना पत्र होता है जो बाबा श्याम के चरणों में अर्पित किया जाता है। साथ में नारियल चढ़ाने से बाबा की कृपा प्राप्त होती है। यह सबसे सरल और पवित्र भेंट है।',
-    process: ['Call/WhatsApp पर बुकिंग करें', 'राशि Transfer करें', 'बाबा के चरणों में अर्पण होगा', 'Photo/Video भेजा जाएगा'],
-  },
-  {
-    id: 2,
-    name: 'पंचमेवा, मोरछड़ी & इत्र',
-    price: 501,
-    icon: '🌸',
-    color: '#8e44ad',
-    tag: 'लोकप्रिय',
-    items: ['पंचमेवा (5 मेवे)', 'मोरछड़ी', 'इत्र (सुगंध)'],
-    desc: 'तीन विशेष वस्तुओं से बाबा का पूजन — सुगंध और श्रद्धा के साथ।',
-    fullDesc: 'पंचमेवा (काजू, बादाम, पिस्ता, किशमिश, अखरोट), मोरछड़ी (मोर पंख की छड़ी जो बाबा को अत्यंत प्रिय है) और इत्र (सुगंधित द्रव्य) — ये तीनों वस्तुएं मिलकर एक विशेष पूजन थाली बनाती हैं।',
-    process: ['Call/WhatsApp पर बुकिंग करें', 'राशि Transfer करें', 'विशेष समय पर अर्पण होगा', 'Photo/Video भेजा जाएगा'],
-  },
-  {
-    id: 3,
-    name: 'पूर्ण प्रसाद थाली',
-    price: 1100,
-    icon: '🍯',
-    color: '#D4A017',
-    tag: '⭐ सर्वश्रेष्ठ',
-    special: true,
-    items: ['पेड़ा', 'पंचमेवा', 'चूरमा', 'मोरछड़ी', 'इत्र'],
-    desc: 'पाँचों प्रमुख वस्तुओं से सजी पूर्ण प्रसाद थाली — बाबा को अत्यंत प्रिय।',
-    fullDesc: 'पूर्ण प्रसाद थाली में पाँच पवित्र वस्तुएं शामिल हैं — शुद्ध मावे का पेड़ा, पंचमेवा (पाँच मेवे), देशी घी का चूरमा, मोरछड़ी और इत्र। यह थाली बाबा श्याम को अत्यंत प्रिय है और मनोकामनाएं पूर्ण करती है।',
-    process: ['Call/WhatsApp पर बुकिंग करें', 'राशि Transfer करें', 'आरती के समय अर्पण होगा', 'Digital Receipt मिलेगी', 'Photo/Video भेजा जाएगा'],
-  },
-  {
-    id: 4,
-    name: 'विशेष पूर्ण थाली',
-    price: 2100,
-    icon: '👑',
-    color: '#D4A017',
-    tag: 'महा विशेष',
-    special: true,
-    items: ['पंचमेवा', 'मोरछड़ी', 'इत्र', 'निशान', 'पेड़ा', 'चूरमा', 'फूल (पुष्प)'],
-    desc: 'सात पवित्र वस्तुओं से सजी महा विशेष थाली — मनोकामना पूर्ति के लिए सर्वोत्तम।',
-    fullDesc: 'विशेष पूर्ण थाली सात पवित्र वस्तुओं का अद्भुत संग्रह है। पंचमेवा, मोरछड़ी, इत्र, निशान (ध्वज), पेड़ा, देशी घी का चूरमा और ताजे फूल (पुष्प) — यह सात वस्तुएं मिलकर सबसे भव्य प्रसाद थाली बनाती हैं। विशेष अवसरों के लिए सर्वोत्तम।',
-    process: ['Call/WhatsApp पर बुकिंग करें', 'राशि Transfer करें', 'विशेष आरती में अर्पण होगा', 'Certificate + Digital Receipt मिलेगी', 'Photo/Video भेजा जाएगा'],
-  },
-]
 
 const pujaServices = [
   { icon: '🌅', name: 'मंगला आरती पूजा', price: '1100+', desc: 'प्रातःकाल की प्रथम पूजा में नाम संकल्प' },
@@ -68,14 +17,7 @@ const pujaServices = [
 
 export default function PrasadClient() {
   const [activeTab, setActiveTab] = useState('prasad')
-  const [expandedId, setExpandedId] = useState(null)
   const [form, setForm] = useState({ name: '', phone: '', service: '', date: '' })
-
-  const handleBooking = (pkg) => {
-    const items = pkg.items.join(', ')
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍯 *प्रसाद थाली बुकिंग*%0A%0A📌 थाली: *${pkg.name}*%0A💰 मूल्य: *₹${pkg.price}*%0A🧺 सामग्री: ${items}%0A%0Aकृपया बुकिंग confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
-  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -110,7 +52,7 @@ export default function PrasadClient() {
       {/* Info Banner */}
       <div className="prasad-info-banner">
         <div className="container">
-          <p className="hindi-text">📌 <strong>घर बैठे</strong> प्रसाद चढ़वाएं — Call या WhatsApp पर बुकिंग करें: <a href="tel:9929975116">9929975116</a></p>
+          <p className="hindi-text">📌 <strong>घर बैठे</strong> प्रसाद चढ़वाएं — किसी भी प्रसाद पर क्लिक करें और बुकिंग करें: <a href="tel:9929975116">9929975116</a></p>
         </div>
       </div>
 
@@ -134,83 +76,58 @@ export default function PrasadClient() {
           <div className="prasad-packages-section">
             <h2 className="section-title hindi-text">प्रसाद थाली सूची</h2>
             <div className="divider"><span>🙏</span></div>
-            <p className="hindi-text prasad-pkg-subtitle">किसी भी थाली पर क्लिक करें — पूरी जानकारी देखें और बुकिंग करें</p>
+            <p className="hindi-text prasad-pkg-subtitle">किसी भी प्रसाद पर क्लिक करें — पूरी जानकारी देखें और बुकिंग करें</p>
 
-            {/* Cards - click to expand */}
-            <div className="prasad-accordion">
-              {prasadPackages.map(pkg => (
-                <div key={pkg.id} className={`prasad-acc-item ${pkg.special ? 'prasad-acc-special' : ''} ${expandedId === pkg.id ? 'prasad-acc-open' : ''}`}>
+            {/* Cards Grid */}
+            <div className="prasad-pkg-grid">
+              {prasadList.map(pkg => (
+                <Link
+                  key={pkg.id}
+                  href={`/prasad-puja/${pkg.slug}`}
+                  className={`prasad-pkg-card ${pkg.special ? 'prasad-pkg-special' : ''}`}
+                >
+                  {pkg.special && <div className="prasad-pkg-ribbon hindi-text">⭐ {pkg.tag}</div>}
 
-                  {/* Header - always visible */}
-                  <div className="prasad-acc-header" onClick={() => setExpandedId(expandedId === pkg.id ? null : pkg.id)}>
-                    <div className="prasad-acc-left">
-                      <span className="prasad-acc-icon">{pkg.icon}</span>
-                      <div className="prasad-acc-info">
-                        <h3 className="hindi-text prasad-acc-name">{pkg.name}</h3>
-                        <p className="hindi-text prasad-acc-desc">{pkg.desc}</p>
-                      </div>
+                  {/* Image */}
+                  <div className="prasad-card-img-box">
+                    <img src={pkg.img} alt={pkg.name} loading="lazy"
+                      onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
+                    <div className="prasad-card-img-fallback" style={{ display: 'none' }}>
+                      <span>{pkg.icon}</span>
                     </div>
-                    <div className="prasad-acc-right">
-                      <span className="prasad-acc-price">₹{pkg.price}</span>
-                      <span className={`prasad-acc-chevron ${expandedId === pkg.id ? 'open' : ''}`}><FiChevronDown /></span>
+                    {/* Hover overlay */}
+                    <div className="prasad-card-overlay">
+                      <span className="hindi-text">विवरण देखें →</span>
                     </div>
                   </div>
 
-                  {/* Expanded Detail */}
-                  {expandedId === pkg.id && (
-                    <div className="prasad-acc-body">
-                      <div className="prasad-acc-detail-grid">
-                        {/* Left - Details */}
-                        <div className="prasad-acc-detail-left">
-                          <div className="prasad-acc-tag hindi-text" style={{ background: `${pkg.color}20`, color: pkg.color, border: `1px solid ${pkg.color}40` }}>
-                            {pkg.tag}
-                          </div>
-                          <p className="hindi-text prasad-acc-full-desc">{pkg.fullDesc}</p>
-
-                          <h4 className="hindi-text prasad-acc-section-title">🧺 इसमें शामिल है</h4>
-                          <div className="prasad-acc-items">
-                            {pkg.items.map((item, i) => (
-                              <div key={i} className="prasad-acc-item-row">
-                                <FiCheck className="prasad-acc-check" />
-                                <span className="hindi-text">{item}</span>
-                              </div>
-                            ))}
-                          </div>
-
-                          <h4 className="hindi-text prasad-acc-section-title" style={{ marginTop: 16 }}>📋 बुकिंग प्रक्रिया</h4>
-                          <div className="prasad-acc-steps">
-                            {pkg.process.map((step, i) => (
-                              <div key={i} className="prasad-acc-step">
-                                <span className="prasad-step-num">{i + 1}</span>
-                                <span className="hindi-text">{step}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Right - Booking */}
-                        <div className="prasad-acc-detail-right">
-                          <div className="prasad-acc-price-box">
-                            <span className="prasad-acc-big-icon">{pkg.icon}</span>
-                            <div className="prasad-acc-big-price">₹{pkg.price}</div>
-                            <span className="hindi-text prasad-acc-per">प्रति थाली</span>
-                          </div>
-                          <button className="prasad-acc-wa-btn hindi-text" onClick={() => handleBooking(pkg)}>
-                            <FaWhatsapp /> WhatsApp पर बुक करें
-                          </button>
-                          <a href="tel:9929975116" className="prasad-acc-call-btn">
-                            <FiPhone /> 9929975116 पर Call करें
-                          </a>
-                          <div className="prasad-acc-guarantees">
-                            <div className="prasad-acc-g"><FiCheck /> <span className="hindi-text">घर बैठे बुकिंग</span></div>
-                            <div className="prasad-acc-g"><FiCheck /> <span className="hindi-text">Photo/Video मिलेगी</span></div>
-                            <div className="prasad-acc-g"><FiCheck /> <span className="hindi-text">Digital Receipt</span></div>
-                          </div>
-                        </div>
+                  <div className="prasad-pkg-body">
+                    <div className="prasad-pkg-top">
+                      <div className="prasad-pkg-tag hindi-text" style={{ background: `${pkg.color}22`, color: pkg.color, border: `1px solid ${pkg.color}44` }}>
+                        {pkg.tag}
                       </div>
                     </div>
-                  )}
-                </div>
+                    <h3 className="hindi-text prasad-pkg-name">{pkg.name}</h3>
+                    <p className="hindi-text prasad-pkg-desc">{pkg.desc}</p>
+
+                    <div className="prasad-pkg-items-preview">
+                      {pkg.includes.slice(0, 3).map((item, i) => (
+                        <div key={i} className="prasad-pkg-item-prev">
+                          <FiCheck className="pkg-check" />
+                          <span className="hindi-text">{item}</span>
+                        </div>
+                      ))}
+                      {pkg.includes.length > 3 && (
+                        <span className="hindi-text prasad-more-items">+{pkg.includes.length - 3} और...</span>
+                      )}
+                    </div>
+
+                    <div className="prasad-pkg-footer">
+                      <span className="prasad-pkg-price">₹{pkg.price}</span>
+                      <span className="prasad-view-detail hindi-text">विवरण <FiArrowRight /></span>
+                    </div>
+                  </div>
+                </Link>
               ))}
             </div>
 
@@ -219,17 +136,21 @@ export default function PrasadClient() {
               <h3 className="hindi-text prasad-table-title">📋 मूल्य सूची</h3>
               <div className="prasad-table-box">
                 <div className="prasad-table-header">
-                  <span className="hindi-text">थाली</span>
+                  <span className="hindi-text">प्रसाद</span>
                   <span className="hindi-text">सामग्री</span>
                   <span className="hindi-text">मूल्य</span>
                   <span className="hindi-text">बुकिंग</span>
                 </div>
-                {prasadPackages.map(pkg => (
+                {prasadList.map(pkg => (
                   <div key={pkg.id} className={`prasad-table-row ${pkg.special ? 'prasad-table-special' : ''}`}>
-                    <span className="hindi-text">{pkg.icon} {pkg.name}</span>
-                    <span className="hindi-text prasad-table-items">{pkg.items.join(' • ')}</span>
+                    <Link href={`/prasad-puja/${pkg.slug}`} className="hindi-text prasad-table-link">
+                      {pkg.icon} {pkg.name}
+                    </Link>
+                    <span className="hindi-text prasad-table-items">{pkg.includes.slice(0,3).join(' • ')}{pkg.includes.length > 3 ? '...' : ''}</span>
                     <span className="prasad-table-price">₹{pkg.price}</span>
-                    <button className="prasad-table-btn" onClick={() => handleBooking(pkg)}><FaWhatsapp /></button>
+                    <button className="prasad-table-btn" onClick={() => window.open(`https://wa.me/919929975116?text=प्रसाद बुकिंग — ${pkg.name} ₹${pkg.price}`, '_blank')}>
+                      <FaWhatsapp />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -279,10 +200,12 @@ export default function PrasadClient() {
                     <option value="">सेवा चुनें</option>
                     <option>🥥 अर्जी + नारियल ₹101</option>
                     <option>🌸 पंचमेवा, मोरछड़ी & इत्र ₹501</option>
+                    <option>🍯 चूरमा प्रसाद ₹501</option>
+                    <option>🍮 पेड़ा प्रसाद ₹501</option>
+                    <option>🟡 लड्डू प्रसाद ₹501</option>
                     <option>🍯 पूर्ण प्रसाद थाली ₹1100</option>
                     <option>👑 विशेष पूर्ण थाली ₹2100</option>
                     <option>👑 लड्डू पूरी सब्जी स्वामणी ₹11000</option>
-                    <option>🍯 चूरमा पूरी सब्जी स्वामणी ₹11000</option>
                     <option>✨ छप्पन भोग ₹31000</option>
                     <option>🪔 विशेष पूजा</option>
                   </select>

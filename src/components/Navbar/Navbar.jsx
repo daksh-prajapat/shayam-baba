@@ -16,7 +16,6 @@ const navLinks = [
       { path: '/prasad-puja', label: '🍯 प्रसाद बुकिंग' },
       { path: '/nishan-mannat', label: '🚩 निशान मन्नत' },
       { path: '/bhandara', label: '🍽️ विशाल भंडारा' },
-      { path: '/booking-history', label: '📋 मेरी बुकिंग' },
     ]
   },
   { path: '/booking', label: '💳 बुकिंग' },
@@ -33,6 +32,7 @@ const navLinks = [
     ]
   },
   { path: '/contact', label: 'सम्पर्क' },
+  { path: '/booking-history', label: '📋 मेरी बुकिंग' },
 ]
 
 export default function Navbar({ onContactClick }) {
@@ -83,7 +83,7 @@ export default function Navbar({ onContactClick }) {
               </div>
             ) : (
               <Link key={link.path} href={link.path}
-                className={`nav-link ${pathname === link.path ? 'active' : ''}`}>
+                className={`nav-link ${pathname === link.path ? 'active' : ''} ${link.path === '/booking-history' ? 'nav-history-link' : ''}`}>
                 {link.label}
               </Link>
             )
@@ -135,7 +135,7 @@ export default function Navbar({ onContactClick }) {
               </div>
             ) : (
               <Link key={link.path} href={link.path}
-                className={`mobile-nav-link ${pathname === link.path ? 'active' : ''}`}>
+                className={`mobile-nav-link ${pathname === link.path ? 'active' : ''} ${link.path === '/booking-history' ? 'mobile-history-link' : ''}`}>
                 <span className="hindi-text">{link.label}</span>
               </Link>
             )

@@ -189,3 +189,20 @@
   .footer-grid { grid-template-columns: 1fr; gap: 30px; }
   .footer { padding: 40px 0 100px; }
 }
+
+/* Branch Name */
+.footer-branch-item {
+  margin-top: 4px;
+  align-items: flex-start !important;
+}
+.footer-branch-icon {
+  font-size: 15px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.footer-branch-name {
+  font-size: 13px;
+  color: var(--secondary, #d4a017);
+  font-weight: 600;
+  line-height: 1.4;
+}

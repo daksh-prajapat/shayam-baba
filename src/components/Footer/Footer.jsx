@@ -82,6 +82,10 @@ export default function Footer() {
               <a href="tel:9929975116" className="contact-item"><FiPhone className="contact-icon" /><span>9929975116</span></a>
               <a href="https://wa.me/919929975116" className="contact-item"><FaWhatsapp className="contact-icon" /><span>WhatsApp करें</span></a>
               <div className="contact-item"><FiMapPin className="contact-icon" /><span className="hindi-text">खाटू श्याम जी, सीकर, राजस्थान — 332602</span></div>
+              <div className="contact-item footer-branch-item">
+                <span className="footer-branch-icon">🏪</span>
+                <span className="hindi-text footer-branch-name">शाखा: शिव मिष्ठान भण्डार, खाटू श्याम जी</span>
+              </div>
             </div>
             <div className="footer-timing">
               <h5 className="hindi-text">मंदिर दर्शन समय</h5>

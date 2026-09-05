@@ -2,6 +2,8 @@
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin } from 'react-icons/fi'
+import { saveBooking } from '@/lib/bookingStorage'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Bhandara.css'
 
 const bhandaraPackages = [
@@ -112,20 +114,46 @@ export default function BhandaraClient() {
   const [selectedPkg, setSelectedPkg] = useState(null)
   const [form, setForm] = useState({ name: '', phone: '', date: '', place: '', persons: '', occasion: '' })
   const [openFaq, setOpenFaq] = useState(null)
+  const [receipt, setReceipt] = useState(null)
 
   const handleBook = (pkg) => {
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *खाटू श्याम विशाल भंडारा बुकिंग*%0A%0A📌 भंडारा: *${pkg.title}*%0A👥 व्यक्ति: *${pkg.persons.toLocaleString('hi-IN')}*%0A%0Aकृपया Quotation और जानकारी दें। 🙏`
+    const booking = saveBooking({
+      serviceName: pkg.title,
+      serviceType: 'bhandara',
+      amount: 0,
+      name: '—',
+      phone: '—',
+      icon: pkg.icon,
+      persons: pkg.persons + ' व्यक्ति',
+      note: 'मूल्य संपर्क पर तय होगा',
+    })
+    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *खाटू श्याम विशाल भंडारा बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 भंडारा: *${pkg.title}*%0A👥 व्यक्ति: *${pkg.persons.toLocaleString('hi-IN')}*%0A%0Aकृपया Quotation और जानकारी दें। 🙏`
     window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *भंडारा बुकिंग फॉर्म*%0A%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A👥 व्यक्ति संख्या: *${form.persons}*%0A📅 दिनांक: *${form.date}*%0A📍 स्थान: *${form.place}*%0A🎊 अवसर: *${form.occasion}*%0A%0Aकृपया संपर्क करें। 🙏`
+    const booking = saveBooking({
+      serviceName: `भंडारा — ${form.persons}`,
+      serviceType: 'bhandara',
+      amount: 0,
+      name: form.name,
+      phone: form.phone,
+      date: form.date,
+      occasion: form.occasion,
+      address: form.place,
+      persons: form.persons,
+      icon: '🍽️',
+      note: 'मूल्य संपर्क पर तय होगा',
+    })
+    setReceipt(booking)
+    const msg = `🙏 *जय श्री श्याम*%0A%0A🍽️ *भंडारा बुकिंग फॉर्म*%0A%0A🔖 Booking ID: *${booking.id}*%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A👥 व्यक्ति संख्या: *${form.persons}*%0A📅 दिनांक: *${form.date}*%0A📍 स्थान: *${form.place}*%0A🎊 अवसर: *${form.occasion}*%0A%0Aकृपया संपर्क करें। 🙏`
     window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
   }
 
   return (
     <div className="bhandara-page">
+      {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
 
       {/* Hero */}
       <div className="bhandara-hero">

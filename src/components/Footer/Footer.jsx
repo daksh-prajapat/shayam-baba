@@ -68,6 +68,7 @@ export default function Footer() {
                 ['/dharamshala','Dharamshalas'],
                 ['/restaurants','Restaurants'],
                 ['/swamani','Swamani Booking'],
+                ['/booking-history','📋 बुकिंग इतिहास'],
               ].map(([path, label]) => (
                 <li key={label}><Link href={path} className="footer-link hindi-text">✦ {label}</Link></li>
               ))}

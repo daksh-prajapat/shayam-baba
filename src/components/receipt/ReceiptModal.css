@@ -1,0 +1,166 @@
+/* ── Overlay ── */
+.receipt-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px; overflow-y: auto;
+}
+
+/* ── Modal ── */
+.receipt-modal {
+  background: linear-gradient(160deg, #130921 0%, #0d0617 100%);
+  border: 1px solid rgba(212,160,23,0.4);
+  border-radius: 20px;
+  width: 100%; max-width: 520px;
+  max-height: 92vh; overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(212,160,23,0.15);
+  animation: modal-in 0.3s ease;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ── Header ── */
+.rm-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid rgba(212,160,23,0.18);
+}
+.rm-header h3 {
+  font-family: var(--font-hindi); color: var(--secondary);
+  font-size: 1.2rem;
+}
+.rm-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary); cursor: pointer; font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.rm-close:hover { background: rgba(255,80,80,0.15); color: #ff8888; }
+
+/* ── Action Buttons ── */
+.rm-actions {
+  display: flex; gap: 10px; padding: 14px 20px;
+  border-bottom: 1px solid rgba(212,160,23,0.1);
+}
+.rm-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  gap: 7px; padding: 11px 10px; border-radius: 10px;
+  border: none; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s;
+}
+.rm-print { background: var(--gradient-gold); color: var(--bg-dark); }
+.rm-print:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,160,23,0.35); }
+.rm-wa { background: #25d366; color: white; font-family: var(--font-hindi); }
+.rm-wa:hover { background: #1aad52; transform: translateY(-2px); }
+.rm-share { background: rgba(255,255,255,0.07); color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.12); font-family: var(--font-hindi); }
+.rm-share:hover { background: rgba(255,255,255,0.12); }
+
+/* ── Receipt Wrap ── */
+.rm-receipt-wrap { padding: 16px 20px; }
+
+/* ── Print Receipt Styles ── */
+.receipt-print {
+  border: 2px solid #D4A017;
+  border-radius: 14px;
+  overflow: hidden;
+  background: white;
+  color: #1a0a24;
+}
+
+.rp-header {
+  background: linear-gradient(135deg, #1a0a24, #2d1040);
+  color: #D4A017;
+  text-align: center;
+  padding: 18px 16px;
+}
+.rp-logo { font-size: 2.2rem; margin-bottom: 6px; }
+.rp-header h2 { font-family: 'Tiro Devanagari Hindi', serif; font-size: 1.3rem; margin-bottom: 4px; }
+.rp-header p { font-size: 0.75rem; opacity: 0.8; margin-top: 2px; }
+
+.rp-id {
+  background: #D4A017;
+  color: #1a0a24;
+  text-align: center;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.rp-status {
+  background: #25d366;
+  color: white;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.rp-price-box {
+  background: #fff8e7;
+  border-bottom: 1px solid #f0d070;
+  padding: 14px;
+  text-align: center;
+}
+.rp-price-box .amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #D4A017;
+  line-height: 1;
+}
+
+.rp-body { padding: 14px 16px; }
+.rp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 12px;
+  font-size: 0.85rem;
+}
+.rp-row:last-child { border-bottom: none; }
+.rp-label { color: #666; flex-shrink: 0; font-family: 'Tiro Devanagari Hindi', serif; }
+.rp-value { font-weight: 600; color: #1a0a24; text-align: right; font-family: 'Tiro Devanagari Hindi', serif; }
+
+.rp-footer {
+  background: #1a0a24;
+  color: #D4A017;
+  text-align: center;
+  padding: 14px;
+  font-size: 0.8rem;
+  font-family: 'Tiro Devanagari Hindi', serif;
+}
+
+/* ── Close Button ── */
+.rm-close-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-muted);
+  font-family: var(--font-hindi);
+  font-size: 0.88rem;
+  padding: 9px 28px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.rm-close-btn:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+
+/* ── Scrollbar ── */
+.receipt-modal::-webkit-scrollbar { width: 4px; }
+.receipt-modal::-webkit-scrollbar-track { background: transparent; }
+.receipt-modal::-webkit-scrollbar-thumb { background: rgba(212,160,23,0.3); border-radius: 2px; }
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .receipt-overlay { padding: 8px; align-items: flex-end; }
+  .receipt-modal { border-radius: 20px 20px 0 0; max-height: 96vh; }
+  .rm-actions { gap: 8px; }
+  .rm-btn { font-size: 0.75rem; padding: 10px 8px; }
+}

@@ -4,24 +4,40 @@ import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
+import { saveBooking } from '@/lib/bookingStorage'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './PrasadDetail.css'
 
 export default function PrasadDetailClient({ item }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '', address: '' })
-  const [booked, setBooked] = useState(false)
+  const [receipt, setReceipt] = useState(null)
 
   const handleBook = () => {
-    const msg = `🙏 *जय श्री श्याम*%0A%0A🍯 *प्रसाद बुकिंग*%0A%0A📌 प्रसाद: *${item.name}*%0A💰 मूल्य: *₹${item.price}*%0A%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A${form.date ? `📅 दिनांक: *${form.date}*%0A` : ''}${form.occasion ? `🎊 अवसर: *${form.occasion}*%0A` : ''}${form.address ? `🏠 पता: *${form.address}*%0A` : ''}%0Aकृपया बुकिंग confirm करें। 🙏`
+    // Save to localStorage
+    const booking = saveBooking({
+      serviceName: item.name,
+      serviceType: 'prasad',
+      amount: item.price,
+      name: form.name,
+      phone: form.phone,
+      date: form.date,
+      occasion: form.occasion,
+      address: form.address,
+      icon: item.icon,
+    })
+    setReceipt(booking)
+
+    // WhatsApp message
+    const msg = `🙏 *जय श्री श्याम*%0A%0A🍯 *प्रसाद बुकिंग*%0A%0A🔖 Booking ID: *${booking.id}*%0A📌 प्रसाद: *${item.name}*%0A💰 मूल्य: *₹${item.price}*%0A%0A👤 नाम: *${form.name}*%0A📞 फोन: *${form.phone}*%0A${form.date ? `📅 दिनांक: *${form.date}*%0A` : ''}${form.occasion ? `🎊 अवसर: *${form.occasion}*%0A` : ''}${form.address ? `🏠 पता: *${form.address}*%0A` : ''}%0Aकृपया बुकिंग confirm करें। 🙏`
     window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
-    setBooked(true)
   }
 
   const others = prasadList.filter(p => p.id !== item.id).slice(0, 4)
 
   return (
     <div className="pd-page">
-
-      {/* Top Bar */}
+      {/* Receipt Modal */}
+      {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
       <div className="pd-topbar">
         <div className="container pd-topbar-inner">
           <Link href="/prasad-puja" className="pd-back">
@@ -123,7 +139,7 @@ export default function PrasadDetailClient({ item }) {
                 </div>
               </div>
 
-              {!booked ? (
+              {!receipt ? (
                 <div className="pd-form">
                   <div className="pd-field">
                     <label className="hindi-text">आपका नाम *</label>
@@ -169,9 +185,10 @@ export default function PrasadDetailClient({ item }) {
               ) : (
                 <div className="pd-success">
                   <div className="pd-success-icon">✅</div>
-                  <h4 className="hindi-text">WhatsApp खुल गया!</h4>
-                  <p className="hindi-text">संदेश भेज दें — हम जल्द confirm करेंगे।</p>
-                  <button className="pd-wa-btn hindi-text" onClick={() => setBooked(false)}>नई बुकिंग</button>
+                  <h4 className="hindi-text">बुकिंग हो गई!</h4>
+                  <p className="hindi-text">Receipt देखें और WhatsApp पर भेजें।</p>
+                  <button className="pd-wa-btn hindi-text" onClick={() => setReceipt(receipt)}>Receipt देखें</button>
+                  <button className="pd-call-btn" style={{marginTop:8}} onClick={() => setReceipt(null)}>नई बुकिंग</button>
                 </div>
               )}
             </div>

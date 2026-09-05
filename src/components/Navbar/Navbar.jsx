@@ -32,6 +32,7 @@ const navLinks = [
     ]
   },
   { path: '/contact', label: 'सम्पर्क' },
+  { path: '/booking-history', label: '📋 इतिहास' },
 ]
 
 export default function Navbar({ onContactClick }) {

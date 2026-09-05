@@ -1,20 +1,35 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck } from 'react-icons/fi'
 import { swamaniList } from '@/lib/swamaniData'
+import { saveBooking } from '@/lib/bookingStorage'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './SwamaniDetail.css'
 
 export default function SwamaniDetailClient({ item }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '', address: '' })
-  const [booked, setBooked] = useState(false)
+  const [receipt, setReceipt] = useState(null)
 
   const handleBook = () => {
+    const booking = saveBooking({
+      serviceName: item.name,
+      serviceType: 'swamani',
+      amount: item.price,
+      name: form.name,
+      phone: form.phone,
+      date: form.date,
+      occasion: form.occasion,
+      address: form.address,
+      icon: item.icon,
+    })
+    setReceipt(booking)
+
     const msg = `🙏 *जय श्री श्याम*%0A%0A` +
       `👑 *स्वामणी भोग बुकिंग*%0A` +
       `━━━━━━━━━━━━━━━━━━━━%0A` +
+      `🔖 Booking ID: *${booking.id}*%0A` +
       `📌 स्वामणी: *${item.name}*%0A` +
       `💰 राशि: *₹${item.price.toLocaleString('hi-IN')}*%0A` +
       `━━━━━━━━━━━━━━━━━━━━%0A` +
@@ -26,14 +41,13 @@ export default function SwamaniDetailClient({ item }) {
       `━━━━━━━━━━━━━━━━━━━━%0A` +
       `कृपया बुकिंग confirm करें। 🙏`
     window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
-    setBooked(true)
   }
 
-  // Other swamani (excluding current)
   const others = swamaniList.filter(s => s.id !== item.id).slice(0, 4)
 
   return (
     <div className="sd-page">
+      {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
       {/* Back Nav */}
       <div className="sd-topbar">
         <div className="container sd-topbar-inner">
@@ -140,7 +154,7 @@ export default function SwamaniDetailClient({ item }) {
                 </div>
               </div>
 
-              {!booked ? (
+              {!receipt ? (
                 <div className="sd-form">
                   <div className="sd-field">
                     <label className="hindi-text">आपका नाम *</label>
@@ -189,11 +203,10 @@ export default function SwamaniDetailClient({ item }) {
               ) : (
                 <div className="sd-success">
                   <div className="sd-success-icon">✅</div>
-                  <h4 className="hindi-text">WhatsApp खुल गया!</h4>
-                  <p className="hindi-text">संदेश भेज दें — हम जल्द confirm करेंगे।</p>
-                  <button className="sd-wa-btn hindi-text" onClick={() => setBooked(false)}>
-                    नई बुकिंग
-                  </button>
+                  <h4 className="hindi-text">बुकिंग हो गई!</h4>
+                  <p className="hindi-text">Receipt देखें और WhatsApp पर भेजें।</p>
+                  <button className="sd-wa-btn hindi-text" onClick={() => setReceipt(receipt)}>Receipt देखें</button>
+                  <button className="sd-wa-btn hindi-text" style={{marginTop:8, background:'rgba(255,255,255,0.1)'}} onClick={() => setReceipt(null)}>नई बुकिंग</button>
                 </div>
               )}
             </div>

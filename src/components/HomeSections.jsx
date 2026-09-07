@@ -164,12 +164,12 @@ function TempleStatusSection() {
   )
 }
 
-/* ─── SWAMANI + PRASAD (Main Feature) ─── */
+/* ─── SWAMANI + PRASAD + BHANDARA (Main Feature) ─── */
 const swamaniItems = [
-  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/orange-flowers.jpg', tag: 'सबसे लोकप्रिय' },
-  { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/marigold.jpg', tag: 'बाबा का प्रिय' },
-  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/diya.jpg', tag: 'विशेष भोग' },
-  { name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true },
+  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/orange-flowers.jpg', tag: 'सबसे लोकप्रिय', slug: 'laddu-puri-sabji' },
+  { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/marigold-offerings.jpg', tag: 'बाबा का प्रिय', slug: 'churma' },
+  { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/dryfruit.jpg', tag: 'विशेष भोग', slug: 'gond-dry-fruit-laddu' },
+  { name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true, slug: 'special-chhappan-bhog' },
 ]
 const prasadItems2 = [
   { name: 'अर्जी + नारियल', price: 101, icon: '🥥', img: '/images/prasad1.jpg', tag: 'सबसे सरल', slug: 'arji-nariyal' },
@@ -177,29 +177,35 @@ const prasadItems2 = [
   { name: 'पूर्ण प्रसाद थाली', price: 1100, icon: '🍯', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true, slug: 'poorn-prasad-thali' },
   { name: 'विशेष पूर्ण थाली', price: 2100, icon: '👑', img: '/images/temple-hero2.jpg', tag: 'महा विशेष', special: true, slug: 'vishal-poorn-thali' },
 ]
+const bhandaraItems = [
+  { name: '1000 व्यक्ति भंडारा', persons: 1000, icon: '🍽️', img: '/images/bhog.jpg', tag: 'छोटा भंडारा', color: '#e67e22', slug: 'chhota-bhandara-1000' },
+  { name: '5000 व्यक्ति भंडारा', persons: 5000, icon: '🏕️', img: '/images/festival.jpg', tag: 'मध्यम भंडारा', color: '#8e44ad', special: true, slug: 'madhyam-bhandara-5000' },
+  { name: '10000 व्यक्ति भंडारा', persons: 10000, icon: '👑', img: '/images/festival-lights.jpg', tag: 'महा भंडारा', color: '#D4A017', special: true, slug: 'maha-bhandara-10000' },
+]
 function SwamaniPrasadSection() {
   const [tab, setTab] = useState('swamani')
   return (
     <section className="sp-main-section">
       <div className="container">
         <p className="section-label hindi-text">🙏 Online बुकिंग सेवा</p>
-        <h2 className="section-title hindi-text">स्वामणी भोग & प्रसाद बुकिंग</h2>
+        <h2 className="section-title hindi-text">स्वामणी भोग, प्रसाद & भंडारा</h2>
         <div className="divider"><span>🍯</span></div>
         <div className="sp-info-banner hindi-text">
           📌 घर बैठे बुकिंग करें — बाबा को भोग/प्रसाद चढ़ाएं — 🏠 प्रसाद घर पहुंचाएं
         </div>
 
-        {/* Tabs */}
+        {/* Tabs — 3 tabs */}
         <div className="spm-tabs">
           <button className={`spm-tab ${tab === 'swamani' ? 'active' : ''} hindi-text`} onClick={() => setTab('swamani')}>👑 स्वामणी भोग</button>
           <button className={`spm-tab ${tab === 'prasad' ? 'active' : ''} hindi-text`} onClick={() => setTab('prasad')}>🍯 प्रसाद बुकिंग</button>
+          <button className={`spm-tab ${tab === 'bhandara' ? 'active' : ''} hindi-text`} onClick={() => setTab('bhandara')}>🍽️ विशाल भंडारा</button>
         </div>
 
         {/* Swamani Grid */}
         {tab === 'swamani' && (
           <div className="spm-grid">
             {swamaniItems.map((item, i) => (
-              <Link key={i} href="/swamani" className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
+              <Link key={i} href={`/swamani/${item.slug}`} className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
                 {item.special && <span className="spm-ribbon hindi-text">⭐ सर्वश्रेष्ठ</span>}
                 <div className="spm-img">
                   <img src={item.img} alt={item.name} loading="lazy"
@@ -245,9 +251,35 @@ function SwamaniPrasadSection() {
           </div>
         )}
 
+        {/* Bhandara Grid */}
+        {tab === 'bhandara' && (
+          <div className="spm-grid spm-grid-3">
+            {bhandaraItems.map((item, i) => (
+              <Link key={i} href={`/bhandara/${item.slug}`} className={`spm-card card ${item.special ? 'spm-special' : ''}`}>
+                {item.special && <span className="spm-ribbon hindi-text">⭐ {item.tag}</span>}
+                <div className="spm-img">
+                  <img src={item.img} alt={item.name} loading="lazy"
+                    onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
+                  <div className="spm-fb"><span>{item.icon}</span></div>
+                  <div className="spm-tag hindi-text" style={{ color: item.color }}>{item.tag}</div>
+                </div>
+                <div className="spm-body">
+                  <h3 className="hindi-text spm-name">{item.name}</h3>
+                  <div className="spm-price-row">
+                    <span className="spm-price hindi-text" style={{ fontSize: '0.95rem' }}>
+                      {item.persons.toLocaleString('hi-IN')} व्यक्ति
+                    </span>
+                  </div>
+                  <span className="spm-click hindi-text">पूरी जानकारी →</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
         <div className="spm-actions">
-          <Link href={tab === 'swamani' ? '/swamani' : '/prasad-puja'} className="btn-primary hindi-text">
-            {tab === 'swamani' ? 'सभी स्वामणी देखें →' : 'प्रसाद की पूरी जानकारी →'}
+          <Link href={tab === 'swamani' ? '/swamani' : tab === 'prasad' ? '/prasad-puja' : '/bhandara'} className="btn-primary hindi-text">
+            {tab === 'swamani' ? 'सभी स्वामणी देखें →' : tab === 'prasad' ? 'सभी प्रसाद देखें →' : 'सभी भंडारे देखें →'}
           </Link>
           <a href="https://wa.me/919929975116?text=बुकिंग करनी है" className="spm-wa-btn" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp /> <span className="hindi-text">WhatsApp बुकिंग</span>

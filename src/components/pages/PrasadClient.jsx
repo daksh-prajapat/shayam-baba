@@ -18,6 +18,114 @@ const pujaServices = [
   { icon: '🎂', name: 'जन्मदिन विशेष पूजा', price: '3100+', desc: 'जन्मदिन पर बाबा का आशीर्वाद' },
 ]
 
+/* ── Puja Booking Tab — inline form ── */
+function PujaTab() {
+  const [selected, setSelected] = useState(null)
+  const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '' })
+  const [done, setDone] = useState(false)
+
+  const handleBook = (e) => {
+    e.preventDefault()
+    const msg =
+      `🙏 *जय श्री श्याम — पूजा बुकिंग*%0A%0A` +
+      `🪔 *पूजा:* ${selected.name}%0A` +
+      `💰 *मूल्य:* ₹${selected.price}%0A` +
+      `━━━━━━━━━━━━━━━━%0A` +
+      `👤 *नाम:* ${form.name}%0A` +
+      `📞 *फोन:* ${form.phone}%0A` +
+      (form.date ? `📅 *दिनांक:* ${form.date}%0A` : '') +
+      (form.occasion ? `🎊 *अवसर:* ${form.occasion}%0A` : '') +
+      `━━━━━━━━━━━━━━━━%0A` +
+      `कृपया बुकिंग confirm करें। 🙏`
+    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    setDone(true)
+  }
+
+  const reset = () => {
+    setSelected(null)
+    setForm({ name: '', phone: '', date: '', occasion: '' })
+    setDone(false)
+  }
+
+  return (
+    <div className="puja-services-section">
+      <div className="puja-services-grid">
+        {pujaServices.map((p, i) => (
+          <div
+            key={i}
+            className={`puja-service-card-v2 card ${selected?.name === p.name ? 'puja-card-selected' : ''}`}
+            onClick={() => { setSelected(p); setDone(false) }}
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="puja-svc-icon">{p.icon}</div>
+            <h3 className="hindi-text puja-svc-name">{p.name}</h3>
+            <p className="hindi-text puja-svc-desc">{p.desc}</p>
+            <div className="puja-svc-price">₹{p.price}</div>
+            <div className="puja-svc-select-hint hindi-text">
+              {selected?.name === p.name ? '✅ चुना गया' : 'क्लिक करें →'}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Booking form — shown after selecting a puja */}
+      {selected && (
+        <div className="puja-booking-form card">
+          {!done ? (
+            <>
+              <div className="puja-form-header">
+                <span className="puja-form-icon">{selected.icon}</span>
+                <div>
+                  <h3 className="hindi-text">{selected.name}</h3>
+                  <p className="hindi-text puja-form-price">₹{selected.price}</p>
+                </div>
+                <button className="puja-form-close" onClick={reset}>✕</button>
+              </div>
+              <form className="puja-form-body" onSubmit={handleBook}>
+                <div className="puja-form-row">
+                  <div className="puja-form-field">
+                    <label className="hindi-text">आपका नाम *</label>
+                    <input type="text" placeholder="पूरा नाम" value={form.name}
+                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
+                  </div>
+                  <div className="puja-form-field">
+                    <label className="hindi-text">मोबाइल नंबर *</label>
+                    <input type="tel" placeholder="10 अंक" maxLength={10} value={form.phone}
+                      onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))} required />
+                  </div>
+                </div>
+                <div className="puja-form-row">
+                  <div className="puja-form-field">
+                    <label className="hindi-text">पसंदीदा दिनांक</label>
+                    <input type="date" value={form.date}
+                      onChange={e => setForm(f => ({ ...f, date: e.target.value }))} />
+                  </div>
+                  <div className="puja-form-field">
+                    <label className="hindi-text">अवसर (वैकल्पिक)</label>
+                    <input type="text" placeholder="जन्मदिन, मनोकामना..." value={form.occasion}
+                      onChange={e => setForm(f => ({ ...f, occasion: e.target.value }))} />
+                  </div>
+                </div>
+                <button type="submit" className="puja-form-submit hindi-text">
+                  <FaWhatsapp /> WhatsApp पर बुकिंग करें
+                </button>
+              </form>
+            </>
+          ) : (
+            <div className="puja-form-done">
+              <span>✅</span>
+              <div>
+                <p className="hindi-text">WhatsApp खुल गया — संदेश भेज दें। हम जल्द confirm करेंगे।</p>
+                <button className="puja-form-reset hindi-text" onClick={reset}>नई बुकिंग करें</button>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function PrasadClient() {
   const [activeTab, setActiveTab] = useState('prasad')
   const [form, setForm] = useState({ name: '', phone: '', service: '', date: '' })
@@ -249,21 +357,7 @@ export default function PrasadClient() {
 
         {/* ── PUJA TAB ── */}
         {activeTab === 'puja' && (
-          <div className="puja-services-section">
-            <div className="puja-services-grid">
-              {pujaServices.map((p, i) => (
-                <div key={i} className="puja-service-card-v2 card">
-                  <div className="puja-svc-icon">{p.icon}</div>
-                  <h3 className="hindi-text puja-svc-name">{p.name}</h3>
-                  <p className="hindi-text puja-svc-desc">{p.desc}</p>
-                  <div className="puja-svc-price">₹{p.price}</div>
-                  <button className="puja-svc-book hindi-text" onClick={() => window.open(`https://wa.me/919929975116?text=पूजा बुकिंग: ${p.name}`, '_blank')}>
-                    <FaWhatsapp /> बुक करें
-                  </button>
-                </div>
-              ))}
-            </div>
-          </div>
+          <PujaTab />
         )}
 
         {/* ── BHANDARA TAB ── */}

@@ -1,106 +1,12 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin, FiEdit3 } from 'react-icons/fi'
+import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin, FiEdit3, FiArrowRight } from 'react-icons/fi'
+import { bhandaraList } from '@/lib/bhandaraData'
 import { saveBooking } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Bhandara.css'
-
-const bhandaraPackages = [
-  {
-    id: 1,
-    persons: 1000,
-    title: '1000 व्यक्ति भंडारा',
-    titleEn: '1000 Person Bhandara',
-    icon: '🍽️',
-    tag: 'छोटा भंडारा',
-    color: '#e67e22',
-    menu: ['दाल', 'चावल', 'रोटी', 'सब्जी', 'खीर', 'अचार', 'पापड़', 'चटनी'],
-    includes: [
-      '1000 व्यक्तियों का भोजन',
-      'शुद्ध देशी घी में बनी रोटी',
-      'मौसमी सब्जी',
-      'दाल, चावल, खीर',
-      'अचार, पापड़, चटनी',
-      'पानी की व्यवस्था',
-      'बर्तन एवं सफाई',
-      'अनुभवी रसोइये',
-    ],
-    process: [
-      'Call/WhatsApp पर संपर्क करें',
-      'दिनांक और स्थान confirm करें',
-      'Advance booking करें',
-      'भंडारे का आयोजन होगा',
-      'जय श्री श्याम 🙏',
-    ],
-    desc: 'छोटे पारिवारिक या सामाजिक आयोजन के लिए — 1000 भक्तों को प्रसाद भोजन कराएं।',
-    note: 'मूल्य स्थान, सामग्री और दूरी के अनुसार तय होगा।',
-  },
-  {
-    id: 2,
-    persons: 5000,
-    title: '5000 व्यक्ति भंडारा',
-    titleEn: '5000 Person Bhandara',
-    icon: '🏕️',
-    tag: 'मध्यम भंडारा',
-    color: '#8e44ad',
-    special: true,
-    menu: ['दाल', 'चावल', 'रोटी', 'सब्जी', 'खीर', 'हलवा', 'अचार', 'पापड़', 'चटनी', 'शरबत'],
-    includes: [
-      '5000 व्यक्तियों का भोजन',
-      'शुद्ध देशी घी में बनी रोटी',
-      'दो प्रकार की सब्जी',
-      'दाल, चावल, खीर, हलवा',
-      'अचार, पापड़, चटनी',
-      'शरबत / ठंडा पानी',
-      'बड़े बर्तन एवं सफाई टीम',
-      'अनुभवी रसोइये एवं सहयोगी',
-      'टेंट / शामियाना व्यवस्था (वैकल्पिक)',
-    ],
-    process: [
-      'Call/WhatsApp पर संपर्क करें',
-      'स्थान और दिनांक confirm करें',
-      'Menu अनुसार Quotation लें',
-      'Advance payment करें',
-      'भंडारे का भव्य आयोजन',
-    ],
-    desc: 'बड़े धार्मिक या सामाजिक आयोजन के लिए — 5000 भक्तों को भव्य प्रसाद भोजन।',
-    note: 'मूल्य स्थान, सामग्री और दूरी के अनुसार तय होगा।',
-  },
-  {
-    id: 3,
-    persons: 10000,
-    title: '10000 व्यक्ति भंडारा',
-    titleEn: '10000 Person Bhandara',
-    icon: '👑',
-    tag: 'महा भंडारा',
-    color: '#D4A017',
-    special: true,
-    menu: ['दाल', 'चावल', 'रोटी', 'दो सब्जी', 'खीर', 'हलवा', 'पूरी', 'चटनी', 'अचार', 'पापड़', 'शरबत', 'मिठाई'],
-    includes: [
-      '10000 व्यक्तियों का भोजन',
-      'शुद्ध देशी घी में बनी पूरी/रोटी',
-      'दो प्रकार की सब्जी',
-      'दाल, चावल, खीर, हलवा',
-      'मिठाई (लड्डू / हलवा)',
-      'अचार, पापड़, चटनी',
-      'शरबत / ठंडा पानी',
-      'विशाल रसोई टीम',
-      'टेंट / शामियाना व्यवस्था',
-      'बर्तन, सफाई एवं सेवा टीम',
-      'Sound System (वैकल्पिक)',
-    ],
-    process: [
-      'Call/WhatsApp पर संपर्क करें',
-      'स्थान और दिनांक confirm करें',
-      'विस्तृत Quotation प्राप्त करें',
-      'Advance booking करें',
-      'भव्य महा भंडारे का आयोजन',
-    ],
-    desc: 'विशाल धार्मिक मेले या आयोजन के लिए — 10000 भक्तों को महा प्रसाद भोजन।',
-    note: 'मूल्य स्थान, सामग्री और दूरी के अनुसार तय होगा।',
-  },
-]
 
 const faqs = [
   { q: 'भंडारे की बुकिंग कैसे करें?', a: 'Call या WhatsApp पर संपर्क करें: 9929975116। हम आपको पूरी जानकारी और Quotation देंगे।' },
@@ -111,8 +17,6 @@ const faqs = [
 ]
 
 export default function BhandaraClient() {
-  const [selectedPkg, setSelectedPkg] = useState(null)
-  const [form, setForm] = useState({ name: '', phone: '', date: '', place: '', persons: '', occasion: '' })
   const [openFaq, setOpenFaq] = useState(null)
   const [receipt, setReceipt] = useState(null)
   const [customOpen, setCustomOpen] = useState(false)
@@ -134,38 +38,6 @@ export default function BhandaraClient() {
       note: customForm.details,
     })
     setCustomDone(true)
-    setReceipt(booking)
-  }
-
-  const handleBook = (pkg) => {
-    const booking = saveBooking({
-      serviceName: pkg.title,
-      serviceType: 'bhandara',
-      amount: 0,
-      name: '—',
-      phone: '—',
-      icon: pkg.icon,
-      persons: pkg.persons + ' व्यक्ति',
-      note: 'मूल्य संपर्क पर तय होगा',
-    })
-    setReceipt(booking)
-  }
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    const booking = saveBooking({
-      serviceName: `भंडारा — ${form.persons}`,
-      serviceType: 'bhandara',
-      amount: 0,
-      name: form.name,
-      phone: form.phone,
-      date: form.date,
-      occasion: form.occasion,
-      address: form.place,
-      persons: form.persons,
-      icon: '🍽️',
-      note: 'मूल्य संपर्क पर तय होगा',
-    })
     setReceipt(booking)
   }
 
@@ -214,163 +86,91 @@ export default function BhandaraClient() {
 
       <div className="container bhandara-container">
 
-        {/* Packages */}
+        {/* ── Cards Grid — Swamani/Prasad style ── */}
         <h2 className="section-title hindi-text">भंडारा पैकेज</h2>
         <div className="divider"><span>🍽️</span></div>
+        <p className="hindi-text bhandara-subtitle">किसी भी भंडारे पर क्लिक करें — पूरी जानकारी देखें और बुकिंग करें</p>
 
-        <div className="bhandara-pkg-grid">
-          {bhandaraPackages.map(pkg => (
-            <div key={pkg.id} className={`bhandara-pkg-card ${pkg.special ? 'bhandara-pkg-special' : ''} ${selectedPkg === pkg.id ? 'bhandara-pkg-selected' : ''}`}
-              onClick={() => setSelectedPkg(selectedPkg === pkg.id ? null : pkg.id)}>
+        <div className="bhandara-cards-grid">
+          {bhandaraList.map((pkg) => (
+            <Link
+              key={pkg.id}
+              href={`/bhandara/${pkg.slug}`}
+              className={`bhandara-link-card ${pkg.special ? 'bhandara-link-special' : ''}`}
+            >
+              {pkg.special && <div className="bhandara-link-ribbon hindi-text">⭐ {pkg.tag}</div>}
 
-              {pkg.special && <div className="bhandara-ribbon hindi-text">⭐ {pkg.tag}</div>}
+              {/* Image */}
+              <div className="bhandara-link-img-box">
+                <img src={pkg.img} alt={pkg.name} loading="lazy"
+                  onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
+                <div className="bhandara-link-img-fallback" style={{ display: 'none' }}>
+                  <span>{pkg.icon}</span>
+                </div>
+                <div className="bhandara-link-overlay">
+                  <span className="hindi-text">विवरण देखें →</span>
+                </div>
+              </div>
 
-              {/* Card Top */}
-              <div className="bhandara-card-top">
-                <div className="bhandara-card-icon">{pkg.icon}</div>
-                <div className="bhandara-persons-badge" style={{ color: pkg.color, borderColor: `${pkg.color}44`, background: `${pkg.color}15` }}>
+              {/* Body */}
+              <div className="bhandara-link-body">
+                <div className="bhandara-link-persons" style={{ color: pkg.color, background: `${pkg.color}15`, borderColor: `${pkg.color}44` }}>
                   <FiUsers /> {pkg.persons.toLocaleString('hi-IN')} व्यक्ति
                 </div>
-              </div>
+                <h3 className="hindi-text bhandara-link-name">{pkg.name}</h3>
+                <p className="hindi-text bhandara-link-desc">{pkg.desc}</p>
 
-              <h3 className="hindi-text bhandara-pkg-title">{pkg.title}</h3>
-              <p className="hindi-text bhandara-pkg-desc">{pkg.desc}</p>
-
-              {/* Menu */}
-              <div className="bhandara-menu-section">
-                <h4 className="hindi-text bhandara-menu-title">🍛 भोजन मेनू</h4>
-                <div className="bhandara-menu-items">
-                  {pkg.menu.map((item, i) => (
-                    <span key={i} className="hindi-text bhandara-menu-item">{item}</span>
+                {/* Menu preview */}
+                <div className="bhandara-link-menu">
+                  {pkg.menu.slice(0, 4).map((m, i) => (
+                    <span key={i} className="hindi-text bhandara-link-menu-item">{m}</span>
                   ))}
+                  {pkg.menu.length > 4 && (
+                    <span className="hindi-text bhandara-link-menu-more">+{pkg.menu.length - 4} और...</span>
+                  )}
+                </div>
+
+                <div className="bhandara-link-footer">
+                  <span className="hindi-text bhandara-link-price-note">मूल्य संपर्क पर तय</span>
+                  <span className="hindi-text bhandara-link-view">विवरण <FiArrowRight /></span>
                 </div>
               </div>
 
-              {/* Includes - shown on expand */}
-              {selectedPkg === pkg.id && (
-                <div className="bhandara-includes">
-                  <h4 className="hindi-text bhandara-inc-title">✅ इसमें शामिल है</h4>
-                  {pkg.includes.map((inc, i) => (
-                    <div key={i} className="bhandara-inc-item">
-                      <FiCheck className="bhandara-check" />
-                      <span className="hindi-text">{inc}</span>
-                    </div>
-                  ))}
-                  <h4 className="hindi-text bhandara-inc-title" style={{ marginTop: 16 }}>📋 बुकिंग प्रक्रिया</h4>
-                  {pkg.process.map((step, i) => (
-                    <div key={i} className="bhandara-step">
-                      <span className="bhandara-step-num">{i + 1}</span>
-                      <span className="hindi-text">{step}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <p className="hindi-text bhandara-note">📌 {pkg.note}</p>
-
-              <div className="bhandara-card-actions">
-                <button className="bhandara-wa-book hindi-text" onClick={(e) => { e.stopPropagation(); handleBook(pkg) }}>
-                  ✅ अभी बुक करें
-                </button>
-                <a href="tel:9929975116" className="bhandara-call-small" onClick={e => e.stopPropagation()}>
-                  <FiPhone />
-                </a>
+              {/* Book button */}
+              <div className="bhandara-link-actions">
+                <span className="hindi-text bhandara-link-book-btn">
+                  <FaWhatsapp /> अभी बुक करें
+                </span>
+                <span className="bhandara-link-call-btn"><FiPhone /></span>
               </div>
-
-              <div className="bhandara-expand-hint hindi-text">
-                {selectedPkg === pkg.id ? '▲ कम देखें' : '▼ पूरी जानकारी देखें'}
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
 
-        {/* Booking Form */}
-        <div className="bhandara-form-section">
-          <h2 className="section-title hindi-text">भंडारा बुकिंग फॉर्म</h2>
-          <div className="divider"><span>📝</span></div>
-
-          <div className="bhandara-form-layout">
-            <div className="bhandara-form-card card">
-              <h3 className="hindi-text bhandara-form-title">📝 विवरण भरें — हम संपर्क करेंगे</h3>
-              <form onSubmit={handleFormSubmit} className="bhandara-form">
-                <div className="bhandara-form-row">
-                  <div className="bhandara-field">
-                    <label className="hindi-text"><FiUsers /> आपका नाम *</label>
-                    <input type="text" placeholder="पूरा नाम" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
-                  </div>
-                  <div className="bhandara-field">
-                    <label className="hindi-text"><FiPhone /> मोबाइल नंबर *</label>
-                    <input type="tel" placeholder="10 अंक" value={form.phone} maxLength={10} onChange={e => setForm({ ...form, phone: e.target.value })} required />
-                  </div>
-                </div>
-                <div className="bhandara-form-row">
-                  <div className="bhandara-field">
-                    <label className="hindi-text"><FiUsers /> व्यक्ति संख्या *</label>
-                    <select value={form.persons} onChange={e => setForm({ ...form, persons: e.target.value })} required>
-                      <option value="">संख्या चुनें</option>
-                      <option value="1000 व्यक्ति">1000 व्यक्ति</option>
-                      <option value="5000 व्यक्ति">5000 व्यक्ति</option>
-                      <option value="10000 व्यक्ति">10000 व्यक्ति</option>
-                      <option value="अन्य (बताएं)">अन्य (बताएं)</option>
-                    </select>
-                  </div>
-                  <div className="bhandara-field">
-                    <label className="hindi-text"><FiCalendar /> दिनांक *</label>
-                    <input type="date" value={form.date} onChange={e => setForm({ ...form, date: e.target.value })} required />
-                  </div>
-                </div>
-                <div className="bhandara-field">
-                  <label className="hindi-text"><FiMapPin /> स्थान (पता)</label>
-                  <input type="text" placeholder="भंडारे का स्थान / पता" value={form.place} onChange={e => setForm({ ...form, place: e.target.value })} />
-                </div>
-                <div className="bhandara-field">
-                  <label className="hindi-text">🎊 अवसर / कारण</label>
-                  <input type="text" placeholder="जैसे: मनोकामना पूर्ति, जन्मदिन, विवाह..." value={form.occasion} onChange={e => setForm({ ...form, occasion: e.target.value })} />
-                </div>
-                <button type="submit" className="bhandara-submit-btn hindi-text">
-                  ✅ बुकिंग Submit करें
-                </button>
-                <a href="tel:9929975116" className="bhandara-form-call">
-                  <FiPhone /> 9929975116 पर Call करें
-                </a>
-              </form>
+        {/* Price / Info Table */}
+        <div className="bhandara-table-section">
+          <h3 className="hindi-text bhandara-table-title">📋 भंडारा सूची</h3>
+          <div className="bhandara-table-box">
+            <div className="bhandara-table-header">
+              <span className="hindi-text">भंडारा</span>
+              <span className="hindi-text">मेनू</span>
+              <span className="hindi-text">व्यक्ति</span>
+              <span className="hindi-text">बुकिंग</span>
             </div>
-
-            {/* Sidebar */}
-            <div className="bhandara-form-sidebar">
-              <div className="card bhandara-sidebar-card">
-                <h4 className="hindi-text">🍽️ हम क्या देते हैं?</h4>
-                {['शुद्ध सात्विक भोजन', 'अनुभवी रसोइये', 'सम्पूर्ण बर्तन व्यवस्था', 'सफाई एवं सेवा टीम', 'टेंट/शामियाना (वैकल्पिक)', 'समय पर सेवा', '24/7 Support'].map((item, i) => (
-                  <div key={i} className="bhandara-sidebar-item">
-                    <FiCheck className="bhandara-check" />
-                    <span className="hindi-text">{item}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="card bhandara-contact-card">
-                <h4 className="hindi-text">📞 तुरंत सम्पर्क</h4>
-                <a href="tel:9929975116" className="bhandara-big-call"><FiPhone /> 9929975116</a>
-                <a href="https://wa.me/919929975116?text=भंडारा बुकिंग करनी है" className="bhandara-big-wa" target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
-                </a>
-                <p className="hindi-text bhandara-timing-note">सुबह 6 बजे – रात 10 बजे</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ */}
-        <div className="bhandara-faq-section">
-          <h2 className="section-title hindi-text">अक्सर पूछे जाने वाले प्रश्न</h2>
-          <div className="divider"><span>❓</span></div>
-          <div className="bhandara-faq-list">
-            {faqs.map((faq, i) => (
-              <div key={i} className={`bhandara-faq-item ${openFaq === i ? 'open' : ''}`}>
-                <button className="bhandara-faq-q hindi-text" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                  <span>{faq.q}</span>
-                  <span className="faq-chevron">{openFaq === i ? '▲' : '▼'}</span>
+            {bhandaraList.map(pkg => (
+              <div key={pkg.id} className={`bhandara-table-row ${pkg.special ? 'bhandara-table-special' : ''}`}>
+                <Link href={`/bhandara/${pkg.slug}`} className="hindi-text bhandara-table-link">
+                  {pkg.icon} {pkg.name}
+                </Link>
+                <span className="hindi-text bhandara-table-menu">{pkg.menu.slice(0, 3).join(' • ')}{pkg.menu.length > 3 ? '...' : ''}</span>
+                <span className="bhandara-table-persons" style={{ color: pkg.color }}>
+                  <FiUsers /> {pkg.persons.toLocaleString('hi-IN')}
+                </span>
+                <button className="bhandara-table-btn" onClick={() =>
+                  window.open(`https://wa.me/919929975116?text=${encodeURIComponent(`भंडारा बुकिंग — ${pkg.name}`)}`, '_blank')
+                }>
+                  <FaWhatsapp />
                 </button>
-                {openFaq === i && <p className="hindi-text bhandara-faq-a">{faq.a}</p>}
               </div>
             ))}
           </div>
@@ -394,63 +194,45 @@ export default function BhandaraClient() {
               {!customDone ? (
                 <form className="bhandara-custom-form" onSubmit={handleCustomBook}>
                   <p className="hindi-text bhandara-custom-hint">
-                    1000 से कम या ज़्यादा व्यक्ति, custom menu, विशेष तारीख, या कोई भी अन्य आवश्यकता — नीचे लिखें। हम Quotation देंगे।
+                    1000 से कम या ज़्यादा व्यक्ति, custom menu, विशेष तारीख, या कोई भी अन्य आवश्यकता — नीचे लिखें।
                   </p>
-
                   <div className="bhandara-custom-field">
-                    <label className="hindi-text"><FiEdit3 /> क्या चाहिए? (विवरण) *</label>
-                    <textarea rows={3}
-                      placeholder="जैसे: 500 व्यक्ति भंडारा, custom menu, विशेष मिठाई, घर पर आयोजन..."
-                      value={customForm.details}
-                      onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
-                      required />
+                    <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
+                    <textarea rows={3} placeholder="जैसे: 500 व्यक्ति भंडारा, custom menu, विशेष मिठाई..."
+                      value={customForm.details} onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))} required />
                   </div>
-
-                  <div className="bhandara-form-row">
+                  <div className="bhandara-custom-row">
                     <div className="bhandara-custom-field">
-                      <label className="hindi-text"><FiUsers /> आपका नाम *</label>
-                      <input type="text" placeholder="पूरा नाम"
-                        value={customForm.name}
-                        onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
-                        required />
+                      <label className="hindi-text">आपका नाम *</label>
+                      <input type="text" placeholder="पूरा नाम" value={customForm.name}
+                        onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))} required />
                     </div>
                     <div className="bhandara-custom-field">
-                      <label className="hindi-text"><FiPhone /> मोबाइल नंबर *</label>
-                      <input type="tel" placeholder="10 अंक" maxLength={10}
-                        value={customForm.phone}
-                        onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
-                        required />
+                      <label className="hindi-text">मोबाइल नंबर *</label>
+                      <input type="tel" placeholder="10 अंक" maxLength={10} value={customForm.phone}
+                        onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))} required />
                     </div>
                   </div>
-
-                  <div className="bhandara-form-row">
+                  <div className="bhandara-custom-row">
                     <div className="bhandara-custom-field">
-                      <label className="hindi-text"><FiCalendar /> पसंदीदा दिनांक</label>
+                      <label className="hindi-text">पसंदीदा दिनांक</label>
                       <input type="date" value={customForm.date}
                         onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
                     </div>
                     <div className="bhandara-custom-field">
-                      <label className="hindi-text">🎊 अवसर / कारण</label>
+                      <label className="hindi-text">अवसर / कारण</label>
                       <input type="text" placeholder="मनोकामना, विवाह, जन्मदिन..."
-                        value={customForm.occasion}
-                        onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                        value={customForm.occasion} onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
                     </div>
                   </div>
-
                   <div className="bhandara-custom-field">
-                    <label className="hindi-text"><FiMapPin /> स्थान / पता</label>
+                    <label className="hindi-text">स्थान / पता</label>
                     <input type="text" placeholder="भंडारे का स्थान / पता"
-                      value={customForm.address}
-                      onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
+                      value={customForm.address} onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
                   </div>
-
                   <div className="bhandara-custom-actions">
-                    <button type="submit" className="bhandara-custom-wa-btn hindi-text">
-                      ✅ Submit करें
-                    </button>
-                    <a href="tel:9929975116" className="bhandara-custom-call-btn">
-                      <FiPhone /> Call करें
-                    </a>
+                    <button type="submit" className="bhandara-custom-wa-btn hindi-text">✅ Submit करें</button>
+                    <a href="tel:9929975116" className="bhandara-custom-call-btn"><FiPhone /> Call करें</a>
                   </div>
                 </form>
               ) : (
@@ -467,6 +249,23 @@ export default function BhandaraClient() {
               )}
             </div>
           )}
+        </div>
+
+        {/* FAQ */}
+        <div className="bhandara-faq-section">
+          <h2 className="section-title hindi-text">अक्सर पूछे जाने वाले प्रश्न</h2>
+          <div className="divider"><span>❓</span></div>
+          <div className="bhandara-faq-list">
+            {faqs.map((faq, i) => (
+              <div key={i} className={`bhandara-faq-item ${openFaq === i ? 'open' : ''}`}>
+                <button className="bhandara-faq-q hindi-text" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                  <span>{faq.q}</span>
+                  <span className="faq-chevron">{openFaq === i ? '▲' : '▼'}</span>
+                </button>
+                {openFaq === i && <p className="hindi-text bhandara-faq-a">{faq.a}</p>}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom CTA */}

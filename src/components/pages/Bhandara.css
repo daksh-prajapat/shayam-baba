@@ -446,3 +446,284 @@
   .bhandara-custom-actions { flex-direction: column; }
   .bhandara-custom-wa-btn { min-width: unset; }
 }
+
+/* ══════════════════════════════════════════
+   NEW CARD GRID — Swamani/Prasad style
+══════════════════════════════════════════ */
+
+.bhandara-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+/* 3-column grid */
+.bhandara-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* ── Card ── */
+.bhandara-link-card {
+  position: relative;
+  background: var(--gradient-card);
+  border: var(--border-gold);
+  border-radius: 18px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s;
+  cursor: pointer;
+}
+.bhandara-link-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212,160,23,0.5);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(212,160,23,0.12);
+}
+.bhandara-link-special {
+  border-color: rgba(212,160,23,0.45);
+  box-shadow: 0 8px 30px rgba(212,160,23,0.1);
+}
+
+/* Ribbon */
+.bhandara-link-ribbon {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--gradient-gold);
+  color: var(--bg-dark);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 3;
+}
+
+/* Image */
+.bhandara-link-img-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.bhandara-link-img-box img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s;
+}
+.bhandara-link-card:hover .bhandara-link-img-box img { transform: scale(1.06); }
+.bhandara-link-img-fallback {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg,#1a0a24,#2d1040);
+  display: none; align-items: center; justify-content: center;
+  font-size: 3.5rem;
+}
+.bhandara-link-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,3,16,0.55);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.bhandara-link-card:hover .bhandara-link-overlay { opacity: 1; }
+.bhandara-link-overlay span {
+  color: var(--secondary);
+  font-family: var(--font-hindi);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: 1px solid rgba(212,160,23,0.5);
+  padding: 8px 20px;
+  border-radius: 20px;
+}
+
+/* Body */
+.bhandara-link-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.bhandara-link-persons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  font-size: 0.8rem;
+  font-weight: 700;
+  align-self: flex-start;
+}
+.bhandara-link-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.bhandara-link-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.bhandara-link-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.bhandara-link-menu-item {
+  background: rgba(212,160,23,0.08);
+  border: 1px solid rgba(212,160,23,0.2);
+  color: var(--secondary);
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.bhandara-link-menu-more {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  align-self: center;
+}
+.bhandara-link-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(212,160,23,0.1);
+}
+.bhandara-link-price-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+.bhandara-link-view {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+/* Actions */
+.bhandara-link-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(212,160,23,0.1);
+}
+.bhandara-link-book-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #25d366;
+  color: white;
+  font-family: var(--font-hindi);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 10px;
+}
+.bhandara-link-call-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(212,160,23,0.12);
+  border: 1px solid rgba(212,160,23,0.3);
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── Table ── */
+.bhandara-table-section { margin-bottom: 40px; }
+.bhandara-table-title {
+  font-family: var(--font-hindi);
+  color: var(--secondary);
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+}
+.bhandara-table-box {
+  background: var(--gradient-card);
+  border: var(--border-gold);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.bhandara-table-header {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 60px;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(212,160,23,0.08);
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+  font-family: var(--font-hindi);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+.bhandara-table-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 60px;
+  gap: 12px;
+  padding: 13px 18px;
+  border-bottom: 1px solid rgba(212,160,23,0.07);
+  align-items: center;
+  transition: background 0.2s;
+}
+.bhandara-table-row:last-child { border-bottom: none; }
+.bhandara-table-row:hover { background: rgba(212,160,23,0.04); }
+.bhandara-table-special { background: rgba(212,160,23,0.05); }
+.bhandara-table-link {
+  font-family: var(--font-hindi);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.bhandara-table-link:hover { color: var(--secondary); }
+.bhandara-table-menu {
+  font-family: var(--font-hindi);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+.bhandara-table-persons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.bhandara-table-btn {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(37,211,102,0.12);
+  border: 1px solid rgba(37,211,102,0.3);
+  color: #25d366;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.bhandara-table-btn:hover { background: rgba(37,211,102,0.25); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .bhandara-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .bhandara-cards-grid { grid-template-columns: 1fr; }
+  .bhandara-table-header,
+  .bhandara-table-row { grid-template-columns: 1.5fr 1.5fr 60px; }
+  .bhandara-table-menu { display: none; }
+}

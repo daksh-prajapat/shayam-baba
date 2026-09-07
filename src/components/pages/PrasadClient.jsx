@@ -2,8 +2,9 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
-import { FiPhone, FiCheck, FiArrowRight, FiEdit3 } from 'react-icons/fi'
+import { FiPhone, FiCheck, FiArrowRight, FiEdit3, FiUsers } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
+import { bhandaraList } from '@/lib/bhandaraData'
 import { saveBooking } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './PrasadPuja.css'
@@ -52,6 +53,7 @@ export default function PrasadClient() {
   return (
     <div className="prasad-page-v2">
       {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
+
       {/* Hero */}
       <div className="prasad-hero-v2">
         <div className="prasad-hero-overlay"></div>
@@ -82,12 +84,14 @@ export default function PrasadClient() {
       </div>
 
       <div className="container prasad-main-container">
-        {/* Tabs */}
+
+        {/* Tabs — 4 tabs including Bhandara */}
         <div className="prasad-tabs-v2">
           {[
-            { id: 'prasad', label: '🍯 प्रसाद थाली', sub: '₹101 से शुरू' },
-            { id: 'puja', label: '🪔 पूजा सेवा', sub: 'विशेष पूजा' },
-            { id: 'booking', label: '📝 बुकिंग फॉर्म', sub: 'Online बुक करें' }
+            { id: 'prasad',   label: '🍯 प्रसाद थाली',  sub: '₹101 से शुरू' },
+            { id: 'puja',     label: '🪔 पूजा सेवा',    sub: 'विशेष पूजा' },
+            { id: 'bhandara', label: '🍽️ विशाल भंडारा', sub: '1000+ व्यक्ति' },
+            { id: 'booking',  label: '📝 बुकिंग फॉर्म', sub: 'Online बुक करें' },
           ].map(t => (
             <button key={t.id} className={`prasad-tab-v2 ${activeTab === t.id ? 'active' : ''}`} onClick={() => setActiveTab(t.id)}>
               <span className="hindi-text tab-v2-label">{t.label}</span>
@@ -103,29 +107,17 @@ export default function PrasadClient() {
             <div className="divider"><span>🙏</span></div>
             <p className="hindi-text prasad-pkg-subtitle">किसी भी प्रसाद पर क्लिक करें — पूरी जानकारी देखें और बुकिंग करें</p>
 
-            {/* Cards Grid */}
             <div className="prasad-pkg-grid">
               {prasadList.map(pkg => (
-                <Link
-                  key={pkg.id}
-                  href={`/prasad-puja/${pkg.slug}`}
-                  className={`prasad-pkg-card ${pkg.special ? 'prasad-pkg-special' : ''}`}
-                >
+                <Link key={pkg.id} href={`/prasad-puja/${pkg.slug}`}
+                  className={`prasad-pkg-card ${pkg.special ? 'prasad-pkg-special' : ''}`}>
                   {pkg.special && <div className="prasad-pkg-ribbon hindi-text">⭐ {pkg.tag}</div>}
-
-                  {/* Image */}
                   <div className="prasad-card-img-box">
                     <img src={pkg.img} alt={pkg.name} loading="lazy"
                       onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
-                    <div className="prasad-card-img-fallback" style={{ display: 'none' }}>
-                      <span>{pkg.icon}</span>
-                    </div>
-                    {/* Hover overlay */}
-                    <div className="prasad-card-overlay">
-                      <span className="hindi-text">विवरण देखें →</span>
-                    </div>
+                    <div className="prasad-card-img-fallback" style={{ display: 'none' }}><span>{pkg.icon}</span></div>
+                    <div className="prasad-card-overlay"><span className="hindi-text">विवरण देखें →</span></div>
                   </div>
-
                   <div className="prasad-pkg-body">
                     <div className="prasad-pkg-top">
                       <div className="prasad-pkg-tag hindi-text" style={{ background: `${pkg.color}22`, color: pkg.color, border: `1px solid ${pkg.color}44` }}>
@@ -134,7 +126,6 @@ export default function PrasadClient() {
                     </div>
                     <h3 className="hindi-text prasad-pkg-name">{pkg.name}</h3>
                     <p className="hindi-text prasad-pkg-desc">{pkg.desc}</p>
-
                     <div className="prasad-pkg-items-preview">
                       {pkg.includes.slice(0, 3).map((item, i) => (
                         <div key={i} className="prasad-pkg-item-prev">
@@ -146,7 +137,6 @@ export default function PrasadClient() {
                         <span className="hindi-text prasad-more-items">+{pkg.includes.length - 3} और...</span>
                       )}
                     </div>
-
                     <div className="prasad-pkg-footer">
                       <span className="prasad-pkg-price">₹{pkg.price}</span>
                       <span className="prasad-view-detail hindi-text">विवरण <FiArrowRight /></span>
@@ -181,7 +171,7 @@ export default function PrasadClient() {
               </div>
             </div>
 
-            {/* Custom / Other Booking */}
+            {/* Custom Booking — sirf ek baar */}
             <div className="prasad-custom-section">
               <button className="prasad-custom-header" onClick={() => setCustomOpen(o => !o)}>
                 <span className="prasad-custom-header-left">
@@ -193,7 +183,6 @@ export default function PrasadClient() {
                 </span>
                 <span className="prasad-custom-chevron">{customOpen ? '▲' : '▼'}</span>
               </button>
-
               {customOpen && (
                 <div className="prasad-custom-body">
                   {!customDone ? (
@@ -203,26 +192,19 @@ export default function PrasadClient() {
                       </p>
                       <div className="prasad-custom-field">
                         <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
-                        <textarea rows={3}
-                          placeholder="जैसे: विशेष लड्डू, मोरछड़ी, चुनरी, विशेष पूजा सामग्री..."
-                          value={customForm.details}
-                          onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
-                          required />
+                        <textarea rows={3} placeholder="जैसे: विशेष लड्डू, मोरछड़ी, चुनरी..."
+                          value={customForm.details} onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))} required />
                       </div>
                       <div className="prasad-custom-row">
                         <div className="prasad-custom-field">
                           <label className="hindi-text">आपका नाम *</label>
-                          <input type="text" placeholder="पूरा नाम"
-                            value={customForm.name}
-                            onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
-                            required />
+                          <input type="text" placeholder="पूरा नाम" value={customForm.name}
+                            onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))} required />
                         </div>
                         <div className="prasad-custom-field">
                           <label className="hindi-text">मोबाइल नंबर *</label>
-                          <input type="tel" placeholder="10 अंक" maxLength={10}
-                            value={customForm.phone}
-                            onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
-                            required />
+                          <input type="tel" placeholder="10 अंक" maxLength={10} value={customForm.phone}
+                            onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))} required />
                         </div>
                       </div>
                       <div className="prasad-custom-row">
@@ -234,23 +216,17 @@ export default function PrasadClient() {
                         <div className="prasad-custom-field">
                           <label className="hindi-text">अवसर (वैकल्पिक)</label>
                           <input type="text" placeholder="जन्मदिन, मनोकामना..."
-                            value={customForm.occasion}
-                            onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
+                            value={customForm.occasion} onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
                         </div>
                       </div>
                       <div className="prasad-custom-field">
                         <label className="hindi-text">पता (delivery के लिए)</label>
-                        <input type="text" placeholder="घर का पता..."
-                          value={customForm.address}
+                        <input type="text" placeholder="घर का पता..." value={customForm.address}
                           onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
                       </div>
                       <div className="prasad-custom-actions">
-                        <button type="submit" className="prasad-custom-submit hindi-text">
-                          ✅ Submit करें
-                        </button>
-                        <a href="tel:9929975116" className="prasad-custom-call">
-                          <FiPhone /> Call करें
-                        </a>
+                        <button type="submit" className="prasad-custom-submit hindi-text">✅ Submit करें</button>
+                        <a href="tel:9929975116" className="prasad-custom-call"><FiPhone /> Call करें</a>
                       </div>
                     </form>
                   ) : (
@@ -259,111 +235,6 @@ export default function PrasadClient() {
                       <div>
                         <p className="hindi-text">Request submit हो गई! हम जल्द संपर्क करेंगे।</p>
                         <button className="prasad-custom-reset hindi-text"
-                          onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
-                          नई request करें
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Bottom CTA */}
-            <div className="prasad-bottom-cta">
-              <div className="prasad-cta-text">
-                <h3 className="hindi-text">बुकिंग के लिए सम्पर्क करें</h3>
-                <p className="hindi-text">हम 24/7 उपलब्ध हैं — Call या WhatsApp पर बुकिंग करें</p>
-              </div>
-              <div className="prasad-cta-btns">
-                <a href="tel:9929975116" className="prasad-cta-call"><FiPhone /> 9929975116</a>
-                <a href="https://wa.me/919929975116?text=प्रसाद बुकिंग करनी है" className="prasad-cta-wa"
-                  target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Custom / Other Booking Section */}
-            <div className="swamani-custom-section">
-              <button className="swamani-custom-header" onClick={() => setCustomOpen(o => !o)}>
-                <span className="swamani-custom-header-left">
-                  <FiEdit3 className="swamani-custom-icon" />
-                  <span>
-                    <strong className="hindi-text">कुछ और बुक करें?</strong>
-                    <small className="hindi-text">ऊपर दी सूची के अलावा कोई विशेष प्रसाद / सेवा चाहिए?</small>
-                  </span>
-                </span>
-                <span className="swamani-custom-chevron">{customOpen ? '▲' : '▼'}</span>
-              </button>
-
-              {customOpen && (
-                <div className="swamani-custom-body">
-                  {!customDone ? (
-                    <form className="swamani-custom-form" onSubmit={handleCustomBook}>
-                      <p className="hindi-text swamani-custom-hint">
-                        कोई भी विशेष प्रसाद, पूजा सामग्री, या अन्य सेवा जो list में नहीं है — नीचे लिखें। हम arrange करेंगे।
-                      </p>
-                      <div className="swamani-custom-grid">
-                        <div className="swamani-custom-field">
-                          <label className="hindi-text">क्या चाहिए? (विवरण) *</label>
-                          <textarea rows={3}
-                            placeholder="जैसे: विशेष लड्डू, मोरछड़ी, विशेष पूजा सामग्री, मनपसंद प्रसाद..."
-                            value={customForm.details}
-                            onChange={e => setCustomForm(f => ({ ...f, details: e.target.value }))}
-                            required />
-                        </div>
-                        <div className="swamani-custom-row">
-                          <div className="swamani-custom-field">
-                            <label className="hindi-text">आपका नाम *</label>
-                            <input type="text" placeholder="पूरा नाम"
-                              value={customForm.name}
-                              onChange={e => setCustomForm(f => ({ ...f, name: e.target.value }))}
-                              required />
-                          </div>
-                          <div className="swamani-custom-field">
-                            <label className="hindi-text">मोबाइल नंबर *</label>
-                            <input type="tel" placeholder="10 अंक" maxLength={10}
-                              value={customForm.phone}
-                              onChange={e => setCustomForm(f => ({ ...f, phone: e.target.value }))}
-                              required />
-                          </div>
-                        </div>
-                        <div className="swamani-custom-row">
-                          <div className="swamani-custom-field">
-                            <label className="hindi-text">पसंदीदा दिनांक</label>
-                            <input type="date" value={customForm.date}
-                              onChange={e => setCustomForm(f => ({ ...f, date: e.target.value }))} />
-                          </div>
-                          <div className="swamani-custom-field">
-                            <label className="hindi-text">अवसर (वैकल्पिक)</label>
-                            <input type="text" placeholder="जन्मदिन, मनोकामना..."
-                              value={customForm.occasion}
-                              onChange={e => setCustomForm(f => ({ ...f, occasion: e.target.value }))} />
-                          </div>
-                        </div>
-                        <div className="swamani-custom-field">
-                          <label className="hindi-text">पता (प्रसाद delivery के लिए)</label>
-                          <input type="text" placeholder="घर का पता..."
-                            value={customForm.address}
-                            onChange={e => setCustomForm(f => ({ ...f, address: e.target.value }))} />
-                        </div>
-                      </div>
-                      <div className="swamani-custom-actions">
-                        <button type="submit" className="swamani-custom-wa-btn hindi-text">
-                          ✅ Submit करें
-                        </button>
-                        <a href="tel:9929975116" className="swamani-custom-call-btn">
-                          <FiPhone /> Call करें
-                        </a>
-                      </div>
-                    </form>
-                  ) : (
-                    <div className="swamani-custom-done">
-                      <span>✅</span>
-                      <div>
-                        <p className="hindi-text">बुकिंग request भेज दी! हम जल्द संपर्क करेंगे।</p>
-                        <button className="swamani-custom-reset hindi-text"
                           onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
                           नई request करें
                         </button>
@@ -391,6 +262,58 @@ export default function PrasadClient() {
                   </button>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* ── BHANDARA TAB ── */}
+        {activeTab === 'bhandara' && (
+          <div className="prasad-packages-section">
+            <h2 className="section-title hindi-text">विशाल भंडारा</h2>
+            <div className="divider"><span>🍽️</span></div>
+            <p className="hindi-text prasad-pkg-subtitle">किसी भी भंडारे पर क्लिक करें — पूरी जानकारी देखें और बुकिंग करें</p>
+
+            <div className="prasad-pkg-grid">
+              {bhandaraList.map(pkg => (
+                <Link key={pkg.id} href={`/bhandara/${pkg.slug}`}
+                  className={`prasad-pkg-card ${pkg.special ? 'prasad-pkg-special' : ''}`}>
+                  {pkg.special && <div className="prasad-pkg-ribbon hindi-text">⭐ {pkg.tag}</div>}
+                  <div className="prasad-card-img-box">
+                    <img src={pkg.img} alt={pkg.name} loading="lazy"
+                      onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
+                    <div className="prasad-card-img-fallback" style={{ display: 'none' }}><span>{pkg.icon}</span></div>
+                    <div className="prasad-card-overlay"><span className="hindi-text">विवरण देखें →</span></div>
+                  </div>
+                  <div className="prasad-pkg-body">
+                    <div className="prasad-pkg-top">
+                      <div className="prasad-pkg-tag hindi-text" style={{ background: `${pkg.color}22`, color: pkg.color, border: `1px solid ${pkg.color}44` }}>
+                        <FiUsers style={{ display:'inline', marginRight:4 }} />{pkg.persons.toLocaleString('hi-IN')} व्यक्ति
+                      </div>
+                    </div>
+                    <h3 className="hindi-text prasad-pkg-name">{pkg.name}</h3>
+                    <p className="hindi-text prasad-pkg-desc">{pkg.desc}</p>
+                    <div className="prasad-pkg-items-preview">
+                      {pkg.menu.slice(0, 3).map((item, i) => (
+                        <div key={i} className="prasad-pkg-item-prev">
+                          <FiCheck className="pkg-check" />
+                          <span className="hindi-text">{item}</span>
+                        </div>
+                      ))}
+                      {pkg.menu.length > 3 && (
+                        <span className="hindi-text prasad-more-items">+{pkg.menu.length - 3} और...</span>
+                      )}
+                    </div>
+                    <div className="prasad-pkg-footer">
+                      <span className="prasad-pkg-price hindi-text" style={{ fontSize:'0.85rem' }}>मूल्य संपर्क पर</span>
+                      <span className="prasad-view-detail hindi-text">विवरण <FiArrowRight /></span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: 24 }}>
+              <Link href="/bhandara" className="btn-secondary hindi-text">सभी भंडारे देखें →</Link>
             </div>
           </div>
         )}
@@ -425,6 +348,7 @@ export default function PrasadClient() {
                     <option>👑 विशेष पूर्ण थाली ₹2100</option>
                     <option>👑 लड्डू पूरी सब्जी स्वामणी ₹11000</option>
                     <option>✨ छप्पन भोग ₹31000</option>
+                    <option>🍽️ विशाल भंडारा (1000+ व्यक्ति)</option>
                     <option>🪔 विशेष पूजा</option>
                   </select>
                 </div>
@@ -448,6 +372,7 @@ export default function PrasadClient() {
             </div>
           </div>
         )}
+
       </div>
     </div>
   )

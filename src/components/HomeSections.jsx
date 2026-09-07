@@ -7,6 +7,7 @@ import { GiTempleGate, GiLotusFlower } from 'react-icons/gi'
 import { IoMusicalNotes, IoPlayCircle } from 'react-icons/io5'
 import { BsImages } from 'react-icons/bs'
 import { MdFestival } from 'react-icons/md'
+import LiveTempleStatus from '@/components/LiveTempleStatus'
 
 import './home-sections/HeroSection.css'
 import './home-sections/SwamaniPreview.css'
@@ -26,6 +27,20 @@ import './HomeSections.css'
 /* ─── HERO ─── */
 function HeroSection({ onContactClick }) {
   const ref = useRef(null)
+  const [nextAartiStr, setNextAartiStr] = useState('Sandhya Aarti: 7:30 PM')
+
+  useEffect(() => {
+    const update = () => {
+      const { getNextAarti, getCurrentAarti } = require('@/lib/templeSchedule')
+      const cur  = getCurrentAarti(new Date())
+      const next = getNextAarti(new Date())
+      if (cur)        setNextAartiStr(`🔴 अभी: ${cur.name}`)
+      else if (next)  setNextAartiStr(`🪔 अगली आरती: ${next.name} ${next.timeStr}`)
+    }
+    update()
+    const id = setInterval(update, 60000)
+    return () => clearInterval(id)
+  }, [])
   useEffect(() => {
     const c = ref.current; if (!c) return
     for (let i = 0; i < 28; i++) {
@@ -49,7 +64,7 @@ function HeroSection({ onContactClick }) {
         <div className="hero-live-bar">
           <span className="hlb-open hindi-text">🟢 अभी खुला</span>
           <span className="hlb-sep">•</span>
-          <span className="hindi-text">🪔 Sandhya Aarti: 7:30 PM</span>
+          <span className="hindi-text">🙏 बाबा को भोग/प्रसाद चढ़ाएं</span>
           <span className="hlb-sep">•</span>
           <span className="hindi-text">⏰ 4:30 AM – 10:00 PM</span>
         </div>
@@ -526,7 +541,7 @@ export default function HomeSections({ onContactClick }) {
     <div className="home-page">
       <HeroSection onContactClick={onContactClick} />
       <QuickActionsSection />
-      <TempleStatusSection />
+      <LiveTempleStatus />
       <SwamaniPrasadSection />
       <DarshanTimingSection />
       <AboutShyamSection />

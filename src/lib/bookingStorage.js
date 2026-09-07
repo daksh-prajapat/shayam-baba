@@ -16,21 +16,51 @@ export function generateBookingId() {
 }
 
 // ── Save booking ──
+// Accepts optional payment fields: paymentStatus, paymentVerified, razorpayOrderId, razorpayPaymentId
 export function saveBooking(booking) {
   if (typeof window === 'undefined') return null
   try {
     const existing = getAllBookings()
+
+    // ── Duplicate payment guard: if razorpayPaymentId already exists, return existing booking ──
+    if (booking.razorpayPaymentId) {
+      const dup = existing.find(b => b.razorpayPaymentId === booking.razorpayPaymentId)
+      if (dup) return dup
+    }
+
     const newBooking = {
       ...booking,
       id: generateBookingId(),
       createdAt: new Date().toISOString(),
-      status: 'Confirmed',
+      // Payment fields — defaults if not provided
+      paymentStatus:    booking.paymentStatus    || 'pending',
+      paymentVerified:  booking.paymentVerified  ?? false,
+      razorpayOrderId:  booking.razorpayOrderId  || null,
+      razorpayPaymentId: booking.razorpayPaymentId || null,
+      // status: 'Confirmed' only if payment verified, else 'Pending Payment'
+      status: booking.paymentVerified ? 'Confirmed' : (booking.status || 'Pending Payment'),
     }
     existing.unshift(newBooking)
     localStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
     return newBooking
   } catch (e) {
     console.error('Booking save error:', e)
+    return null
+  }
+}
+
+// ── Update existing booking (e.g. after payment verification) ──
+export function updateBooking(id, updates) {
+  if (typeof window === 'undefined') return null
+  try {
+    const existing = getAllBookings()
+    const idx = existing.findIndex(b => b.id === id)
+    if (idx === -1) return null
+    existing[idx] = { ...existing[idx], ...updates }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(existing))
+    return existing[idx]
+  } catch (e) {
+    console.error('Booking update error:', e)
     return null
   }
 }
@@ -97,9 +127,21 @@ export function clearAllBookings() {
 }
 
 export function formatDate(isoString) {
+  if (!isoString) return '—'
   const date = new Date(isoString)
   return date.toLocaleDateString('hi-IN', {
     year: 'numeric', month: 'long', day: 'numeric',
     hour: '2-digit', minute: '2-digit'
   })
+}
+
+// ── Payment status label helper ──
+export function paymentStatusLabel(status) {
+  switch (status) {
+    case 'paid':       return { text: 'PAID ✓',      color: '#25d366' }
+    case 'failed':     return { text: 'FAILED ✗',    color: '#e53935' }
+    case 'cancelled':  return { text: 'CANCELLED',   color: '#f57c00' }
+    case 'pending':
+    default:           return { text: 'PENDING',     color: '#888'    }
+  }
 }

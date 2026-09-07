@@ -343,3 +343,10 @@
   .bh-gate-card { padding: 28px 20px; }
   .bh-user-bar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── Payment status in booking list ── */
+.bh-item-pay-status { display: block; font-size: 0.75rem; font-weight: 700; }
+.bh-item-pay-id {
+  font-size: 0.65rem; color: var(--text-muted);
+  word-break: break-all; max-width: 160px; text-align: right;
+}

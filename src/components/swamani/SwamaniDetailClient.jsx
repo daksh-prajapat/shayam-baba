@@ -5,26 +5,61 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck } from 'react-icons/fi'
 import { swamaniList } from '@/lib/swamaniData'
 import { saveBooking } from '@/lib/bookingStorage'
+import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './SwamaniDetail.css'
 
 export default function SwamaniDetailClient({ item }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '', address: '' })
   const [receipt, setReceipt] = useState(null)
+  const [payMsg, setPayMsg] = useState('')
+
+  const { initiatePayment, paying } = useRazorpay()
 
   const handleBook = () => {
-    const booking = saveBooking({
-      serviceName: item.name,
-      serviceType: 'swamani',
-      amount: item.price,
-      name: form.name,
-      phone: form.phone,
-      date: form.date,
-      occasion: form.occasion,
-      address: form.address,
-      icon: item.icon,
+    // Validate
+    if (!form.name.trim()) { setPayMsg('⚠️ कृपया अपना नाम भरें।'); return }
+    const cleanPhone = form.phone.replace(/\D/g, '')
+    if (cleanPhone.length !== 10) { setPayMsg('⚠️ कृपया 10 अंकों का मोबाइल नंबर भरें।'); return }
+    setPayMsg('⏳ Payment processing...')
+
+    initiatePayment({
+      amount:       item.price,
+      serviceType:  'swamani',
+      serviceName:  item.name,
+      customerName: form.name,
+      phone:        cleanPhone,
+
+      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
+        // Save booking ONLY after server-side verification succeeds
+        const booking = saveBooking({
+          serviceName:        item.name,
+          serviceType:        'swamani',
+          amount:             item.price,
+          name:               form.name,
+          phone:              cleanPhone,
+          date:               form.date,
+          occasion:           form.occasion,
+          address:            form.address,
+          icon:               item.icon,
+          paymentStatus:      'paid',
+          paymentVerified:    true,
+          razorpayOrderId:    razorpay_order_id,
+          razorpayPaymentId:  razorpay_payment_id,
+          status:             'Confirmed',
+        })
+        setPayMsg('')
+        setReceipt(booking)
+      },
+
+      onFailure: (msg) => {
+        setPayMsg(`❌ Payment failed: ${msg}`)
+      },
+
+      onCancel: () => {
+        setPayMsg('⚠️ Payment cancelled. आपकी booking अभी confirm नहीं हुई है।')
+      },
     })
-    setReceipt(booking)
   }
 
   const others = swamaniList.filter(s => s.id !== item.id).slice(0, 4)
@@ -45,26 +80,19 @@ export default function SwamaniDetailClient({ item }) {
       </div>
 
       <div className="container sd-container">
-        {/* Main Layout */}
         <div className="sd-main-grid">
           {/* Left — Image + Info */}
           <div className="sd-left">
-            {/* Hero Image */}
             <div className="sd-img-box">
               {item.special && <span className="sd-special-ribbon hindi-text">⭐ सर्वश्रेष्ठ</span>}
-              <img
-                src={item.img}
-                alt={item.name}
-                className="sd-hero-img"
-                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
-              />
+              <img src={item.img} alt={item.name} className="sd-hero-img"
+                onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }} />
               <div className="sd-img-fallback" style={{ display: 'none' }}>
                 <span className="sd-fallback-icon">{item.icon}</span>
               </div>
               <div className="sd-img-tag hindi-text">{item.tag}</div>
             </div>
 
-            {/* Title + Price */}
             <div className="sd-title-box">
               <h1 className="hindi-text sd-title">{item.name}</h1>
               <p className="sd-name-en">{item.nameEn} — Khatu Shyam Ji Swamani Bhog</p>
@@ -74,13 +102,11 @@ export default function SwamaniDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Description */}
             <div className="card sd-desc-card">
               <h2 className="hindi-text sd-section-title">📖 विवरण</h2>
               <p className="hindi-text sd-full-desc">{item.fullDesc}</p>
             </div>
 
-            {/* Includes */}
             <div className="card sd-includes-card">
               <h2 className="hindi-text sd-section-title">🧾 भोग में क्या शामिल है?</h2>
               <div className="sd-includes-grid">
@@ -93,7 +119,6 @@ export default function SwamaniDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Process */}
             <div className="card sd-process-card">
               <h2 className="hindi-text sd-section-title">📋 बुकिंग प्रक्रिया</h2>
               <div className="sd-steps">
@@ -106,7 +131,6 @@ export default function SwamaniDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Meta Info */}
             <div className="card sd-meta-card">
               <div className="sd-meta-row">
                 <span className="hindi-text sd-meta-label">⏰ भोग का समय</span>
@@ -148,7 +172,7 @@ export default function SwamaniDetailClient({ item }) {
                   <div className="sd-field">
                     <label className="hindi-text">मोबाइल नंबर *</label>
                     <input type="tel" placeholder="10 अंक" value={form.phone} maxLength={10}
-                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+                      onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))} />
                   </div>
                   <div className="sd-field">
                     <label className="hindi-text">पसंदीदा दिनांक</label>
@@ -166,31 +190,43 @@ export default function SwamaniDetailClient({ item }) {
                       onChange={e => setForm(f => ({ ...f, address: e.target.value }))} />
                   </div>
 
+                  {/* Pay message */}
+                  {payMsg && (
+                    <div className="sd-pay-msg hindi-text"
+                      style={{ color: payMsg.startsWith('❌') ? '#ff8888' : payMsg.startsWith('⏳') ? '#D4A017' : '#ffcc44', fontSize: '0.85rem', margin: '4px 0 8px', lineHeight: 1.5 }}>
+                      {payMsg}
+                    </div>
+                  )}
+
                   <button
                     className="sd-wa-btn hindi-text"
                     onClick={handleBook}
-                    disabled={!form.name || !form.phone}
+                    disabled={paying || !form.name || !form.phone}
+                    style={{ opacity: paying ? 0.7 : 1 }}
                   >
-                    ✅ बुकिंग Submit करें
+                    {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
                   </button>
                   <a href="tel:9929975116" className="sd-call-btn">
                     <FiPhone /> 9929975116 पर Call करें
                   </a>
 
                   <div className="sd-guarantees">
-                    <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">WhatsApp Confirmation</span></div>
+                    <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">Secure Online Payment</span></div>
+                    <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">UPI / Card / Net Banking</span></div>
                     <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">Digital Receipt मिलेगी</span></div>
-                    <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">प्रसाद घर पहुंचाएं</span></div>
                     <div className="sd-g-item"><FiCheck className="sd-g-icon" /><span className="hindi-text">24/7 Support</span></div>
                   </div>
                 </div>
               ) : (
                 <div className="sd-success">
                   <div className="sd-success-icon">✅</div>
-                  <h4 className="hindi-text">बुकिंग हो गई!</h4>
+                  <h4 className="hindi-text">Payment Successful! बुकिंग हो गई!</h4>
                   <p className="hindi-text">Receipt देखें और WhatsApp पर भेजें।</p>
                   <button className="sd-wa-btn hindi-text" onClick={() => setReceipt(receipt)}>Receipt देखें</button>
-                  <button className="sd-wa-btn hindi-text" style={{marginTop:8, background:'rgba(255,255,255,0.1)'}} onClick={() => setReceipt(null)}>नई बुकिंग</button>
+                  <button className="sd-wa-btn hindi-text" style={{marginTop:8, background:'rgba(255,255,255,0.1)'}}
+                    onClick={() => { setReceipt(null); setForm({ name:'', phone:'', date:'', occasion:'', address:'' }) }}>
+                    नई बुकिंग
+                  </button>
                 </div>
               )}
             </div>
@@ -199,7 +235,8 @@ export default function SwamaniDetailClient({ item }) {
             <div className="card sd-quick-contact">
               <h4 className="hindi-text">📞 तुरंत सम्पर्क करें</h4>
               <a href="tel:9929975116" className="sd-qc-call"><FiPhone /> 9929975116</a>
-              <a href={`https://wa.me/919929975116?text=${encodeURIComponent(`स्वामणी बुकिंग — ${item.name}`)}`} className="sd-qc-wa" target="_blank" rel="noopener noreferrer">
+              <a href={`https://wa.me/919929975116?text=${encodeURIComponent(`स्वामणी बुकिंग — ${item.name}`)}`}
+                className="sd-qc-wa" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
               </a>
               <p className="hindi-text sd-qc-note">सुबह 6 बजे – रात 10 बजे</p>

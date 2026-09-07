@@ -2,6 +2,9 @@
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiDownload, FiClock, FiX, FiArrowLeft, FiMail } from 'react-icons/fi'
+import { saveBooking } from '@/lib/bookingStorage'
+import { useRazorpay } from '@/lib/useRazorpay'
+import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './BookingClient.css'
 
 /* ── Service Data ── */
@@ -146,37 +149,58 @@ function BookingForm({ service, onBack, onSuccess }) {
     customAmount: '',
     date: '', occasion: '', address: '', notes: ''
   })
-  const [step, setStep] = useState(1) // 1=form, 2=confirm
+  const [payMsg, setPayMsg] = useState('')
+  const { initiatePayment, paying } = useRazorpay()
 
   const selectedOption = service.options.find(o => o.name === form.option)
-  const finalPrice = form.option === 'Custom राशि (मनचाहा दान)' ? parseInt(form.customAmount || 0) : (selectedOption?.price || 0)
+  const finalPrice = form.option === 'Custom राशि (मनचाहा दान)'
+    ? parseInt(form.customAmount || 0)
+    : (selectedOption?.price || 0)
 
   const handleOptionChange = (opt) => {
     setForm(f => ({ ...f, option: opt.name, price: opt.price }))
   }
 
-  const generateBookingId = () => 'KSJ-' + Date.now().toString(36).toUpperCase()
+  const handlePay = () => {
+    if (!form.name.trim()) { setPayMsg('⚠️ कृपया अपना नाम भरें।'); return }
+    const cleanPhone = form.phone.replace(/\D/g, '')
+    if (cleanPhone.length !== 10) { setPayMsg('⚠️ कृपया 10 अंकों का मोबाइल नंबर भरें।'); return }
+    if (finalPrice <= 0) { setPayMsg('⚠️ कृपया राशि भरें।'); return }
+    setPayMsg('⏳ Payment processing...')
 
-  const handleWhatsApp = () => {
-    const bid = generateBookingId()
-    const msg = `🙏 *जय श्री श्याम — खाटू श्याम जी*%0A%0A` +
-      `📋 *बुकिंग विवरण*%0A` +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `🆔 Booking ID: *${bid}*%0A` +
-      `🛕 सेवा: *${service.title}*%0A` +
-      `📌 प्रकार: *${form.option}*%0A` +
-      `💰 राशि: *₹${finalPrice.toLocaleString('hi-IN')}*%0A` +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `👤 नाम: *${form.name}*%0A` +
-      `📞 फोन: *${form.phone}*%0A` +
-      `🏙️ शहर: *${form.city}*%0A` +
-      (form.date ? `📅 दिनांक: *${form.date}*%0A` : '') +
-      (form.occasion ? `🎊 अवसर: *${form.occasion}*%0A` : '') +
-      (form.notes ? `💬 नोट: *${form.notes}*%0A` : '') +
-      `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `कृपया बुकिंग confirm करें।`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
-    onSuccess({ bid, form, service, price: finalPrice })
+    initiatePayment({
+      amount:       finalPrice,
+      serviceType:  service.id,
+      serviceName:  `${service.title} — ${form.option}`,
+      customerName: form.name,
+      phone:        cleanPhone,
+      email:        form.email || '',
+
+      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
+        const booking = saveBooking({
+          serviceName:        `${service.title} — ${form.option}`,
+          serviceType:        service.id,
+          amount:             finalPrice,
+          name:               form.name,
+          phone:              cleanPhone,
+          date:               form.date,
+          occasion:           form.occasion,
+          address:            form.address,
+          icon:               service.icon,
+          note:               form.notes,
+          paymentStatus:      'paid',
+          paymentVerified:    true,
+          razorpayOrderId:    razorpay_order_id,
+          razorpayPaymentId:  razorpay_payment_id,
+          status:             'Confirmed',
+        })
+        setPayMsg('')
+        onSuccess(booking)
+      },
+
+      onFailure: (msg) => setPayMsg(`❌ Payment failed: ${msg}`),
+      onCancel:  () => setPayMsg('⚠️ Payment cancelled. आपकी booking confirm नहीं हुई।'),
+    })
   }
 
   return (
@@ -287,21 +311,28 @@ function BookingForm({ service, onBack, onSuccess }) {
 
         {/* Submit Buttons */}
         <div className="bf-submit-area">
-          <p className="hindi-text bf-submit-note">बुकिंग WhatsApp के माध्यम से confirm होगी।</p>
+          <p className="hindi-text bf-submit-note">Online Payment (UPI / Card / Net Banking) से बुकिंग करें।</p>
+          {payMsg && (
+            <p className="hindi-text" style={{
+              color: payMsg.startsWith('❌') ? '#ff8888' : payMsg.startsWith('⏳') ? '#D4A017' : '#ffcc44',
+              fontSize: '0.85rem', marginBottom: 10, lineHeight: 1.5
+            }}>{payMsg}</p>
+          )}
           <div className="bf-submit-btns">
             <button className="bf-wa-btn hindi-text"
-              onClick={handleWhatsApp}
-              disabled={!form.name || !form.phone}>
-              <FaWhatsapp /> WhatsApp पर बुकिंग करें
+              onClick={handlePay}
+              disabled={paying || !form.name || !form.phone || finalPrice <= 0}
+              style={{ opacity: paying ? 0.7 : 1 }}>
+              {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
             </button>
             <a href="tel:9929975116" className="bf-call-btn">
               <FiPhone /> 9929975116
             </a>
           </div>
           <div className="bf-confirm-info">
-            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">WhatsApp Confirmation मिलेगा</span></div>
-            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">Digital Receipt WhatsApp पर</span></div>
-            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">Email Confirmation (email दिया हो तो)</span></div>
+            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">Secure Online Payment</span></div>
+            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">UPI / PhonePe / GPay / Card</span></div>
+            <div className="bci-item"><FiCheck className="bci-icon green" /><span className="hindi-text">Digital Receipt मिलेगी</span></div>
           </div>
         </div>
       </div>
@@ -547,6 +578,11 @@ export default function BookingClient() {
 
   return (
     <div className="booking-page">
+      {/* Receipt Modal — shown on top when in receipt view */}
+      {view === 'receipt' && completedBooking && (
+        <ReceiptModal booking={completedBooking} onClose={handleNewBooking} />
+      )}
+
       {/* Page Hero */}
       <div className="booking-hero">
         <div className="container booking-hero-content">
@@ -597,9 +633,9 @@ export default function BookingClient() {
 
             {/* Info Box */}
             <div className="booking-info-box">
-              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">WhatsApp Confirmation — बुकिंग के तुरंत बाद</span></div>
-              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">Digital Receipt — WhatsApp पर भेजी जाएगी</span></div>
-              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">Email Confirmation — Email देने पर</span></div>
+              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">Secure Online Payment — UPI / Card / Net Banking</span></div>
+              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">Payment के बाद Digital Receipt तुरंत मिलेगी</span></div>
+              <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">Booking History देखें — अपने Phone Number से</span></div>
               <div className="bib-item"><FiCheck className="bib-icon" /><span className="hindi-text">24/7 Support — Call या WhatsApp</span></div>
             </div>
           </>
@@ -614,15 +650,7 @@ export default function BookingClient() {
           />
         )}
 
-        {/* RECEIPT VIEW */}
-        {view === 'receipt' && completedBooking && (
-          <DigitalReceipt
-            booking={completedBooking}
-            onNew={handleNewBooking}
-          />
-        )}
-
-        {/* HISTORY VIEW */}
+        {/* HISTORY VIEW — redirect to full history page */}
         {view === 'history' && (
           <BookingHistory onBack={() => setView('home')} />
         )}

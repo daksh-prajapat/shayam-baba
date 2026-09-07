@@ -5,17 +5,70 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck, FiEdit3 } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
 import { saveBooking } from '@/lib/bookingStorage'
+import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './PrasadDetail.css'
 
 export default function PrasadDetailClient({ item }) {
   const [form, setForm] = useState({ name: '', phone: '', date: '', occasion: '', address: '' })
   const [receipt, setReceipt] = useState(null)
+  const [payMsg, setPayMsg] = useState('')
+
+  // Custom booking (amount = 0, no payment needed)
   const [customForm, setCustomForm] = useState({ name: '', phone: '', details: '', date: '', occasion: '', address: '' })
   const [customOpen, setCustomOpen] = useState(false)
   const [customDone, setCustomDone] = useState(false)
 
-  const handleCustomBook = () => {
+  const { initiatePayment, paying } = useRazorpay()
+
+  // ── Main booking with payment ──
+  const handleBook = () => {
+    if (!form.name.trim()) { setPayMsg('⚠️ कृपया अपना नाम भरें।'); return }
+    const cleanPhone = form.phone.replace(/\D/g, '')
+    if (cleanPhone.length !== 10) { setPayMsg('⚠️ कृपया 10 अंकों का मोबाइल नंबर भरें।'); return }
+    setPayMsg('⏳ Payment processing...')
+
+    initiatePayment({
+      amount:       item.price,
+      serviceType:  'prasad',
+      serviceName:  item.name,
+      customerName: form.name,
+      phone:        cleanPhone,
+
+      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
+        const booking = saveBooking({
+          serviceName:        item.name,
+          serviceType:        'prasad',
+          amount:             item.price,
+          name:               form.name,
+          phone:              cleanPhone,
+          date:               form.date,
+          occasion:           form.occasion,
+          address:            form.address,
+          icon:               item.icon,
+          paymentStatus:      'paid',
+          paymentVerified:    true,
+          razorpayOrderId:    razorpay_order_id,
+          razorpayPaymentId:  razorpay_payment_id,
+          status:             'Confirmed',
+        })
+        setPayMsg('')
+        setReceipt(booking)
+      },
+
+      onFailure: (msg) => {
+        setPayMsg(`❌ Payment failed: ${msg}`)
+      },
+
+      onCancel: () => {
+        setPayMsg('⚠️ Payment cancelled. आपकी booking अभी confirm नहीं हुई है।')
+      },
+    })
+  }
+
+  // ── Custom booking — free, no payment ──
+  const handleCustomBook = (e) => {
+    e.preventDefault()
     const booking = saveBooking({
       serviceName: `कस्टम प्रसाद — ${customForm.details.slice(0, 40)}`,
       serviceType: 'prasad',
@@ -27,23 +80,10 @@ export default function PrasadDetailClient({ item }) {
       address: customForm.address,
       icon: '✏️',
       note: customForm.details,
+      paymentStatus: 'pending',
+      paymentVerified: false,
     })
     setCustomDone(true)
-    setReceipt(booking)
-  }
-
-  const handleBook = () => {
-    const booking = saveBooking({
-      serviceName: item.name,
-      serviceType: 'prasad',
-      amount: item.price,
-      name: form.name,
-      phone: form.phone,
-      date: form.date,
-      occasion: form.occasion,
-      address: form.address,
-      icon: item.icon,
-    })
     setReceipt(booking)
   }
 
@@ -51,7 +91,6 @@ export default function PrasadDetailClient({ item }) {
 
   return (
     <div className="pd-page">
-      {/* Receipt Modal */}
       {receipt && <ReceiptModal booking={receipt} onClose={() => setReceipt(null)} />}
       <div className="pd-topbar">
         <div className="container pd-topbar-inner">
@@ -69,7 +108,6 @@ export default function PrasadDetailClient({ item }) {
 
           {/* Left */}
           <div className="pd-left">
-            {/* Image */}
             <div className="pd-img-box">
               {item.special && <span className="pd-special-ribbon hindi-text">⭐ सर्वश्रेष्ठ</span>}
               <img src={item.img} alt={item.name} className="pd-hero-img"
@@ -80,7 +118,6 @@ export default function PrasadDetailClient({ item }) {
               <div className="pd-img-tag hindi-text">{item.tag}</div>
             </div>
 
-            {/* Title */}
             <div className="pd-title-box">
               <h1 className="hindi-text pd-title">{item.name}</h1>
               <p className="pd-name-en">{item.nameEn} — Khatu Shyam Ji Prasad Booking</p>
@@ -90,13 +127,11 @@ export default function PrasadDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Description */}
             <div className="card pd-desc-card">
               <h2 className="hindi-text pd-section-title">📖 विवरण</h2>
               <p className="hindi-text pd-full-desc">{item.fullDesc}</p>
             </div>
 
-            {/* Includes */}
             <div className="card pd-includes-card">
               <h2 className="hindi-text pd-section-title">🧺 इसमें शामिल है</h2>
               <div className="pd-includes-grid">
@@ -109,7 +144,6 @@ export default function PrasadDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Process */}
             <div className="card pd-process-card">
               <h2 className="hindi-text pd-section-title">📋 बुकिंग प्रक्रिया</h2>
               <div className="pd-steps">
@@ -122,7 +156,6 @@ export default function PrasadDetailClient({ item }) {
               </div>
             </div>
 
-            {/* Meta */}
             <div className="card pd-meta-card">
               <div className="pd-meta-row">
                 <span className="hindi-text pd-meta-label">⏰ अर्पण समय</span>
@@ -164,7 +197,7 @@ export default function PrasadDetailClient({ item }) {
                   <div className="pd-field">
                     <label className="hindi-text">मोबाइल नंबर *</label>
                     <input type="tel" placeholder="10 अंक" value={form.phone} maxLength={10}
-                      onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
+                      onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '') }))} />
                   </div>
                   <div className="pd-field">
                     <label className="hindi-text">पसंदीदा दिनांक</label>
@@ -182,28 +215,37 @@ export default function PrasadDetailClient({ item }) {
                       onChange={e => setForm(f => ({ ...f, address: e.target.value }))} />
                   </div>
 
+                  {/* Payment message */}
+                  {payMsg && (
+                    <div className="pd-pay-msg hindi-text"
+                      style={{ color: payMsg.startsWith('❌') ? '#ff8888' : payMsg.startsWith('⏳') ? '#D4A017' : '#ffcc44', fontSize: '0.85rem', margin: '4px 0 8px', lineHeight: 1.5 }}>
+                      {payMsg}
+                    </div>
+                  )}
+
                   <button className="pd-wa-btn hindi-text" onClick={handleBook}
-                    disabled={!form.name || !form.phone}>
-                    ✅ बुकिंग Submit करें
+                    disabled={paying || !form.name || !form.phone}
+                    style={{ opacity: paying ? 0.7 : 1 }}>
+                    {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
                   </button>
                   <a href="tel:9929975116" className="pd-call-btn">
                     <FiPhone /> 9929975116 पर Call करें
                   </a>
 
                   <div className="pd-guarantees">
-                    <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">WhatsApp Confirmation</span></div>
+                    <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">Secure Online Payment</span></div>
+                    <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">UPI / Card / Net Banking</span></div>
                     <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">Digital Receipt मिलेगी</span></div>
                     <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">Photo/Video भेजी जाएगी</span></div>
-                    <div className="pd-g-item"><FiCheck className="pd-g-icon" /><span className="hindi-text">24/7 Support</span></div>
                   </div>
                 </div>
               ) : (
                 <div className="pd-success">
                   <div className="pd-success-icon">✅</div>
-                  <h4 className="hindi-text">बुकिंग हो गई!</h4>
+                  <h4 className="hindi-text">Payment Successful! बुकिंग हो गई!</h4>
                   <p className="hindi-text">Receipt देखें और WhatsApp पर भेजें।</p>
                   <button className="pd-wa-btn hindi-text" onClick={() => setReceipt(receipt)}>Receipt देखें</button>
-                  <button className="pd-call-btn" style={{marginTop:8}} onClick={() => setReceipt(null)}>नई बुकिंग</button>
+                  <button className="pd-call-btn" style={{marginTop:8}} onClick={() => { setReceipt(null); setForm({ name:'', phone:'', date:'', occasion:'', address:'' }) }}>नई बुकिंग</button>
                 </div>
               )}
             </div>
@@ -272,13 +314,13 @@ export default function PrasadDetailClient({ item }) {
                       <button className="pd-wa-btn hindi-text" style={{ marginTop: 4 }}
                         onClick={handleCustomBook}
                         disabled={!customForm.name || !customForm.phone || !customForm.details}>
-                        ✅ Submit करें
+                        ✅ Submit करें (WhatsApp पर confirm होगा)
                       </button>
                     </>
                   ) : (
                     <div className="pd-custom-done">
                       <span className="pd-custom-done-icon">✅</span>
-                      <p className="hindi-text">बुकिंग request भेज दी! हम जल्द संपर्क करेंगे।</p>
+                      <p className="hindi-text">Request भेज दी! हम जल्द संपर्क करेंगे।</p>
                       <button className="pd-call-btn" onClick={() => { setCustomDone(false); setCustomForm({ name:'', phone:'', details:'', date:'', occasion:'', address:'' }) }}>
                         नई request
                       </button>

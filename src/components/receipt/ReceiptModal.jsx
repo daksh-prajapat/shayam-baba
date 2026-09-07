@@ -3,13 +3,16 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiDownload, FiPrinter, FiX, FiCheck, FiShare2, FiClock } from 'react-icons/fi'
-import { formatDate, setVerifiedPhone } from '@/lib/bookingStorage'
+import { formatDate, setVerifiedPhone, paymentStatusLabel } from '@/lib/bookingStorage'
 import './ReceiptModal.css'
 
 export default function ReceiptModal({ booking, onClose }) {
   const receiptRef = useRef(null)
 
   if (!booking) return null
+
+  const pymtLabel = paymentStatusLabel(booking.paymentStatus)
+  const isPaid    = booking.paymentStatus === 'paid' && booking.paymentVerified
 
   const handlePrint = () => {
     const content = receiptRef.current.innerHTML
@@ -29,7 +32,7 @@ export default function ReceiptModal({ booking, onClose }) {
             .rp-header { background: linear-gradient(135deg, #1a0a24, #2d1040); color: #D4A017; text-align: center; padding: 20px; }
             .rp-header h2 { font-size: 1.4rem; margin-bottom: 4px; }
             .rp-header p { font-size: 0.8rem; opacity: 0.8; }
-            .rp-id { background: #D4A017; color: #1a0a24; text-align: center; padding: 8px; font-weight: 700; font-size: 0.9rem; }
+            .rp-id { background: #D4A017; color: #1a0a24; text-align: center; padding: 8px; font-weight: 700; font-size: 0.9rem; display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
             .rp-body { padding: 20px; }
             .rp-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; font-size: 0.88rem; }
             .rp-row:last-child { border-bottom: none; }
@@ -38,7 +41,11 @@ export default function ReceiptModal({ booking, onClose }) {
             .rp-price-box { background: #fff8e7; border: 2px solid #D4A017; border-radius: 10px; padding: 14px; text-align: center; margin: 16px 0; }
             .rp-price-box .amount { font-size: 2rem; font-weight: 800; color: #D4A017; }
             .rp-footer { background: #1a0a24; color: #D4A017; text-align: center; padding: 14px; font-size: 0.82rem; }
-            .rp-status { display: inline-block; background: #25d366; color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin: 8px 0; }
+            .rp-status { display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin: 8px 0; }
+            .status-paid { background: #25d366; color: white; }
+            .status-pending { background: #888; color: white; }
+            .status-failed { background: #e53935; color: white; }
+            .status-cancelled { background: #f57c00; color: white; }
           </style>
         </head>
         <body>${content}</body>
@@ -59,7 +66,8 @@ export default function ReceiptModal({ booking, onClose }) {
       `👤 नाम: *${booking.name}*%0A` +
       `📞 फोन: *${booking.phone}*%0A` +
       (booking.date ? `📅 दिनांक: *${booking.date}*%0A` : '') +
-      `📊 स्थिति: *${booking.status}*%0A` +
+      `📊 Payment: *${pymtLabel.text}*%0A` +
+      (booking.razorpayPaymentId ? `🆔 Payment ID: *${booking.razorpayPaymentId}*%0A` : '') +
       `🕐 बुकिंग समय: *${formatDate(booking.createdAt)}*%0A` +
       `━━━━━━━━━━━━━━━━━━━━%0A` +
       `🙏 बाबा श्याम की कृपा आप पर बनी रहे!%0A` +
@@ -68,7 +76,7 @@ export default function ReceiptModal({ booking, onClose }) {
   }
 
   const handleShare = async () => {
-    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${booking.id}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nस्थिति: ${booking.status}\n\nखाटू श्याम जी - 9929975116`
+    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${booking.id}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nPayment: ${pymtLabel.text}\n\nखाटू श्याम जी - 9929975116`
     if (navigator.share) {
       await navigator.share({ title: 'बुकिंग रसीद', text })
     } else {
@@ -82,7 +90,9 @@ export default function ReceiptModal({ booking, onClose }) {
       <div className="receipt-modal" onClick={e => e.stopPropagation()}>
         {/* Modal Header */}
         <div className="rm-header">
-          <h3 className="hindi-text">🎉 बुकिंग सफल!</h3>
+          <h3 className="hindi-text">
+            {isPaid ? '🎉 Payment Successful!' : '📋 बुकिंग Receipt'}
+          </h3>
           <button className="rm-close" onClick={onClose}><FiX /></button>
         </div>
 
@@ -111,10 +121,15 @@ export default function ReceiptModal({ booking, onClose }) {
                 <p>📞 9929975116</p>
               </div>
 
-              {/* Booking ID */}
+              {/* Booking ID + status */}
               <div className="rp-id">
                 🔖 Booking ID: {booking.id}
-                <span className="rp-status">✓ {booking.status}</span>
+                <span
+                  className="rp-status"
+                  style={{ background: pymtLabel.color }}
+                >
+                  {pymtLabel.text}
+                </span>
               </div>
 
               {/* Price */}
@@ -162,13 +177,30 @@ export default function ReceiptModal({ booking, onClose }) {
                   <span className="rp-label hindi-text">📌 सेवा</span>
                   <span className="rp-value hindi-text">{booking.serviceName}</span>
                 </div>
+                {/* Payment details — show only if paid */}
+                <div className="rp-row">
+                  <span className="rp-label hindi-text">💳 Payment Status</span>
+                  <span className="rp-value" style={{ color: pymtLabel.color, fontWeight: 700 }}>
+                    {pymtLabel.text}
+                  </span>
+                </div>
+                {booking.razorpayPaymentId && (
+                  <div className="rp-row">
+                    <span className="rp-label hindi-text">🆔 Payment ID</span>
+                    <span className="rp-value" style={{ fontSize: '0.75rem', wordBreak: 'break-all' }}>
+                      {booking.razorpayPaymentId}
+                    </span>
+                  </div>
+                )}
                 <div className="rp-row">
                   <span className="rp-label hindi-text">🕐 बुकिंग समय</span>
                   <span className="rp-value hindi-text">{formatDate(booking.createdAt)}</span>
                 </div>
                 <div className="rp-row">
                   <span className="rp-label hindi-text">📊 स्थिति</span>
-                  <span className="rp-value" style={{ color: '#25d366', fontWeight: 700 }}>✓ {booking.status}</span>
+                  <span className="rp-value" style={{ color: isPaid ? '#25d366' : '#888', fontWeight: 700 }}>
+                    ✓ {booking.status}
+                  </span>
                 </div>
               </div>
 
@@ -188,14 +220,13 @@ export default function ReceiptModal({ booking, onClose }) {
             href="/booking-history"
             className="rm-history-btn hindi-text"
             onClick={() => {
-              // Pre-verify phone so history page opens directly
               if (booking?.phone) {
                 const clean = booking.phone.replace(/\D/g, '').slice(-10)
                 if (clean.length === 10) setVerifiedPhone(clean)
               }
             }}
           >
-            <FiClock /> अपनी सभी बुकिंग देखें
+            <FiClock /> 📋 अपनी सभी बुकिंग देखें
           </Link>
           <button className="rm-close-btn hindi-text" onClick={onClose}>बंद करें</button>
         </div>

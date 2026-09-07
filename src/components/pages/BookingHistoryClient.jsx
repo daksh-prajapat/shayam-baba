@@ -6,7 +6,8 @@ import { FiPhone, FiTrash2, FiEye, FiClock, FiSearch, FiLogOut, FiShield } from 
 import {
   getBookingsByPhone, deleteBooking, clearAllBookings,
   formatDate, setVerifiedPhone, getVerifiedPhone,
-  clearVerifiedPhone, isOwner, getAllBookings, OWNER_PHONE
+  clearVerifiedPhone, isOwner, getAllBookings, OWNER_PHONE,
+  paymentStatusLabel
 } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './BookingHistory.css'
@@ -335,7 +336,20 @@ export default function BookingHistoryClient() {
                   {booking.amount > 0 && (
                     <div className="bh-item-amount">₹{booking.amount?.toLocaleString('hi-IN')}</div>
                   )}
-                  <span className="bh-item-status hindi-text">✓ {booking.status}</span>
+                  {/* Payment status badge */}
+                  {(() => {
+                    const lbl = paymentStatusLabel(booking.paymentStatus)
+                    return (
+                      <span className="bh-item-pay-status" style={{ color: lbl.color, fontWeight: 700, fontSize: '0.75rem' }}>
+                        💳 {lbl.text}
+                      </span>
+                    )
+                  })()}
+                  {ownerMode && booking.razorpayPaymentId && (
+                    <div className="bh-item-pay-id" title={booking.razorpayPaymentId}>
+                      🆔 {booking.razorpayPaymentId.slice(0, 18)}…
+                    </div>
+                  )}
                   <div className="bh-item-actions">
                     <button className="bh-view-btn hindi-text" onClick={() => setSelectedReceipt(booking)}>
                       <FiEye /> Receipt

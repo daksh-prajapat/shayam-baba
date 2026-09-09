@@ -9,23 +9,23 @@ const galleryData = [
   {
     cat: 'मंदिर',
     title: 'खाटू श्याम जी मंदिर — मुख्य मंदिर',
-    img: '/images/temple-main.jpg',
+    img: '/images/real-mandir.jpg',
     large: true
   },
   {
     cat: 'मंदिर',
     title: 'मंदिर प्रवेश द्वार',
-    img: '/images/temple-entrance.jpg'
+    img: '/images/entrance.jpg'
   },
   {
     cat: 'मंदिर',
     title: 'मंदिर परिसर — राजस्थान',
-    img: '/images/temple-rajasthan.jpg'
+    img: '/images/mandir-parisar.jpg'
   },
   {
     cat: 'मंदिर',
     title: 'मंदिर अंदर का दृश्य',
-    img: '/images/temple-interior.jpg'
+    img: '/images/andr.jpg'
   },
   // दर्शन — devotional / worship images
   {
@@ -37,64 +37,64 @@ const galleryData = [
   {
     cat: 'दर्शन',
     title: 'भक्त दर्शन — खाटू धाम',
-    img: '/images/temple-hero.jpg'
+    img: '/images/bhakt-darshan.jpg'
   },
   {
     cat: 'दर्शन',
     title: 'मंदिर दर्शन',
-    img: '/images/temple2.jpg'
+    img: '/images/mandir.jpg'
   },
   // आरती — diya/aarti images
   {
     cat: 'आरती',
     title: 'मंगला आरती — खाटू श्याम जी',
-    img: '/images/aarti.jpg',
+    img: '/images/mangala-aarti.jpg',
     large: true
   },
   {
     cat: 'आरती',
     title: 'दीप प्रज्वलन — आरती',
-    img: '/images/festival-lights.jpg'
+    img: '/images/deep.jpg'
   },
   {
     cat: 'आरती',
     title: 'फूल व दीप — पूजा',
-    img: '/images/marigold-offerings.jpg'
+    img: '/images/fool.jpg'
   },
   // फाल्गुन मेला
   {
     cat: 'फाल्गुन मेला',
     title: 'फाल्गुन मेला — भव्य आयोजन',
-    img: '/images/festival.jpg',
+    img: '/images/falgun.jpg',
     large: true
   },
   {
     cat: 'फाल्गुन मेला',
     title: 'मेला उत्सव — खाटू',
-    img: '/images/contact-hero.jpg'
+    img: '/images/utsav.jpg'
   },
   // प्रसाद
   {
     cat: 'प्रसाद',
     title: 'प्रसाद सेवा — खाटू श्याम',
-    img: '/images/prasad-hero.jpg',
+    img: '/images/parshad-seva.jpg',
     large: true
   },
   {
     cat: 'प्रसाद',
     title: 'भोग प्रसाद — बाबा श्याम',
-    img: '/images/prasad1.jpg'
+    img: '/images/bhog.jpg'
   },
   // निशान यात्रा
   {
     cat: 'निशान यात्रा',
     title: 'निशान यात्रा — भक्तों का जुलूस',
-    img: '/images/orange-flowers.jpg'
+    img: '/images/nishan.jpg',
   },
   {
     cat: 'निशान यात्रा',
     title: 'निशान चढ़ाना — मन्नत पूरी',
-    img: '/images/mountain.jpg'
+    img: '/images/nishan-chadhana.jpg',
   },
 ]
 

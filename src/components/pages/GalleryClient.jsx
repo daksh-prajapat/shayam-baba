@@ -94,7 +94,7 @@ const galleryData = [
   {
     cat: 'निशान यात्रा',
     title: 'निशान चढ़ाना — मन्नत पूरी',
-    img: '/images/nishan-chadhana.webp',
+    img: '/images/nishan-chadana.webp',
   },
 ]
 

@@ -31,7 +31,7 @@ const galleryData = [
   {
     cat: 'दर्शन',
     title: 'बाबा श्याम के दर्शन',
-    img: '/images/temple-hero2.jpg',
+    img: '/images/khatu-shyam.jfif',
     large: true
   },
   {

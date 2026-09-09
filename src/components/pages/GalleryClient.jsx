@@ -48,7 +48,7 @@ const galleryData = [
   {
     cat: 'आरती',
     title: 'मंगला आरती — खाटू श्याम जी',
-    img: '/images/mangala-aarti.jpg',
+    img: '/images/mangla-aarti.jpg',
     large: true
   },
   {
@@ -59,7 +59,7 @@ const galleryData = [
   {
     cat: 'आरती',
     title: 'फूल व दीप — पूजा',
-    img: '/images/fool.jpg'
+    img: '/images/fool.png'
   },
   // फाल्गुन मेला
   {
@@ -83,7 +83,7 @@ const galleryData = [
   {
     cat: 'प्रसाद',
     title: 'भोग प्रसाद — बाबा श्याम',
-    img: '/images/bhog-1.jpg'
+    img: '/images/bhog-1.jfif'
   },
   // निशान यात्रा
   {

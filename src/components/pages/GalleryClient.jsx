@@ -83,7 +83,7 @@ const galleryData = [
   {
     cat: 'प्रसाद',
     title: 'भोग प्रसाद — बाबा श्याम',
-    img: '/images/bhog.jpg'
+    img: '/images/bhog-1.jpg'
   },
   // निशान यात्रा
   {
@@ -94,7 +94,7 @@ const galleryData = [
   {
     cat: 'निशान यात्रा',
     title: 'निशान चढ़ाना — मन्नत पूरी',
-    img: '/images/nishan-chadhana.jpg',
+    img: '/images/nishan-chadhana.webp',
   },
 ]
 

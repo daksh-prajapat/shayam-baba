@@ -166,7 +166,7 @@ function TempleStatusSection() {
 
 /* ─── SWAMANI + PRASAD + BHANDARA (Main Feature) ─── */
 const swamaniItems = [
-  { name: 'लड्डू पूरी सब्जी', price: 8100, icon: '🍛', img: '/images/orange-flowers.jpg', tag: 'सबसे लोकप्रिय', slug: 'laddu-puri-sabji' },
+  { name: 'लड्डू पूरी सब्जी', price: 11000, icon: '🍛', img: '/images/orange-flowers.jpg', tag: 'सबसे लोकप्रिय', slug: 'laddu-puri-sabji' },
   { name: 'चूरमा', price: 9500, icon: '🍯', img: '/images/marigold-offerings.jpg', tag: 'बाबा का प्रिय', slug: 'churma' },
   { name: 'गोंद ड्राय फ्रूट लड्डू', price: 20000, icon: '🫙', img: '/images/dryfruit.jpg', tag: 'विशेष भोग', slug: 'gond-dry-fruit-laddu' },
   { name: 'स्पेशल छप्पन भोग', price: 31000, icon: '👑', img: '/images/prasad-hero.jpg', tag: '⭐ सर्वश्रेष्ठ', special: true, slug: 'special-chhappan-bhog' },
@@ -375,12 +375,12 @@ function AboutShyamSection() {
 
 /* ─── BHAJAN ─── */
 const bhajans = [
-  { title: 'श्याम तेरी बंसी', type: 'भजन', duration: '5:32', ytId: 'dQw4w9WgXcQ' },
-  { title: 'खाटू वाले श्याम', type: 'भजन', duration: '4:48', ytId: 'dQw4w9WgXcQ' },
-  { title: 'बाबा श्याम की आरती', type: 'आरती', duration: '3:15', ytId: 'dQw4w9WgXcQ' },
-  { title: 'श्याम चालीसा', type: 'चालीसा', duration: '8:20', ytId: 'dQw4w9WgXcQ' },
-  { title: 'हारे का सहारा', type: 'भजन', duration: '6:10', ytId: 'dQw4w9WgXcQ' },
-  { title: 'शयन आरती', type: 'आरती', duration: '4:05', ytId: 'dQw4w9WgXcQ' },
+  { title: 'श्याम तेरी बंसी', type: 'भजन', duration: '5:32', ytId: 'J_GOsGNXC2k' },
+  { title: 'खाटू वाले श्याम', type: 'भजन', duration: '4:48', ytId: 'RR_Xvzj6lQ0' },
+  { title: 'बाबा श्याम की आरती', type: 'आरती', duration: '3:15', ytId: 'yCuW7qpjqc0' },
+  { title: 'श्याम चालीसा', type: 'चालीसा', duration: '8:20', ytId: 'SHpLDKpAM-4' },
+  { title: 'हारे का सहारा', type: 'भजन', duration: '6:10', ytId: 'Xbe7d6Xqzrc' },
+  { title: 'शयन आरती', type: 'आरती', duration: '4:05', ytId: 'bNnJKGflPCU' },
 ]
 function BhajanSection() {
   return (
@@ -572,9 +572,9 @@ export default function HomeSections({ onContactClick }) {
   return (
     <div className="home-page">
       <HeroSection onContactClick={onContactClick} />
-      <QuickActionsSection />
-      <LiveTempleStatus />
       <SwamaniPrasadSection />
+      <LiveTempleStatus />
+      <QuickActionsSection />
       <DarshanTimingSection />
       <AboutShyamSection />
       <BhajanSection />

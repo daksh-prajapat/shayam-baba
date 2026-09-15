@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiDownload, FiClock, FiX, FiArrowLeft, FiMail } from 'react-icons/fi'
-import { saveBooking } from '@/lib/bookingStorage'
+import { saveBooking, getBookingsByPhone, formatDate, paymentStatusLabel } from '@/lib/bookingStorage'
 import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './BookingClient.css'
@@ -438,7 +438,23 @@ function DigitalReceipt({ booking, onNew }) {
 /* ── Booking History ── */
 function BookingHistory({ onBack }) {
   const [phone, setPhone] = useState('')
+  const [bookings, setBookings] = useState([])
   const [searched, setSearched] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSearch = () => {
+    const clean = phone.replace(/\D/g, '')
+    if (clean.length !== 10) {
+      setError('कृपया 10 अंकों का मोबाइल नंबर डालें।')
+      return
+    }
+    setError('')
+    const found = getBookingsByPhone(clean)
+    setBookings(found)
+    setSearched(true)
+  }
+
+  const serviceTypeLabel = { prasad: '🍯 प्रसाद', swamani: '👑 स्वामणी', bhandara: '🍽️ भंडारा' }
 
   return (
     <div className="bh-wrap">
@@ -446,27 +462,101 @@ function BookingHistory({ onBack }) {
         <button className="bf-back" onClick={onBack}><FiArrowLeft /> वापस</button>
         <h2 className="hindi-text">📋 Booking History</h2>
       </div>
+
       <div className="bh-search-box card">
         <p className="hindi-text bh-info">अपनी बुकिंग देखने के लिए मोबाइल नंबर डालें।</p>
         <div className="bh-search-row">
-          <input type="tel" placeholder="मोबाइल नंबर" maxLength={10} value={phone}
-            onChange={e => setPhone(e.target.value)} className="bh-input" />
-          <button className="bh-search-btn hindi-text" onClick={() => setSearched(true)}>
+          <input
+            type="tel"
+            placeholder="मोबाइल नंबर (10 अंक)"
+            maxLength={10}
+            value={phone}
+            onChange={e => { setPhone(e.target.value.replace(/\D/g, '')); setError('') }}
+            className="bh-input"
+            onKeyDown={e => e.key === 'Enter' && handleSearch()}
+          />
+          <button className="bh-search-btn hindi-text" onClick={handleSearch}>
             खोजें
           </button>
         </div>
-        {searched && (
-          <div className="bh-no-result">
-            <p className="hindi-text">इस नंबर पर कोई बुकिंग नहीं मिली।</p>
-            <p className="hindi-text bh-contact-note">
-              बुकिंग की जानकारी के लिए WhatsApp करें:
-            </p>
-            <a href={`https://wa.me/919929975116?text=मेरी Booking History देखनी है। Phone: ${phone}`}
-              className="receipt-wa-btn hindi-text" target="_blank" rel="noopener noreferrer">
-              <FaWhatsapp /> WhatsApp पर पूछें
-            </a>
-          </div>
-        )}
+        {error && <p className="hindi-text" style={{ color: '#ff8888', marginTop: 8, fontSize: '0.85rem' }}>⚠️ {error}</p>}
+      </div>
+
+      {searched && bookings.length === 0 && (
+        <div className="card" style={{ textAlign: 'center', padding: '28px 20px', marginTop: 16 }}>
+          <p className="hindi-text" style={{ color: 'var(--text-muted)', marginBottom: 12 }}>
+            इस नंबर पर कोई बुकिंग नहीं मिली।
+          </p>
+          <a
+            href={`https://wa.me/919929975116?text=मेरी Booking History देखनी है। Phone: ${phone}`}
+            className="receipt-wa-btn hindi-text"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaWhatsapp /> WhatsApp पर पूछें
+          </a>
+        </div>
+      )}
+
+      {bookings.length > 0 && (
+        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <p className="hindi-text" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+            {bookings.length} बुकिंग मिली
+          </p>
+          {bookings.map((b, i) => (
+            <div key={b.id || i} className="card" style={{ padding: '16px 18px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 8 }}>
+                <div>
+                  <p className="hindi-text" style={{ fontWeight: 600, color: 'var(--secondary)', marginBottom: 4 }}>
+                    {b.icon || '🙏'} {b.serviceName}
+                  </p>
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 2 }}>
+                    ID: <strong>{b.id}</strong>
+                  </p>
+                  {b.createdAt && (
+                    <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                      📅 {formatDate ? formatDate(b.createdAt) : new Date(b.createdAt).toLocaleDateString('hi-IN')}
+                    </p>
+                  )}
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                  <p style={{ fontWeight: 700, color: 'var(--secondary)', fontSize: '1rem' }}>
+                    ₹{(b.amount || 0).toLocaleString('hi-IN')}
+                  </p>
+                  <span style={{
+                    fontSize: '0.72rem',
+                    padding: '2px 8px',
+                    borderRadius: 20,
+                    background: b.paymentVerified ? 'rgba(37,211,102,0.15)' : 'rgba(255,165,0,0.15)',
+                    color: b.paymentVerified ? '#25d366' : '#ffa500',
+                    fontWeight: 600,
+                  }}>
+                    {b.paymentVerified ? '✅ Paid' : '⏳ ' + (b.status || 'Pending')}
+                  </span>
+                </div>
+              </div>
+              <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                <a
+                  href={`https://wa.me/919929975116?text=बुकिंग जानकारी चाहिए। ID: ${b.id}, Phone: ${b.phone}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: '0.78rem', color: '#25d366', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
+                >
+                  <FaWhatsapp /> WhatsApp करें
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div style={{ marginTop: 20, textAlign: 'center' }}>
+        <p className="hindi-text" style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+          पूरी History के लिए{' '}
+          <a href="/booking-history" style={{ color: 'var(--secondary)' }}>
+            यहाँ क्लिक करें →
+          </a>
+        </p>
       </div>
     </div>
   )

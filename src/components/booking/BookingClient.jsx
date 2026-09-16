@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiDownload, FiClock, FiX, FiArrowLeft, FiMail } from 'react-icons/fi'
 import { saveBooking, getBookingsByPhone, formatDate, paymentStatusLabel } from '@/lib/bookingStorage'
+import { saveBookingToServer } from '@/lib/bookingApi'
 import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './BookingClient.css'
@@ -176,13 +177,15 @@ function BookingForm({ service, onBack, onSuccess }) {
       phone:        cleanPhone,
       email:        form.email || '',
 
-      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
-        const booking = saveBooking({
+      onSuccess: async ({ razorpay_payment_id, razorpay_order_id }) => {
+        const booking = await saveBookingToServer({
           serviceName:        `${service.title} — ${form.option}`,
           serviceType:        service.id,
           amount:             finalPrice,
           name:               form.name,
           phone:              cleanPhone,
+          email:              form.email || '',
+          city:               form.city  || '',
           date:               form.date,
           occasion:           form.occasion,
           address:            form.address,

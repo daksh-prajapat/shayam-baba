@@ -5,6 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck, FiEdit3 } from 'react-icons/fi'
 import { prasadList } from '@/lib/prasadData'
 import { saveBooking } from '@/lib/bookingStorage'
+import { saveBookingToServer } from '@/lib/bookingApi'
 import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './PrasadDetail.css'
@@ -35,8 +36,8 @@ export default function PrasadDetailClient({ item }) {
       customerName: form.name,
       phone:        cleanPhone,
 
-      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
-        const booking = saveBooking({
+      onSuccess: async ({ razorpay_payment_id, razorpay_order_id }) => {
+        const booking = await saveBookingToServer({
           serviceName:        item.name,
           serviceType:        'prasad',
           amount:             item.price,
@@ -67,9 +68,9 @@ export default function PrasadDetailClient({ item }) {
   }
 
   // ── Custom booking — free, no payment ──
-  const handleCustomBook = (e) => {
+  const handleCustomBook = async (e) => {
     e.preventDefault()
-    const booking = saveBooking({
+    const booking = await saveBookingToServer({
       serviceName: `कस्टम प्रसाद — ${customForm.details.slice(0, 40)}`,
       serviceType: 'prasad',
       amount: 0,

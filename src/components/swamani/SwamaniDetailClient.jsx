@@ -5,6 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft, FiCheck } from 'react-icons/fi'
 import { swamaniList } from '@/lib/swamaniData'
 import { saveBooking } from '@/lib/bookingStorage'
+import { saveBookingToServer } from '@/lib/bookingApi'
 import { useRazorpay } from '@/lib/useRazorpay'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './SwamaniDetail.css'
@@ -30,9 +31,9 @@ export default function SwamaniDetailClient({ item }) {
       customerName: form.name,
       phone:        cleanPhone,
 
-      onSuccess: ({ razorpay_payment_id, razorpay_order_id }) => {
-        // Save booking ONLY after server-side verification succeeds
-        const booking = saveBooking({
+      onSuccess: async ({ razorpay_payment_id, razorpay_order_id }) => {
+        // Save booking to server (DB) after server-side verification succeeds
+        const booking = await saveBookingToServer({
           serviceName:        item.name,
           serviceType:        'swamani',
           amount:             item.price,

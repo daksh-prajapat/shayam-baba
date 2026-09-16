@@ -1,25 +1,19 @@
 // ── MongoDB connection (singleton pattern for Next.js) ──────────────────────
-// Reuses existing connection across hot-reloads in dev and across serverless
-// invocations in production (connection pooling via Mongoose).
-
 import mongoose from 'mongoose'
 
 const MONGODB_URI = process.env.MONGODB_URI
 
-if (!MONGODB_URI) {
-  throw new Error(
-    '⚠️  MONGODB_URI environment variable is not set. ' +
-    'Add it to .env.local — get your URI from https://cloud.mongodb.com'
-  )
-}
-
-// Global cache — prevents creating a new connection on every hot-reload
+// Global cache
 let cached = global.mongoose
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null }
 }
 
 export async function connectDB() {
+  if (!MONGODB_URI || MONGODB_URI.includes('USERNAME')) {
+    throw new Error('MONGODB_URI not configured. Add it to .env.local')
+  }
+
   if (cached.conn) return cached.conn
 
   if (!cached.promise) {

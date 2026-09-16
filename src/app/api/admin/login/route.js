@@ -15,12 +15,11 @@ export async function POST(request) {
     const adminPass    = process.env.ADMIN_PASSWORD
 
     if (!adminPass || adminPass.includes('REPLACE')) {
-      return NextResponse.json({ error: 'Admin not configured' }, { status: 503 })
+      return NextResponse.json({ error: 'Admin password not configured. Set ADMIN_PASSWORD in .env.local' }, { status: 503 })
     }
 
     // ── Validate owner phone ──
     if (cleanPhone !== ownerPhone) {
-      // Generic error — do not reveal which field is wrong
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 

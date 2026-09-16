@@ -160,6 +160,10 @@ export default function AdminDashboard() {
       if (err.message?.includes('403') || err.message?.includes('401')) {
         sessionStorage.removeItem(ADMIN_TOKEN_KEY)
         setToken(null)
+      } else if (err.message?.includes('503') || err.message?.includes('Database')) {
+        // DB not configured — show empty state, don't logout
+        setBookings([])
+        setStats({ totalRevenue: 0, totalBookings: 0, paidBookings: 0, todayBookings: 0 })
       }
     } finally {
       setLoading(false)

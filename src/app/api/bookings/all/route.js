@@ -88,6 +88,9 @@ export async function GET(request) {
 
   } catch (err) {
     console.error('[bookings/all] Error:', err)
+    if (err.message?.includes('MONGODB_URI not configured')) {
+      return NextResponse.json({ error: 'Database not configured. Add MONGODB_URI to .env.local' }, { status: 503 })
+    }
     return NextResponse.json({ error: 'Failed to fetch bookings.' }, { status: 500 })
   }
 }

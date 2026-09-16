@@ -20,7 +20,6 @@ const navLinks = [
   },
   { path: '/booking', label: '💳 बुकिंग' },
   { path: '/katha-parichay', label: 'कथा परिचय' },
-  { path: '/bhajan-aarti', label: 'भजन आरती' },
   { path: '/festivals', label: 'त्यौहार' },
   {
     label: 'यात्रा',

@@ -42,8 +42,6 @@ export default function Footer() {
             <ul className="footer-links">
               {[
                 ['/darshan-timings','Darshan Timings'],
-                ['/bhajan-aarti','आरती'],
-                ['/bhajan-aarti','चालीसा'],
                 ['/katha-parichay','बर्बरीक कथा'],
                 ['/nishan-mannat','निशान यात्रा'],
                 ['/ekadashi','एकादशी कैलेंडर'],

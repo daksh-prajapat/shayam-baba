@@ -3,9 +3,9 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AiFillHome } from 'react-icons/ai'
 import { GiTempleGate } from 'react-icons/gi'
-import { IoMusicalNotes } from 'react-icons/io5'
-import { FaConciergeBell, FaCalendarAlt } from 'react-icons/fa'
+import { FaConciergeBell } from 'react-icons/fa'
 import { MdBookOnline } from 'react-icons/md'
+import { FiClock } from 'react-icons/fi'
 import './MobileNav.css'
 
 export default function MobileNav() {
@@ -15,7 +15,7 @@ export default function MobileNav() {
     { path: '/swamani', icon: <FaConciergeBell />, label: 'स्वामणी' },
     { path: '/darshan-timings', icon: <GiTempleGate />, label: 'दर्शन' },
     { path: '/booking', icon: <MdBookOnline />, label: 'बुकिंग' },
-    { path: '/bhajan-aarti', icon: <IoMusicalNotes />, label: 'भजन' },
+    { path: '/booking-history', icon: <FiClock />, label: 'History' },
   ]
   return (
     <nav className="mobile-bottom-nav" role="navigation" aria-label="Bottom navigation">

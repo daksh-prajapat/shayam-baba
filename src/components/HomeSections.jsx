@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FiPhone, FiArrowRight, FiMapPin } from 'react-icons/fi'
 import { FaWhatsapp, FaConciergeBell, FaMapMarkedAlt, FaPhoneAlt, FaTrain, FaBus, FaCar } from 'react-icons/fa'
 import { GiTempleGate, GiLotusFlower } from 'react-icons/gi'
-import { IoMusicalNotes, IoPlayCircle } from 'react-icons/io5'
+import { IoMusicalNotes } from 'react-icons/io5'
 import { BsImages } from 'react-icons/bs'
 import { MdFestival } from 'react-icons/md'
 import LiveTempleStatus from '@/components/LiveTempleStatus'
@@ -15,7 +15,6 @@ import './home-sections/DarshanTimingWidget.css'
 import './home-sections/QuickActions.css'
 import './home-sections/AboutShyam.css'
 import './home-sections/PrasadSection.css'
-import './home-sections/BhajanSection.css'
 import './home-sections/FestivalSection.css'
 import './home-sections/GalleryPreview.css'
 import './home-sections/TravelPreview.css'
@@ -91,7 +90,7 @@ const qaActions = [
   { icon: <FaConciergeBell />, label: 'स्वामणी भोग', sub: 'Online बुकिंग', path: '/swamani', color: '#D4A017' },
   { icon: <GiTempleGate />, label: 'दर्शन समय', sub: '4:30 AM – 10 PM', path: '/darshan-timings', color: '#7B2D8B' },
   { icon: <GiLotusFlower />, label: 'प्रसाद बुकिंग', sub: '₹501 से शुरू', path: '/prasad-puja', color: '#E91E8C' },
-  { icon: <IoMusicalNotes />, label: 'भजन आरती', sub: 'चालीसा · मंत्र', path: '/bhajan-aarti', color: '#9C27B0' },
+  { icon: <IoMusicalNotes />, label: 'चालीसा', sub: 'श्याम चालीसा', path: '/katha-parichay', color: '#9C27B0' },
   { icon: <FaMapMarkedAlt />, label: 'यात्रा गाइड', sub: '714+ Routes', path: '/travel-guide', color: '#2196F3' },
   { icon: <BsImages />, label: 'गैलरी', sub: 'फोटो देखें', path: '/gallery', color: '#4CAF50' },
   { icon: <MdFestival />, label: 'फाल्गुन मेला', sub: '18-20 Mar 2027', path: '/festivals', color: '#FF6B35' },
@@ -373,38 +372,6 @@ function AboutShyamSection() {
   )
 }
 
-/* ─── BHAJAN ─── */
-const bhajans = [
-  { title: 'श्याम तेरी बंसी', type: 'भजन', duration: '5:32', ytId: 'J_GOsGNXC2k' },
-  { title: 'खाटू वाले श्याम', type: 'भजन', duration: '4:48', ytId: 'RR_Xvzj6lQ0' },
-  { title: 'बाबा श्याम की आरती', type: 'आरती', duration: '3:15', ytId: 'yCuW7qpjqc0' },
-  { title: 'श्याम चालीसा', type: 'चालीसा', duration: '8:20', ytId: 'SHpLDKpAM-4' },
-  { title: 'हारे का सहारा', type: 'भजन', duration: '6:10', ytId: 'Xbe7d6Xqzrc' },
-  { title: 'शयन आरती', type: 'आरती', duration: '4:05', ytId: 'bNnJKGflPCU' },
-]
-function BhajanSection() {
-  return (
-    <section className="bhajan-section">
-      <div className="container">
-        <p className="section-label hindi-text">🎵 सुनें</p>
-        <h2 className="section-title hindi-text">भजन, आरती & चालीसा</h2>
-        <div className="divider"><span>🎵</span></div>
-        <div className="bhajan-grid">
-          {bhajans.map((b, i) => (
-            <a key={i} href={`https://www.youtube.com/watch?v=${b.ytId}`} target="_blank" rel="noopener noreferrer" className="bhajan-card card">
-              <div className="bhajan-thumb"><div className="bhajan-thumb-bg"><IoMusicalNotes className="bhajan-note-icon" /></div><div className="play-overlay"><IoPlayCircle className="play-icon" /></div><span className={`bhajan-type-badge ${b.type === 'आरती' ? 'aarti' : b.type === 'चालीसा' ? 'chalisa' : ''}`}>{b.type}</span></div>
-              <div className="bhajan-info"><h4 className="hindi-text bhajan-name">{b.title}</h4><div className="bhajan-meta"><span>⏱ {b.duration}</span></div></div>
-            </a>
-          ))}
-        </div>
-        <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link href="/bhajan-aarti" className="btn-primary hindi-text">सभी भजन & आरती देखें →</Link>
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ─── FESTIVALS ─── */
 const festivalItems = [
   { name: 'फाल्गुन मेला 2027', date: '18–20 March 2027', desc: 'करोड़ों भक्त — एशिया का सबसे बड़ा मेला', icon: '🚩', highlight: true },
@@ -577,7 +544,6 @@ export default function HomeSections({ onContactClick }) {
       <QuickActionsSection />
       <DarshanTimingSection />
       <AboutShyamSection />
-      <BhajanSection />
       <FestivalSection />
       <GalleryPreviewSection />
       <TravelPreviewSection />

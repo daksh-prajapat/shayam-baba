@@ -1,9 +1,124 @@
 'use client'
 import { useState } from 'react'
-import { IoPlayCircle } from 'react-icons/io5'
-import { FaYoutube } from 'react-icons/fa'
+import Link from 'next/link'
 import './BhajanAarti.css'
-const categories=['सभी','भजन','आरती','चालीसा','मंत्र','जाप']
-const content=[{title:'श्याम तेरी बंसी',cat:'भजन',singer:'प्रदीप तिवारी',dur:'5:32',ytId:'J_GOsGNXC2k'},{title:'खाटू वाले श्याम',cat:'भजन',singer:'सुरेश शर्मा',dur:'4:48',ytId:'RR_Xvzj6lQ0'},{title:'बाबा श्याम की आरती',cat:'आरती',singer:'मंदिर',dur:'3:15',ytId:'yCuW7qpjqc0'},{title:'श्याम चालीसा',cat:'चालीसा',singer:'पंकज शर्मा',dur:'8:20',ytId:'SHpLDKpAM-4'},{title:'हारे का सहारा श्याम',cat:'भजन',singer:'राम शर्मा',dur:'6:10',ytId:'Xbe7d6Xqzrc'},{title:'ओम नमो श्याम देवाय',cat:'मंत्र',singer:'पंडित जी',dur:'7:00',ytId:'T3RcHzqhxHg'},{title:'श्याम श्याम जाप',cat:'जाप',singer:'मंदिर',dur:'10:00',ytId:'IcObrIVFCFE'},{title:'मेरे बाबा की जय',cat:'आरती',singer:'सामूहिक',dur:'4:05',ytId:'bNnJKGflPCU'},{title:'श्याम बाबा की महिमा',cat:'भजन',singer:'राहुल पाठक',dur:'5:55',ytId:'njhDWqe-R5o'},{title:'खाटू का दरबार',cat:'भजन',singer:'कविता वर्मा',dur:'4:30',ytId:'2xwRCMGFPu4'},{title:'बर्बरीक स्तोत्र',cat:'मंत्र',singer:'पंडित जी',dur:'6:20',ytId:'c1_8vyx19YI'},{title:'श्याम नाम जाप 108',cat:'जाप',singer:'मंदिर',dur:'15:00',ytId:'9FKTbGGtiZk'}]
-const chalisa=`दोहा:\nजय श्री श्याम करपाल हैं, जय खाटू के राय।\nबर्बरीक अवतार हैं, जय श्याम सहाय॥\n\nचौपाई:\nजय जय श्याम सुंदर राजा।\nसब भक्तों में तू सरताजा॥\nखाटू नगर में वास तुम्हारा।\nदर्शन देकर मन हमारा॥\n\nहारे का तू है सहारा।\nलखदातार नाम तुम्हारा॥\n\nशीश दिया था श्री हरि को।\nप्रेम दिया था सब नर को॥\n\n...श्री श्याम चालीसा की चौपाइयां यहां पढ़ें`
-export default function BhajanClient(){const[activeCat,setActiveCat]=useState('सभी');const[showChalisa,setShowChalisa]=useState(false);const filtered=activeCat==='सभी'?content:content.filter(c=>c.cat===activeCat);return(<div className="bhajan-page"><div className="page-hero bhajan-hero"><div className="container"><h1 className="hindi-text">भजन, आरती & चालीसा</h1><p className="hindi-text">खाटू श्याम जी के भजन, आरती, चालीसा और मंत्र</p></div></div><div className="container" style={{padding:'50px 20px'}}><div style={{textAlign:'center',marginBottom:30}}><button className="btn-primary hindi-text" onClick={()=>setShowChalisa(!showChalisa)}>{showChalisa?'← वापस जाएं':'📜 श्याम चालीसा पढ़ें'}</button></div>{showChalisa?(<div className="chalisa-box card"><h2 className="hindi-text chalisa-title">श्री श्याम चालीसा</h2><div className="chalisa-text hindi-text">{chalisa.split('\n').map((line,i)=>(<p key={i} className={line.endsWith(':')? 'chalisa-heading':'chalisa-line'}>{line}</p>))}</div></div>):(<><div className="cat-filter">{categories.map(cat=>(<button key={cat} className={`cat-btn ${activeCat===cat?'active':''} hindi-text`} onClick={()=>setActiveCat(cat)}>{cat}</button>))}</div><div className="bhajan-page-grid">{filtered.map((b,i)=>(<a key={i} href={`https://www.youtube.com/watch?v=${b.ytId}`} target="_blank" rel="noopener noreferrer" className="bhajan-page-card card"><div className="bp-thumb"><FaYoutube className="bp-yt"/><div className="bp-play"><IoPlayCircle/></div></div><div className="bp-info"><h4 className="hindi-text bp-title">{b.title}</h4><div className="bp-meta"><span className={`bp-cat-badge ${b.cat}`}>{b.cat}</span><span className="bp-singer hindi-text">{b.singer}</span><span className="bp-dur">{b.dur}</span></div></div></a>))}</div></>)}</div></div>)}
+
+const chalisa = `दोहा:
+जय श्री श्याम करपाल हैं, जय खाटू के राय।
+बर्बरीक अवतार हैं, जय श्याम सहाय॥
+
+चौपाई:
+जय जय श्याम सुंदर राजा।
+सब भक्तों में तू सरताजा॥
+खाटू नगर में वास तुम्हारा।
+दर्शन देकर मन हमारा॥
+
+हारे का तू है सहारा।
+लखदातार नाम तुम्हारा॥
+
+शीश दिया था श्री हरि को।
+प्रेम दिया था सब नर को॥
+
+बर्बरीक तू वीर महान।
+श्याम भक्तों का तू है जान॥
+
+कलियुग में तू अवतार।
+करता है भक्तों का उद्धार॥
+
+तीन बाण की शक्ति तेरी।
+सारे जग में महिमा तेरी॥
+
+फाल्गुन मेला भरे जहाँ।
+लाखों भक्त आए वहाँ॥
+
+सीकर जिले में धाम तेरा।
+खाटू नगरी है घर मेरा॥
+
+मनोकामना पूरी होती।
+जो भी मांगे मिलती ज्योती॥
+
+श्रद्धा से जो शीश झुकाए।
+बाबा उसके दुख हरजाए॥
+
+दोहा:
+जय श्री श्याम बाबा की, जय हो बारम्बार।
+हारे का सहारा तू, कर दे बेड़ा पार॥`
+
+const aarti = `ॐ जय श्री श्याम हरे,
+बर्बरीक श्याम हरे।
+खाटू नगर निवासी,
+भक्तन के मन भाए॥
+
+जय जय श्याम बाबा,
+जय हो बाबा श्याम।
+सब भक्तों की सुनते हो,
+पूरी करते काम॥
+
+शीश दिया था भक्ति से,
+हरि को अर्पण किया।
+कलियुग में श्याम नाम से,
+पूजित हुए सदा॥
+
+जय जय श्याम बाबा,
+जय हो बाबा श्याम।
+हारे का सहारा तू,
+तू ही है विश्राम॥`
+
+export default function BhajanClient() {
+  const [active, setActive] = useState('chalisa') // chalisa | aarti
+
+  return (
+    <div className="bhajan-page">
+      <div className="page-hero bhajan-hero">
+        <div className="container">
+          <p className="section-label hindi-text">🙏 पाठ करें</p>
+          <h1 className="hindi-text">भजन, आरती & चालीसा</h1>
+          <p className="hindi-text" style={{ color: 'rgba(255,255,255,0.75)', marginTop: 8 }}>
+            श्याम चालीसा और आरती का पाठ करें
+          </p>
+        </div>
+      </div>
+
+      <div className="container" style={{ padding: '40px 20px', maxWidth: 700 }}>
+
+        {/* Tabs */}
+        <div style={{ display: 'flex', gap: 12, marginBottom: 28, justifyContent: 'center' }}>
+          {[
+            { id: 'chalisa', label: '📜 श्याम चालीसा' },
+            { id: 'aarti',   label: '🪔 आरती' },
+          ].map(t => (
+            <button key={t.id} onClick={() => setActive(t.id)}
+              className={`cat-btn ${active === t.id ? 'active' : ''} hindi-text`}>
+              {t.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Content */}
+        <div className="chalisa-box card">
+          <h2 className="hindi-text chalisa-title">
+            {active === 'chalisa' ? '🙏 श्री श्याम चालीसा' : '🪔 श्री श्याम आरती'}
+          </h2>
+          <div className="chalisa-text hindi-text">
+            {(active === 'chalisa' ? chalisa : aarti).split('\n').map((line, i) => (
+              <p key={i} className={
+                line.startsWith('दोहा') || line.startsWith('चौपाई') || line.startsWith('ॐ')
+                  ? 'chalisa-heading'
+                  : line.trim() === ''
+                  ? 'chalisa-spacer'
+                  : 'chalisa-line'
+              }>{line || '\u00A0'}</p>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div style={{ textAlign: 'center', marginTop: 28 }}>
+          <Link href="/katha-parichay" className="btn-secondary hindi-text">
+            📖 बर्बरीक कथा & मंदिर परिचय →
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}

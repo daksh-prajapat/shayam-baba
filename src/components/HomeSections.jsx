@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { FiPhone, FiArrowRight, FiMapPin } from 'react-icons/fi'
 import { FaWhatsapp, FaConciergeBell, FaMapMarkedAlt, FaPhoneAlt, FaTrain, FaBus, FaCar } from 'react-icons/fa'
 import { GiTempleGate, GiLotusFlower } from 'react-icons/gi'
-import { IoMusicalNotes } from 'react-icons/io5'
+import { IoBookOutline } from 'react-icons/io5'
 import { BsImages } from 'react-icons/bs'
 import { MdFestival } from 'react-icons/md'
 import LiveTempleStatus from '@/components/LiveTempleStatus'
@@ -26,20 +26,7 @@ import './HomeSections.css'
 /* ─── HERO ─── */
 function HeroSection({ onContactClick }) {
   const ref = useRef(null)
-  const [nextAartiStr, setNextAartiStr] = useState('Sandhya Aarti: 7:30 PM')
 
-  useEffect(() => {
-    const update = () => {
-      const { getNextAarti, getCurrentAarti } = require('@/lib/templeSchedule')
-      const cur  = getCurrentAarti(new Date())
-      const next = getNextAarti(new Date())
-      if (cur)        setNextAartiStr(`🔴 अभी: ${cur.name}`)
-      else if (next)  setNextAartiStr(`🪔 अगली आरती: ${next.name} ${next.timeStr}`)
-    }
-    update()
-    const id = setInterval(update, 60000)
-    return () => clearInterval(id)
-  }, [])
   useEffect(() => {
     const c = ref.current; if (!c) return
     for (let i = 0; i < 28; i++) {
@@ -90,7 +77,7 @@ const qaActions = [
   { icon: <FaConciergeBell />, label: 'स्वामणी भोग', sub: 'Online बुकिंग', path: '/swamani', color: '#D4A017' },
   { icon: <GiTempleGate />, label: 'दर्शन समय', sub: '4:30 AM – 10 PM', path: '/darshan-timings', color: '#7B2D8B' },
   { icon: <GiLotusFlower />, label: 'प्रसाद बुकिंग', sub: '₹501 से शुरू', path: '/prasad-puja', color: '#E91E8C' },
-  { icon: <IoMusicalNotes />, label: 'चालीसा', sub: 'श्याम चालीसा', path: '/katha-parichay', color: '#9C27B0' },
+  { icon: <IoBookOutline />, label: 'कथा परिचय', sub: 'बर्बरीक कथा', path: '/katha-parichay', color: '#9C27B0' },
   { icon: <FaMapMarkedAlt />, label: 'यात्रा गाइड', sub: '714+ Routes', path: '/travel-guide', color: '#2196F3' },
   { icon: <BsImages />, label: 'गैलरी', sub: 'फोटो देखें', path: '/gallery', color: '#4CAF50' },
   { icon: <MdFestival />, label: 'फाल्गुन मेला', sub: '18-20 Mar 2027', path: '/festivals', color: '#FF6B35' },
@@ -145,7 +132,6 @@ function TempleStatusSection() {
             <div className="card ts-status-card">
               <h3 className="hindi-text" style={{ color: 'var(--secondary)', marginBottom: 14 }}>⏰ आज की स्थिति</h3>
               <div className="ts-row"><span className="hindi-text">🟢 स्थिति</span><strong className="hindi-text" style={{ color: '#25d366' }}>अभी खुला</strong></div>
-              <div className="ts-row"><span className="hindi-text">🪔 अगली आरती</span><strong className="hindi-text">Sandhya Aarti 7:30 PM</strong></div>
               <div className="ts-row"><span className="hindi-text">⏰ Darshan</span><strong>4:30 AM – 10:00 PM</strong></div>
               <div className="ts-row"><span className="hindi-text">👥 भीड़</span><strong className="hindi-text">सामान्य</strong></div>
               <a href="https://www.youtube.com/@khatuwalebabain" target="_blank" rel="noopener noreferrer" className="ts-live-btn">🔴 <span className="hindi-text">Live Darshan देखें</span></a>
@@ -318,7 +304,6 @@ function DarshanTimingSection() {
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
             <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>📅 एकादशी: 24 घंटे खुला</span>
             <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🎪 Falgun Mela 2027: 24 घंटे — 18–20 Mar</span>
-            <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🪔 Sandhya Aarti: 7:30 PM</span>
           </div>
         </div>
         <div style={{ textAlign: 'center', marginTop: 24 }}>

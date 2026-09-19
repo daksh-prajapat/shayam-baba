@@ -1,4 +1,4 @@
-// ── Booking API client — replaces localStorage saveBooking calls ─────────────
+﻿// ── Booking API client — replaces localStorage saveBooking calls ─────────────
 // All components call saveBookingToServer() instead of saveBooking()
 // Falls back to localStorage ONLY if API fails (offline resilience)
 
@@ -52,7 +52,7 @@ export async function saveBookingToServer(bookingData) {
           `👤 नाम: *${booking.name}*\n` +
           (booking.date ? `📅 दिनांक: *${booking.date}*\n` : '') +
           `━━━━━━━━━━━━━━━━━━\n` +
-          `किसी भी सवाल के लिए Call करें: 9929975116\n` +
+          `किसी भी सवाल के लिए Call करें: 8302019637\n` +
           `🙏 बाबा श्याम की कृपा आप पर बनी रहे!`
         )
         window.open(`https://wa.me/91${phone}?text=${msg}`, '_blank')

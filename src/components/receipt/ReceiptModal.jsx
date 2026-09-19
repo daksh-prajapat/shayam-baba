@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useRef } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -74,12 +74,12 @@ export default function ReceiptModal({ booking, onClose }) {
       `🕐 बुकिंग समय: *${formatDate(booking.createdAt)}*%0A` +
       `━━━━━━━━━━━━━━━━━━━━%0A` +
       `🙏 बाबा श्याम की कृपा आप पर बनी रहे!%0A` +
-      `📞 सम्पर्क: 9929975116`
+      `📞 सम्पर्क: 8302019637`
     window.open(`https://wa.me/?text=${msg}`, '_blank')
   }
 
   const handleShare = async () => {
-    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${bookingDisplayId}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nPayment: ${pymtLabel.text}\n\nखाटू श्याम जी - 9929975116`
+    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${bookingDisplayId}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nPayment: ${pymtLabel.text}\n\nखाटू श्याम जी - 8302019637`
     if (navigator.share) {
       await navigator.share({ title: 'बुकिंग रसीद', text })
     } else {
@@ -121,7 +121,7 @@ export default function ReceiptModal({ booking, onClose }) {
                 <div className="rp-logo">🙏</div>
                 <h2 className="hindi-text">खाटू श्याम जी</h2>
                 <p>Khatu Shyam Ji — Official Booking Receipt</p>
-                <p>📞 9929975116</p>
+                <p>📞 8302019637</p>
               </div>
 
               {/* Booking ID + status */}
@@ -210,7 +210,7 @@ export default function ReceiptModal({ booking, onClose }) {
               {/* Footer */}
               <div className="rp-footer">
                 <p className="hindi-text">🙏 बाबा श्याम की कृपा आप पर बनी रहे!</p>
-                <p style={{ marginTop: 6, fontSize: '0.75rem', opacity: 0.8 }}>खाटू श्याम जी, सीकर, राजस्थान • 9929975116</p>
+                <p style={{ marginTop: 6, fontSize: '0.75rem', opacity: 0.8 }}>खाटू श्याम जी, सीकर, राजस्थान • 8302019637</p>
                 <p style={{ marginTop: 4, fontSize: '0.7rem', opacity: 0.6 }}>This is a digital receipt. Keep it safe.</p>
               </div>
             </div>

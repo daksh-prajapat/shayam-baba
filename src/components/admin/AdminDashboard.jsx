@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect, useCallback } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiLogOut, FiRefreshCw, FiSearch, FiEdit2, FiCheck, FiX, FiTrendingUp, FiUsers, FiDollarSign, FiClock } from 'react-icons/fi'
@@ -60,7 +60,7 @@ function AdminLogin({ onLogin }) {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <label style={{ color: '#aaa', fontSize: '0.82rem', display: 'block', marginBottom: 6 }}>Owner Phone</label>
-            <input type="tel" placeholder="9929975116" value={phone} maxLength={10}
+            <input type="tel" placeholder="8302019637" value={phone} maxLength={10}
               onChange={e => setPhone(e.target.value.replace(/\D/g, ''))}
               style={{ width: '100%', background: '#2a1040', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, padding: '10px 14px', color: '#fff', fontSize: '0.95rem', boxSizing: 'border-box' }} />
           </div>

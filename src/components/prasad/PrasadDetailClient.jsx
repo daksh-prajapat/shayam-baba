@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -172,7 +172,7 @@ export default function PrasadDetailClient({ item }) {
               </div>
               <div className="pd-meta-row">
                 <span className="hindi-text pd-meta-label">📞 Support</span>
-                <a href="tel:9929975116" className="pd-meta-link">9929975116</a>
+                <a href="tel:8302019637" className="pd-meta-link">8302019637</a>
               </div>
             </div>
           </div>
@@ -229,8 +229,8 @@ export default function PrasadDetailClient({ item }) {
                     style={{ opacity: paying ? 0.7 : 1 }}>
                     {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
                   </button>
-                  <a href="tel:9929975116" className="pd-call-btn">
-                    <FiPhone /> 9929975116 पर Call करें
+                  <a href="tel:8302019637" className="pd-call-btn">
+                    <FiPhone /> 8302019637 पर Call करें
                   </a>
 
                   <div className="pd-guarantees">
@@ -254,8 +254,8 @@ export default function PrasadDetailClient({ item }) {
             {/* Quick Contact */}
             <div className="card pd-quick-contact">
               <h4 className="hindi-text">📞 तुरंत सम्पर्क करें</h4>
-              <a href="tel:9929975116" className="pd-qc-call"><FiPhone /> 9929975116</a>
-              <a href={`https://wa.me/919929975116?text=${encodeURIComponent(`प्रसाद बुकिंग — ${item.name}`)}`}
+              <a href="tel:8302019637" className="pd-qc-call"><FiPhone /> 8302019637</a>
+              <a href={`https://wa.me/918302019637?text=${encodeURIComponent(`प्रसाद बुकिंग — ${item.name}`)}`}
                 className="pd-qc-wa" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
               </a>

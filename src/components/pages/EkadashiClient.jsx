@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FiPhone } from 'react-icons/fi'
@@ -183,8 +183,8 @@ export default function EkadashiClient() {
           <h3 className="hindi-text">🙏 एकादशी पर खाटू दर्शन के लिए</h3>
           <p className="hindi-text">होटल बुकिंग, यात्रा जानकारी या किसी भी सेवा के लिए सम्पर्क करें</p>
           <div className="ek-cta-btns">
-            <a href="tel:9929975116" className="btn-primary"><FiPhone /> 9929975116</a>
-            <a href="https://wa.me/919929975116?text=एकादशी पर खाटू दर्शन की जानकारी चाहिए" className="ek-wa-btn" target="_blank" rel="noopener noreferrer">
+            <a href="tel:8302019637" className="btn-primary"><FiPhone /> 8302019637</a>
+            <a href="https://wa.me/918302019637?text=एकादशी पर खाटू दर्शन की जानकारी चाहिए" className="ek-wa-btn" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
             </a>
             <Link href="/booking" className="btn-secondary hindi-text">बुकिंग करें →</Link>

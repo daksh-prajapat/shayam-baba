@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -39,7 +39,7 @@ export default function BookingConfirmedClient({ bookingId }) {
       `👤 नाम: *${booking.name}*\n` +
       (booking.date ? `📅 दिनांक: *${booking.date}*\n` : '') +
       `━━━━━━━━━━━━━━━━━━\n` +
-      `📞 सम्पर्क: 9929975116\n` +
+      `📞 सम्पर्क: 8302019637\n` +
       `🙏 बाबा श्याम की कृपा आप पर बनी रहे!`
     )
     window.open(`https://wa.me/91${booking.phone}?text=${msg}`, '_blank')
@@ -130,9 +130,9 @@ export default function BookingConfirmedClient({ bookingId }) {
             style={{ flex: 1, minWidth: 140, background: '#25d366', color: '#fff', border: 'none', borderRadius: 10, padding: '13px 16px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: '0.9rem' }}>
             <FaWhatsapp /> <span className="hindi-text">Receipt भेजें</span>
           </button>
-          <a href="tel:9929975116"
+          <a href="tel:8302019637"
             style={{ flex: 1, minWidth: 140, background: 'rgba(33,150,243,0.15)', color: '#2196F3', border: '1px solid rgba(33,150,243,0.3)', borderRadius: 10, padding: '13px 16px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: '0.9rem', textDecoration: 'none' }}>
-            <FiPhone /> 9929975116
+            <FiPhone /> 8302019637
           </a>
         </div>
 

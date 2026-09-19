@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -9,7 +9,7 @@ import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Bhandara.css'
 
 const faqs = [
-  { q: 'भंडारे की बुकिंग कैसे करें?', a: 'Call या WhatsApp पर संपर्क करें: 9929975116। हम आपको पूरी जानकारी और Quotation देंगे।' },
+  { q: 'भंडारे की बुकिंग कैसे करें?', a: 'Call या WhatsApp पर संपर्क करें: 8302019637। हम आपको पूरी जानकारी और Quotation देंगे।' },
   { q: 'भंडारा कहाँ होता है?', a: 'खाटू श्याम जी मंदिर परिसर में या आपके निर्धारित स्थान पर — हम दोनों जगह व्यवस्था करते हैं।' },
   { q: 'Advance कितना देना होता है?', a: 'बुकिंग confirm करने के लिए कुछ Advance आवश्यक है। पूरी राशि कार्यक्रम से पहले।' },
   { q: 'Menu में बदलाव हो सकता है?', a: 'हाँ, आपकी इच्छानुसार Menu customize किया जा सकता है। अधिक जानकारी के लिए संपर्क करें।' },
@@ -69,8 +69,8 @@ export default function BhandaraClient() {
             </div>
           </div>
           <div className="bhandara-hero-btns">
-            <a href="tel:9929975116" className="bhandara-call-btn"><FiPhone /> 9929975116</a>
-            <a href="https://wa.me/919929975116?text=भंडारा बुकिंग करनी है" target="_blank" rel="noopener noreferrer" className="bhandara-wa-btn">
+            <a href="tel:8302019637" className="bhandara-call-btn"><FiPhone /> 8302019637</a>
+            <a href="https://wa.me/918302019637?text=भंडारा बुकिंग करनी है" target="_blank" rel="noopener noreferrer" className="bhandara-wa-btn">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
             </a>
           </div>
@@ -80,7 +80,7 @@ export default function BhandaraClient() {
       {/* Info Strip */}
       <div className="bhandara-info-strip">
         <div className="container">
-          <p className="hindi-text">🍽️ शुद्ध सात्विक भोजन • अनुभवी रसोइये • सम्पूर्ण व्यवस्था • Call: <a href="tel:9929975116">9929975116</a></p>
+          <p className="hindi-text">🍽️ शुद्ध सात्विक भोजन • अनुभवी रसोइये • सम्पूर्ण व्यवस्था • Call: <a href="tel:8302019637">8302019637</a></p>
         </div>
       </div>
 
@@ -167,7 +167,7 @@ export default function BhandaraClient() {
                   <FiUsers /> {pkg.persons.toLocaleString('hi-IN')}
                 </span>
                 <button className="bhandara-table-btn" onClick={() =>
-                  window.open(`https://wa.me/919929975116?text=${encodeURIComponent(`भंडारा बुकिंग — ${pkg.name}`)}`, '_blank')
+                  window.open(`https://wa.me/918302019637?text=${encodeURIComponent(`भंडारा बुकिंग — ${pkg.name}`)}`, '_blank')
                 }>
                   <FaWhatsapp />
                 </button>
@@ -232,7 +232,7 @@ export default function BhandaraClient() {
                   </div>
                   <div className="bhandara-custom-actions">
                     <button type="submit" className="bhandara-custom-wa-btn hindi-text">✅ Submit करें</button>
-                    <a href="tel:9929975116" className="bhandara-custom-call-btn"><FiPhone /> Call करें</a>
+                    <a href="tel:8302019637" className="bhandara-custom-call-btn"><FiPhone /> Call करें</a>
                   </div>
                 </form>
               ) : (
@@ -275,8 +275,8 @@ export default function BhandaraClient() {
             <p className="hindi-text">हम 24/7 उपलब्ध हैं — Call या WhatsApp पर बात करें</p>
           </div>
           <div className="bhandara-cta-btns">
-            <a href="tel:9929975116" className="bhandara-cta-call"><FiPhone /> 9929975116</a>
-            <a href="https://wa.me/919929975116?text=भंडारा बुकिंग करनी है" className="bhandara-cta-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:8302019637" className="bhandara-cta-call"><FiPhone /> 8302019637</a>
+            <a href="https://wa.me/918302019637?text=भंडारा बुकिंग करनी है" className="bhandara-cta-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
             </a>
           </div>

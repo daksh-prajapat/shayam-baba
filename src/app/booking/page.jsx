@@ -1,7 +1,7 @@
-import BookingClient from '@/components/booking/BookingClient'
+﻿import BookingClient from '@/components/booking/BookingClient'
 export const metadata = {
   title: 'Booking Management | खाटू श्याम जी',
-  description: 'स्वामणी, प्रसाद, भोग, श्रृंगार, निशान — सभी सेवाओं की Online बुकिंग। Call: 9929975116',
+  description: 'स्वामणी, प्रसाद, भोग, श्रृंगार, निशान — सभी सेवाओं की Online बुकिंग। Call: 8302019637',
 }
 export default function BookingPage() {
   return <BookingClient />

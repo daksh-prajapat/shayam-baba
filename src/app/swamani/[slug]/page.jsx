@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   if (!item) return { title: 'Not Found' }
   return {
     title: `${item.name} | स्वामणी भोग | खाटू श्याम जी`,
-    description: `${item.desc} — ₹${item.price.toLocaleString()}। Online बुकिंग: 9929975116`,
+    description: `${item.desc} — ₹${item.price.toLocaleString()}। Online बुकिंग: 8302019637`,
   }
 }
 

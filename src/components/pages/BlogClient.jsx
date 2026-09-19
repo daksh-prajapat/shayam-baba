@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiArrowLeft } from 'react-icons/fi'
@@ -344,8 +344,8 @@ export default function BlogClient() {
             <div className="post-contact-cta">
               <p className="hindi-text">🙏 अधिक जानकारी या बुकिंग के लिए सम्पर्क करें:</p>
               <div className="pcc-btns">
-                <a href="tel:9929975116" className="pcc-call"><FiPhone /> 9929975116</a>
-                <a href="https://wa.me/919929975116?text=नमस्ते! जानकारी चाहिए।" className="pcc-wa" target="_blank" rel="noopener noreferrer">
+                <a href="tel:8302019637" className="pcc-call"><FiPhone /> 8302019637</a>
+                <a href="https://wa.me/918302019637?text=नमस्ते! जानकारी चाहिए।" className="pcc-wa" target="_blank" rel="noopener noreferrer">
                   <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
                 </a>
               </div>
@@ -385,8 +385,8 @@ export default function BlogClient() {
         <div className="blog-contact-banner">
           <p className="hindi-text">📞 बुकिंग या किसी भी जानकारी के लिए सीधे सम्पर्क करें</p>
           <div className="bcb-btns">
-            <a href="tel:9929975116" className="bcb-call"><FiPhone /> 9929975116</a>
-            <a href="https://wa.me/919929975116?text=नमस्ते! जानकारी चाहिए।" className="bcb-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:8302019637" className="bcb-call"><FiPhone /> 8302019637</a>
+            <a href="https://wa.me/918302019637?text=नमस्ते! जानकारी चाहिए।" className="bcb-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
             </a>
           </div>
@@ -429,8 +429,8 @@ export default function BlogClient() {
           <h3 className="hindi-text">🙏 जय श्री श्याम — हारे का सहारा बाबा श्याम हमारा</h3>
           <p className="hindi-text">किसी भी जानकारी, बुकिंग या सेवा के लिए तुरंत सम्पर्क करें</p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginTop: 16 }}>
-            <a href="tel:9929975116" className="bcb-call"><FiPhone /> 9929975116</a>
-            <a href="https://wa.me/919929975116?text=नमस्ते! जानकारी चाहिए।" className="bcb-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:8302019637" className="bcb-call"><FiPhone /> 8302019637</a>
+            <a href="https://wa.me/918302019637?text=नमस्ते! जानकारी चाहिए।" className="bcb-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
             </a>
           </div>

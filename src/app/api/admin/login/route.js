@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+﻿import { NextResponse } from 'next/server'
 import { signAdminToken } from '@/lib/authUtils'
 
 export async function POST(request) {
@@ -11,7 +11,7 @@ export async function POST(request) {
     }
 
     const cleanPhone   = String(phone).replace(/\D/g, '').slice(-10)
-    const ownerPhone   = (process.env.OWNER_PHONE   || '9929975116').replace(/\D/g, '')
+    const ownerPhone   = (process.env.OWNER_PHONE   || '8302019637').replace(/\D/g, '')
     const adminPass    = process.env.ADMIN_PASSWORD
 
     if (!adminPass || adminPass.includes('REPLACE')) {

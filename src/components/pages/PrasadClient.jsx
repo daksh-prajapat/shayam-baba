@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -37,7 +37,7 @@ function PujaTab() {
       (form.occasion ? `🎊 *अवसर:* ${form.occasion}%0A` : '') +
       `━━━━━━━━━━━━━━━━%0A` +
       `कृपया बुकिंग confirm करें। 🙏`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    window.open(`https://wa.me/918302019637?text=${msg}`, '_blank')
     setDone(true)
   }
 
@@ -155,7 +155,7 @@ export default function PrasadClient() {
   const handleFormSubmit = (e) => {
     e.preventDefault()
     const msg = `🙏 नमस्ते! बुकिंग करनी है।%0A%0A👤 नाम: ${form.name}%0A📞 फोन: ${form.phone}%0A🛕 सेवा: ${form.service}%0A📅 दिनांक: ${form.date}`
-    window.open(`https://wa.me/919929975116?text=${msg}`, '_blank')
+    window.open(`https://wa.me/918302019637?text=${msg}`, '_blank')
   }
 
   return (
@@ -176,8 +176,8 @@ export default function PrasadClient() {
             <span className="hindi-text">👑 विशेष थाली ₹2100</span>
           </div>
           <div className="prasad-hero-actions">
-            <a href="tel:9929975116" className="prasad-hero-call hindi-text"><FiPhone /> 9929975116 पर Call करें</a>
-            <a href="https://wa.me/919929975116?text=प्रसाद बुकिंग करनी है" className="prasad-hero-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:8302019637" className="prasad-hero-call hindi-text"><FiPhone /> 8302019637 पर Call करें</a>
+            <a href="https://wa.me/918302019637?text=प्रसाद बुकिंग करनी है" className="prasad-hero-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp बुकिंग</span>
             </a>
           </div>
@@ -187,7 +187,7 @@ export default function PrasadClient() {
       {/* Info Banner */}
       <div className="prasad-info-banner">
         <div className="container">
-          <p className="hindi-text">📌 <strong>घर बैठे</strong> प्रसाद चढ़वाएं — किसी भी प्रसाद पर क्लिक करें और बुकिंग करें: <a href="tel:9929975116">9929975116</a></p>
+          <p className="hindi-text">📌 <strong>घर बैठे</strong> प्रसाद चढ़वाएं — किसी भी प्रसाद पर क्लिक करें और बुकिंग करें: <a href="tel:8302019637">8302019637</a></p>
         </div>
       </div>
 
@@ -271,7 +271,7 @@ export default function PrasadClient() {
                     </Link>
                     <span className="hindi-text prasad-table-items">{pkg.includes.slice(0,3).join(' • ')}{pkg.includes.length > 3 ? '...' : ''}</span>
                     <span className="prasad-table-price">₹{pkg.price}</span>
-                    <button className="prasad-table-btn" onClick={() => window.open(`https://wa.me/919929975116?text=प्रसाद बुकिंग — ${pkg.name} ₹${pkg.price}`, '_blank')}>
+                    <button className="prasad-table-btn" onClick={() => window.open(`https://wa.me/918302019637?text=प्रसाद बुकिंग — ${pkg.name} ₹${pkg.price}`, '_blank')}>
                       <FaWhatsapp />
                     </button>
                   </div>
@@ -334,7 +334,7 @@ export default function PrasadClient() {
                       </div>
                       <div className="prasad-custom-actions">
                         <button type="submit" className="prasad-custom-submit hindi-text">✅ Submit करें</button>
-                        <a href="tel:9929975116" className="prasad-custom-call"><FiPhone /> Call करें</a>
+                        <a href="tel:8302019637" className="prasad-custom-call"><FiPhone /> Call करें</a>
                       </div>
                     </form>
                   ) : (
@@ -456,8 +456,8 @@ export default function PrasadClient() {
               </form>
             </div>
             <div className="booking-contact-sidebar">
-              <div className="card contact-card-v2"><h4 className="hindi-text">📞 Call करें</h4><a href="tel:9929975116" className="contact-big-call"><FiPhone /> 9929975116</a></div>
-              <div className="card contact-card-v2"><h4 className="hindi-text">💬 WhatsApp</h4><a href="https://wa.me/919929975116" className="contact-big-wa" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp</a></div>
+              <div className="card contact-card-v2"><h4 className="hindi-text">📞 Call करें</h4><a href="tel:8302019637" className="contact-big-call"><FiPhone /> 8302019637</a></div>
+              <div className="card contact-card-v2"><h4 className="hindi-text">💬 WhatsApp</h4><a href="https://wa.me/918302019637" className="contact-big-wa" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp</a></div>
               <div className="card contact-card-v2 highlight-contact">
                 <div className="contact-highlight-badge hindi-text">✨ खास सुविधा</div>
                 <h4 className="hindi-text">घर बैठे प्रसाद बुकिंग</h4>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { FiPhone, FiArrowRight, FiMapPin } from 'react-icons/fi'
@@ -57,7 +57,7 @@ function HeroSection({ onContactClick }) {
         <div className="hero-buttons">
           <Link href="/swamani" className="hero-btn-live"><FaConciergeBell className="btn-icon" /><span className="hindi-text">स्वामणी भोग बुकिंग</span></Link>
           <Link href="/prasad-puja" className="btn-secondary"><span className="hindi-text">प्रसाद बुकिंग</span></Link>
-          <a href="tel:9929975116" className="hero-btn-call"><FiPhone /><span>9929975116</span></a>
+          <a href="tel:8302019637" className="hero-btn-call"><FiPhone /><span>8302019637</span></a>
         </div>
         <div className="hero-stats">
           <div className="stat-item"><span className="stat-num">714+</span><span className="stat-label hindi-text">शहर Route Guides</span></div>
@@ -81,7 +81,7 @@ const qaActions = [
   { icon: <FaMapMarkedAlt />, label: 'यात्रा गाइड', sub: '714+ Routes', path: '/travel-guide', color: '#2196F3' },
   { icon: <BsImages />, label: 'गैलरी', sub: 'फोटो देखें', path: '/gallery', color: '#4CAF50' },
   { icon: <MdFestival />, label: 'फाल्गुन मेला', sub: '18-20 Mar 2027', path: '/festivals', color: '#FF6B35' },
-  { icon: <FaPhoneAlt />, label: 'Call करें', sub: '9929975116', path: 'tel:9929975116', color: '#25d366', isExternal: true },
+  { icon: <FaPhoneAlt />, label: 'Call करें', sub: '8302019637', path: 'tel:8302019637', color: '#25d366', isExternal: true },
 ]
 function QuickActionsSection() {
   return (
@@ -266,10 +266,10 @@ function SwamaniPrasadSection() {
           <Link href={tab === 'swamani' ? '/swamani' : tab === 'prasad' ? '/prasad-puja' : '/bhandara'} className="btn-primary hindi-text">
             {tab === 'swamani' ? 'सभी स्वामणी देखें →' : tab === 'prasad' ? 'सभी प्रसाद देखें →' : 'सभी भंडारे देखें →'}
           </Link>
-          <a href="https://wa.me/919929975116?text=बुकिंग करनी है" className="spm-wa-btn" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/918302019637?text=बुकिंग करनी है" className="spm-wa-btn" target="_blank" rel="noopener noreferrer">
             <FaWhatsapp /> <span className="hindi-text">WhatsApp बुकिंग</span>
           </a>
-          <a href="tel:9929975116" className="spm-call-btn"><FiPhone /> 9929975116</a>
+          <a href="tel:8302019637" className="spm-call-btn"><FiPhone /> 8302019637</a>
         </div>
       </div>
     </section>
@@ -485,7 +485,7 @@ function BlogSection() {
               </div>
               <h3 className="hindi-text blog-post-title">{p.title}</h3>
               <p className="hindi-text blog-post-excerpt" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                अधिक जानकारी के लिए सम्पर्क करें: <a href="tel:9929975116" style={{ color: 'var(--secondary)', textDecoration: 'none' }}>9929975116</a>
+                अधिक जानकारी के लिए सम्पर्क करें: <a href="tel:8302019637" style={{ color: 'var(--secondary)', textDecoration: 'none' }}>8302019637</a>
               </p>
             </div>
           ))}
@@ -509,8 +509,8 @@ function ContactStripSection({ onContactClick }) {
             <p className="hindi-text">हम 24/7 उपलब्ध हैं — Call या WhatsApp पर बुकिंग करें</p>
           </div>
           <div className="strip-actions">
-            <a href="tel:9929975116" className="strip-btn-call"><FiPhone /><span>9929975116</span></a>
-            <a href="https://wa.me/919929975116?text=नमस्ते! जानकारी चाहिए।" className="strip-btn-wa" target="_blank" rel="noopener noreferrer"><FaWhatsapp /><span className="hindi-text">WhatsApp</span></a>
+            <a href="tel:8302019637" className="strip-btn-call"><FiPhone /><span>8302019637</span></a>
+            <a href="https://wa.me/918302019637?text=नमस्ते! जानकारी चाहिए।" className="strip-btn-wa" target="_blank" rel="noopener noreferrer"><FaWhatsapp /><span className="hindi-text">WhatsApp</span></a>
             <button className="strip-btn-form hindi-text" onClick={onContactClick}>📝 बुकिंग फॉर्म</button>
           </div>
         </div>

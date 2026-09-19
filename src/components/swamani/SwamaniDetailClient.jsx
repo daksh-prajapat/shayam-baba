@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -147,7 +147,7 @@ export default function SwamaniDetailClient({ item }) {
               </div>
               <div className="sd-meta-row">
                 <span className="hindi-text sd-meta-label">📞 Support</span>
-                <a href="tel:9929975116" className="sd-meta-link">9929975116</a>
+                <a href="tel:8302019637" className="sd-meta-link">8302019637</a>
               </div>
             </div>
           </div>
@@ -207,8 +207,8 @@ export default function SwamaniDetailClient({ item }) {
                   >
                     {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
                   </button>
-                  <a href="tel:9929975116" className="sd-call-btn">
-                    <FiPhone /> 9929975116 पर Call करें
+                  <a href="tel:8302019637" className="sd-call-btn">
+                    <FiPhone /> 8302019637 पर Call करें
                   </a>
 
                   <div className="sd-guarantees">
@@ -235,8 +235,8 @@ export default function SwamaniDetailClient({ item }) {
             {/* Quick Contact */}
             <div className="card sd-quick-contact">
               <h4 className="hindi-text">📞 तुरंत सम्पर्क करें</h4>
-              <a href="tel:9929975116" className="sd-qc-call"><FiPhone /> 9929975116</a>
-              <a href={`https://wa.me/919929975116?text=${encodeURIComponent(`स्वामणी बुकिंग — ${item.name}`)}`}
+              <a href="tel:8302019637" className="sd-qc-call"><FiPhone /> 8302019637</a>
+              <a href={`https://wa.me/918302019637?text=${encodeURIComponent(`स्वामणी बुकिंग — ${item.name}`)}`}
                 className="sd-qc-wa" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
               </a>

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -90,8 +90,8 @@ export default function Navbar({ onContactClick }) {
         </div>
 
         <div className="navbar-right">
-          <a href="tel:9929975116" className="navbar-phone">
-            <FiPhone /><span>9929975116</span>
+          <a href="tel:8302019637" className="navbar-phone">
+            <FiPhone /><span>8302019637</span>
           </a>
           <button className="navbar-book-btn hindi-text" onClick={onContactClick}>बुकिंग करें</button>
         </div>
@@ -142,7 +142,7 @@ export default function Navbar({ onContactClick }) {
         </div>
 
         <div className="mobile-menu-footer">
-          <a href="tel:9929975116" className="mobile-call-btn"><FiPhone /> 9929975116</a>
+          <a href="tel:8302019637" className="mobile-call-btn"><FiPhone /> 8302019637</a>
           <button className="mobile-book-btn hindi-text"
             onClick={() => { setIsOpen(false); onContactClick() }}>
             📝 बुकिंग / सम्पर्क करें

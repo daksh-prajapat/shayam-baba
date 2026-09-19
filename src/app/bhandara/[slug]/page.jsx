@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   if (!item) return { title: 'Not Found' }
   return {
     title: `${item.name} | खाटू श्याम भंडारा`,
-    description: `${item.desc} — Call: 9929975116`,
+    description: `${item.desc} — Call: 8302019637`,
   }
 }
 

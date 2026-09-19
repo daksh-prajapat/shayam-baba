@@ -11,6 +11,9 @@ export default function ReceiptModal({ booking, onClose }) {
 
   if (!booking) return null
 
+  // Normalize: server returns bookingId, localStorage returns id
+  const bookingDisplayId = booking.bookingId || booking.id || '—'
+
   const pymtLabel = paymentStatusLabel(booking.paymentStatus)
   const isPaid    = booking.paymentStatus === 'paid' && booking.paymentVerified
 
@@ -22,7 +25,7 @@ export default function ReceiptModal({ booking, onClose }) {
       <html>
         <head>
           <meta charset="utf-8" />
-          <title>Receipt - ${booking.id}</title>
+              <div style={{ fontSize: '0.75rem', opacity: 0.8 }}>Receipt - {bookingDisplayId}</div>
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Poppins:wght@400;600;700&display=swap');
             * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,7 +63,7 @@ export default function ReceiptModal({ booking, onClose }) {
     const msg = `🙏 *जय श्री श्याम*%0A%0A` +
       `📄 *बुकिंग रसीद / Receipt*%0A` +
       `━━━━━━━━━━━━━━━━━━━━%0A` +
-      `🔖 Booking ID: *${booking.id}*%0A` +
+      `🔖 Booking ID: *${bookingDisplayId}*%0A` +
       `📌 सेवा: *${booking.serviceName}*%0A` +
       `💰 राशि: *₹${booking.amount}*%0A` +
       `👤 नाम: *${booking.name}*%0A` +
@@ -76,7 +79,7 @@ export default function ReceiptModal({ booking, onClose }) {
   }
 
   const handleShare = async () => {
-    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${booking.id}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nPayment: ${pymtLabel.text}\n\nखाटू श्याम जी - 9929975116`
+    const text = `🙏 जय श्री श्याम\n\nBooking ID: ${bookingDisplayId}\nसेवा: ${booking.serviceName}\nराशि: ₹${booking.amount}\nनाम: ${booking.name}\nPayment: ${pymtLabel.text}\n\nखाटू श्याम जी - 9929975116`
     if (navigator.share) {
       await navigator.share({ title: 'बुकिंग रसीद', text })
     } else {
@@ -123,7 +126,7 @@ export default function ReceiptModal({ booking, onClose }) {
 
               {/* Booking ID + status */}
               <div className="rp-id">
-                🔖 Booking ID: {booking.id}
+                🔖 Booking ID: {bookingDisplayId}
                 <span
                   className="rp-status"
                   style={{ background: pymtLabel.color }}

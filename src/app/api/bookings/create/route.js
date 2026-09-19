@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
 import Booking from '@/models/Booking'
-import { sendBookingConfirmation, sendOwnerAlert } from '@/lib/emailService'
+import { sendBookingConfirmation, sendOwnerAlert, sendOwnerWhatsApp } from '@/lib/emailService'
 
 // ── ID generator (same format as old localStorage) ──
 function generateBookingId() {
@@ -73,12 +73,13 @@ export async function POST(request) {
       status:             paymentVerified ? 'Confirmed' : (status || 'Pending Payment'),
     })
 
-    // ── Send emails (non-blocking — don't fail booking if email fails) ──
+    // ── Send notifications (non-blocking) ──
     try {
       if (paymentVerified && email) {
         await sendBookingConfirmation(booking)
       }
       await sendOwnerAlert(booking)
+      await sendOwnerWhatsApp(booking)   // WhatsApp to owner
     } catch (emailErr) {
       console.error('[bookings/create] Email error (non-fatal):', emailErr)
     }

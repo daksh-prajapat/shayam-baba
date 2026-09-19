@@ -38,6 +38,29 @@ export async function saveBookingToServer(bookingData) {
       id: booking.bookingId,
     })
 
+    // ── Auto WhatsApp receipt to customer (if paid) ──
+    if (booking.paymentVerified && booking.phone) {
+      try {
+        const phone = booking.phone.replace(/\D/g, '')
+        const msg = encodeURIComponent(
+          `🙏 *जय श्री श्याम*\n\n` +
+          `✅ *बुकिंग Confirmed!*\n` +
+          `━━━━━━━━━━━━━━━━━━\n` +
+          `🔖 Booking ID: *${booking.bookingId}*\n` +
+          `📌 सेवा: *${booking.serviceName}*\n` +
+          `💰 राशि: *₹${booking.amount}*\n` +
+          `👤 नाम: *${booking.name}*\n` +
+          (booking.date ? `📅 दिनांक: *${booking.date}*\n` : '') +
+          `━━━━━━━━━━━━━━━━━━\n` +
+          `किसी भी सवाल के लिए Call करें: 9929975116\n` +
+          `🙏 बाबा श्याम की कृपा आप पर बनी रहे!`
+        )
+        window.open(`https://wa.me/91${phone}?text=${msg}`, '_blank')
+      } catch {
+        // Silent fail — don't break the booking flow
+      }
+    }
+
     return booking
 
   } catch (err) {

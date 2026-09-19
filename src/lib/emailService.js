@@ -86,7 +86,35 @@ export async function sendBookingConfirmation(booking) {
   })
 }
 
-// ── Owner alert on every new booking ──
+// ── Owner WhatsApp notification via WhatsApp API / direct link ──
+// Yeh ek server-side WhatsApp message bhejta hai owner ko
+// (Uses CallMeBot free API — owner ko pehle activate karna hoga)
+export async function sendOwnerWhatsApp(booking) {
+  const apiKey  = process.env.CALLMEBOT_API_KEY
+  const phone   = process.env.OWNER_PHONE || '9929975116'
+
+  if (!apiKey || apiKey.includes('REPLACE')) {
+    // Log to console if not configured
+    console.log(`[WhatsApp - NOT CONFIGURED] New booking: ${booking.bookingId} | ${booking.name} | ₹${booking.amount}`)
+    return
+  }
+
+  const msg = encodeURIComponent(
+    `🔔 नई बुकिंग!\n` +
+    `ID: ${booking.bookingId}\n` +
+    `नाम: ${booking.name}\n` +
+    `Phone: ${booking.phone}\n` +
+    `सेवा: ${booking.serviceName}\n` +
+    `राशि: ₹${booking.amount}\n` +
+    `Payment: ${booking.paymentVerified ? '✅ PAID' : '⏳ Pending'}`
+  )
+
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${msg}&apikey=${apiKey}`
+  const res = await fetch(url)
+  if (!res.ok) {
+    console.error('[WhatsApp] CallMeBot error:', await res.text())
+  }
+}
 export async function sendOwnerAlert(booking) {
   if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('REPLACE')) {
     console.log('[Email] Resend not configured — skipping owner alert')

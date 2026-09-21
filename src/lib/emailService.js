@@ -3,16 +3,22 @@
 
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM_EMAIL  = process.env.EMAIL_FROM    || 'noreply@khatushyamji.in'
 const OWNER_EMAIL = process.env.OWNER_EMAIL   || 'owner@khatushyamji.in'
+
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key || key.includes('REPLACE')) return null
+  return new Resend(key)
+}
 
 // ── Helper: format amount ──
 const fmt = (n) => `₹${Number(n).toLocaleString('hi-IN')}`
 
 // ── Customer booking confirmation email ──
 export async function sendBookingConfirmation(booking) {
-  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('REPLACE')) {
+  const resend = getResend()
+  if (!resend) {
     console.log('[Email] Resend not configured — skipping customer email')
     return
   }
@@ -116,7 +122,8 @@ export async function sendOwnerWhatsApp(booking) {
   }
 }
 export async function sendOwnerAlert(booking) {
-  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('REPLACE')) {
+  const resend = getResend()
+  if (!resend) {
     console.log('[Email] Resend not configured — skipping owner alert')
     return
   }

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import { FiPhone, FiMapPin, FiStar } from 'react-icons/fi'
 import { FaWhatsapp, FaParking, FaWifi, FaUtensils } from 'react-icons/fa'
@@ -197,8 +197,8 @@ export default function HotelsClient() {
           <h3 className="hindi-text">🏨 किसी होटल के बारे में जानकारी चाहिए?</h3>
           <p className="hindi-text">हम आपको सही होटल खोजने में मदद करेंगे।</p>
           <div className="hotels-cta-btns">
-            <a href="tel:8302019637" className="btn-primary"><FiPhone /> 8302019637</a>
-            <a href="https://wa.me/918302019637?text=मुझे खाटू श्याम जी के पास होटल की जानकारी चाहिए।"
+            <a href="tel:9051858687" className="btn-primary"><FiPhone /> 9051858687</a>
+            <a href="https://wa.me/919051858687?text=मुझे खाटू श्याम जी के पास होटल की जानकारी चाहिए।"
               target="_blank" rel="noopener noreferrer" className="btn-wa">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
             </a>

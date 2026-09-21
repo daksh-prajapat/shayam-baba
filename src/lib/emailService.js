@@ -1,4 +1,4 @@
-﻿// ── Email Service using Resend ───────────────────────────────────────────────
+// ── Email Service using Resend ───────────────────────────────────────────────
 // Get free API key at https://resend.com (3000 emails/month free)
 
 import { Resend } from 'resend'
@@ -71,10 +71,10 @@ export async function sendBookingConfirmation(booking) {
       <div style="color:#25d366;font-size:0.8rem;margin-top:4px">Payment Verified ✓</div>
     </div>
     <div class="cta">
-      <a href="https://wa.me/918302019637?text=Booking ID: ${booking.bookingId}">WhatsApp पर सम्पर्क करें</a>
+      <a href="https://wa.me/919051858687?text=Booking ID: ${booking.bookingId}">WhatsApp पर सम्पर्क करें</a>
     </div>
     <p style="color:#aaa;font-size:0.82rem;margin-top:20px;text-align:center">
-      किसी भी सवाल के लिए Call करें: <a href="tel:8302019637" style="color:#D4A017">8302019637</a>
+      किसी भी सवाल के लिए Call करें: <a href="tel:9051858687" style="color:#D4A017">9051858687</a>
     </p>
   </div>
   <div class="footer">
@@ -97,7 +97,7 @@ export async function sendBookingConfirmation(booking) {
 // (Uses CallMeBot free API — owner ko pehle activate karna hoga)
 export async function sendOwnerWhatsApp(booking) {
   const apiKey  = process.env.CALLMEBOT_API_KEY
-  const phone   = process.env.OWNER_PHONE || '8302019637'
+  const phone   = process.env.OWNER_PHONE || '9051858687'
 
   if (!apiKey || apiKey.includes('REPLACE')) {
     // Log to console if not configured

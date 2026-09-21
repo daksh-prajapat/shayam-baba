@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -137,7 +137,7 @@ export default function BhandaraDetailClient({ item }) {
               </div>
               <div className="bdd-meta-row">
                 <span className="hindi-text bdd-meta-label">📞 Support</span>
-                <a href="tel:8302019637" className="bdd-meta-link">8302019637</a>
+                <a href="tel:9051858687" className="bdd-meta-link">9051858687</a>
               </div>
             </div>
           </div>
@@ -186,8 +186,8 @@ export default function BhandaraDetailClient({ item }) {
                   <button type="submit" className="bdd-submit-btn hindi-text">
                     ✅ बुकिंग Submit करें
                   </button>
-                  <a href="tel:8302019637" className="bdd-call-btn">
-                    <FiPhone /> 8302019637 पर Call करें
+                  <a href="tel:9051858687" className="bdd-call-btn">
+                    <FiPhone /> 9051858687 पर Call करें
                   </a>
 
                   <div className="bdd-guarantees">
@@ -214,8 +214,8 @@ export default function BhandaraDetailClient({ item }) {
             {/* Quick Contact */}
             <div className="card bdd-quick-contact">
               <h4 className="hindi-text">📞 तुरंत सम्पर्क करें</h4>
-              <a href="tel:8302019637" className="bdd-qc-call"><FiPhone /> 8302019637</a>
-              <a href={`https://wa.me/918302019637?text=${encodeURIComponent(`भंडारा बुकिंग — ${item.name}`)}`}
+              <a href="tel:9051858687" className="bdd-qc-call"><FiPhone /> 9051858687</a>
+              <a href={`https://wa.me/919051858687?text=${encodeURIComponent(`भंडारा बुकिंग — ${item.name}`)}`}
                 className="bdd-qc-wa" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
               </a>

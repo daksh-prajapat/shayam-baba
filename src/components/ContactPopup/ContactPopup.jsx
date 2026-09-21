@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect } from 'react'
 import { FiX, FiPhone, FiUser, FiMessageSquare } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -23,7 +23,7 @@ export default function ContactPopup({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     const msg = `🙏 नमस्ते! बुकिंग/जानकारी चाहिए।%0A%0A👤 नाम: ${form.name}%0A📞 फोन: ${form.phone}%0A🛕 सेवा: ${form.service}%0A💬 संदेश: ${form.message}`
-    window.open(`https://wa.me/918302019637?text=${msg}`, '_blank')
+    window.open(`https://wa.me/919051858687?text=${msg}`, '_blank')
     setSubmitted(true)
   }
 
@@ -46,8 +46,8 @@ export default function ContactPopup({ onClose }) {
         {!submitted ? (
           <div className="popup-body">
             <div className="popup-quick">
-              <a href="tel:8302019637" className="pq-call"><FiPhone /> <span>8302019637</span></a>
-              <a href="https://wa.me/918302019637?text=नमस्ते! बुकिंग करनी है।"
+              <a href="tel:9051858687" className="pq-call"><FiPhone /> <span>9051858687</span></a>
+              <a href="https://wa.me/919051858687?text=नमस्ते! बुकिंग करनी है।"
                 target="_blank" rel="noopener noreferrer" className="pq-wa">
                 <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
               </a>

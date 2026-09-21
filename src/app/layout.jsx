@@ -1,9 +1,9 @@
-﻿import './globals.css'
+import './globals.css'
 import ClientLayout from '@/components/ClientLayout'
 
 export const metadata = {
   title: 'खाटू श्याम जी | Khatu Shyam Ji - Prasad Booking, Darshan, Bhajan',
-  description: 'खाटू श्याम जी — प्रसाद बुकिंग, स्वामणी भोग, दर्शन समय, भजन आरती। Khatu Shyam Ji Online Prasad Booking. Call: 8302019637',
+  description: 'खाटू श्याम जी — प्रसाद बुकिंग, स्वामणी भोग, दर्शन समय, भजन आरती। Khatu Shyam Ji Online Prasad Booking. Call: 9051858687',
   keywords: 'Khatu Shyam Ji, खाटू श्याम, prasad booking, swamani bhog, darshan timings, bhajan aarti',
 }
 

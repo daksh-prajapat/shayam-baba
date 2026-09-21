@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import { FiPhone, FiMapPin, FiUsers, FiCheck } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -163,8 +163,8 @@ export default function DharamshalasClient() {
           <h3 className="hindi-text">📞 धर्मशाला बुकिंग में मदद चाहिए?</h3>
           <p className="hindi-text">हम आपको सही धर्मशाला में ठहरने में मदद करेंगे।</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 16 }}>
-            <a href="tel:8302019637" className="btn-primary"><FiPhone /> 8302019637</a>
-            <a href="https://wa.me/918302019637?text=मुझे खाटू श्याम जी के पास धर्मशाला की जानकारी चाहिए।"
+            <a href="tel:9051858687" className="btn-primary"><FiPhone /> 9051858687</a>
+            <a href="https://wa.me/919051858687?text=मुझे खाटू श्याम जी के पास धर्मशाला की जानकारी चाहिए।"
               target="_blank" rel="noopener noreferrer" className="btn-wa">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp करें</span>
             </a>

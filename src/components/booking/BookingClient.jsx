@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState } from 'react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiDownload, FiClock, FiX, FiArrowLeft, FiMail } from 'react-icons/fi'
@@ -328,8 +328,8 @@ function BookingForm({ service, onBack, onSuccess }) {
               style={{ opacity: paying ? 0.7 : 1 }}>
               {paying ? '⏳ Processing...' : '💳 Pay & Book करें'}
             </button>
-            <a href="tel:8302019637" className="bf-call-btn">
-              <FiPhone /> 8302019637
+            <a href="tel:9051858687" className="bf-call-btn">
+              <FiPhone /> 9051858687
             </a>
           </div>
           <div className="bf-confirm-info">
@@ -416,8 +416,8 @@ function DigitalReceipt({ booking, onNew }) {
           <button className="receipt-wa-btn hindi-text" onClick={shareWhatsApp}>
             <FaWhatsapp /> Receipt WhatsApp पर भेजें
           </button>
-          <a href="tel:8302019637" className="receipt-call-btn">
-            <FiPhone /> 8302019637
+          <a href="tel:9051858687" className="receipt-call-btn">
+            <FiPhone /> 9051858687
           </a>
         </div>
 
@@ -430,8 +430,8 @@ function DigitalReceipt({ booking, onNew }) {
         <button className="btn-primary hindi-text" onClick={onNew}>
           नई बुकिंग करें →
         </button>
-        <a href="tel:8302019637" className="btn-secondary">
-          <FiPhone /> Support: 8302019637
+        <a href="tel:9051858687" className="btn-secondary">
+          <FiPhone /> Support: 9051858687
         </a>
       </div>
     </div>
@@ -491,7 +491,7 @@ function BookingHistory({ onBack }) {
             इस नंबर पर कोई बुकिंग नहीं मिली।
           </p>
           <a
-            href={`https://wa.me/918302019637?text=मेरी Booking History देखनी है। Phone: ${phone}`}
+            href={`https://wa.me/919051858687?text=मेरी Booking History देखनी है। Phone: ${phone}`}
             className="receipt-wa-btn hindi-text"
             target="_blank"
             rel="noopener noreferrer"
@@ -540,7 +540,7 @@ function BookingHistory({ onBack }) {
               </div>
               <div style={{ marginTop: 10, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                 <a
-                  href={`https://wa.me/918302019637?text=बुकिंग जानकारी चाहिए। ID: ${b.id}, Phone: ${b.phone}`}
+                  href={`https://wa.me/919051858687?text=बुकिंग जानकारी चाहिए। ID: ${b.id}, Phone: ${b.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ fontSize: '0.78rem', color: '#25d366', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}
@@ -575,7 +575,7 @@ function CancelReschedule({ onBack }) {
       `🆔 Booking ID: ${form.bid}%0A📞 Phone: ${form.phone}%0A` +
       `📋 Type: ${form.type === 'cancel' ? 'Cancellation' : 'Reschedule'}%0A` +
       `💬 Reason: ${form.reason}`
-    window.open(`https://wa.me/918302019637?text=${msg}`, '_blank')
+    window.open(`https://wa.me/919051858687?text=${msg}`, '_blank')
     setSent(true)
   }
 
@@ -683,8 +683,8 @@ export default function BookingClient() {
           <h1 className="hindi-text">बुकिंग & सेवा प्रबंधन</h1>
           <p className="hindi-text">स्वामणी, प्रसाद, भोग, श्रृंगार, निशान — सभी सेवाएं एक जगह</p>
           <div className="bh-contact-row">
-            <a href="tel:8302019637" className="bh-call"><FiPhone /> 8302019637</a>
-            <a href="https://wa.me/918302019637?text=बुकिंग करनी है" className="bh-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:9051858687" className="bh-call"><FiPhone /> 9051858687</a>
+            <a href="https://wa.me/919051858687?text=बुकिंग करनी है" className="bh-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
             </a>
           </div>
@@ -700,8 +700,8 @@ export default function BookingClient() {
             <div className="booking-quick-nav">
               <button className="bqn-btn hindi-text" onClick={() => setView('history')}><FiClock /> बुकिंग History</button>
               <button className="bqn-btn hindi-text" onClick={() => setView('cancel')}><FiX /> Cancel / Reschedule</button>
-              <a href="tel:8302019637" className="bqn-btn hindi-text"><FiPhone /> Call करें</a>
-              <a href="https://wa.me/918302019637" className="bqn-btn bqn-wa hindi-text" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp</a>
+              <a href="tel:9051858687" className="bqn-btn hindi-text"><FiPhone /> Call करें</a>
+              <a href="https://wa.me/919051858687" className="bqn-btn bqn-wa hindi-text" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp</a>
             </div>
 
             {/* Services Grid */}

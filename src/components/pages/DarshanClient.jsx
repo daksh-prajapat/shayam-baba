@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import './DarshanTimings.css'
 
@@ -177,7 +177,7 @@ export default function DarshanClient() {
         {/* Notice */}
         <div className="notice-box hindi-text" style={{ marginTop: 40 }}>
           ⚠️ महत्वपूर्ण: त्योहारों पर दर्शन समय बदल सकता है। यात्रा से पूर्व मंदिर हेल्पलाइन <a href="tel:+911576231482">+91-1576-231482</a> पर अवश्य पुष्टि करें।
-          बुकिंग के लिए Call करें: <a href="tel:8302019637">8302019637</a>
+          बुकिंग के लिए Call करें: <a href="tel:9051858687">9051858687</a>
         </div>
       </div>
     </div>

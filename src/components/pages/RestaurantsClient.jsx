@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import { FiPhone, FiMapPin, FiClock } from 'react-icons/fi'
 import { FaWhatsapp, FaLeaf } from 'react-icons/fa'
@@ -185,8 +185,8 @@ export default function RestaurantsClient() {
           <h3 className="hindi-text">📞 भोजन के बारे में जानकारी चाहिए?</h3>
           <p className="hindi-text">हमसे बात करें — हम आपकी यात्रा में मदद करेंगे।</p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginTop: 16 }}>
-            <a href="tel:8302019637" className="btn-primary"><FiPhone /> 8302019637</a>
-            <a href="https://wa.me/918302019637?text=खाटू में भोजन की जानकारी चाहिए।"
+            <a href="tel:9051858687" className="btn-primary"><FiPhone /> 9051858687</a>
+            <a href="https://wa.me/919051858687?text=खाटू में भोजन की जानकारी चाहिए।"
               target="_blank" rel="noopener noreferrer" className="btn-wa">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
             </a>

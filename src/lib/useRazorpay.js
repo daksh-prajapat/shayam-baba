@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 // ── useRazorpay — reusable hook for Razorpay checkout ──────────────────────
 // Loads the Razorpay checkout script on demand, creates an order server-side,
 // opens the checkout, and verifies the payment server-side before confirming.
@@ -119,7 +119,7 @@ export function useRazorpay() {
               setPaying(false)
             }
           } catch {
-            const msg = 'Verification network error. कृपया support से सम्पर्क करें: 8302019637'
+            const msg = 'Verification network error. कृपया support से सम्पर्क करें: 9051858687'
             setPayError(msg)
             onFailure?.(msg)
             setPaying(false)

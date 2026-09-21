@@ -1,11 +1,11 @@
-﻿// ── Booking Storage Utility ──────────────────────────────
+// ── Booking Storage Utility ──────────────────────────────
 // Saves all bookings to localStorage
-// Owner phone: 8302019637 — can see ALL bookings
+// Owner phone: 9051858687 — can see ALL bookings
 // Others: sirf apne phone number se apni bookings
 
 const STORAGE_KEY = 'khatu_shyam_bookings'
 const SESSION_KEY = 'khatu_shyam_verified_phone'
-export const OWNER_PHONE = '8302019637'
+export const OWNER_PHONE = '9051858687'
 
 // ── ID generator ──
 export function generateBookingId() {

@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import Link from 'next/link'
 import { FiPhone, FiMapPin } from 'react-icons/fi'
 import { FaFacebook, FaYoutube, FaInstagram, FaWhatsapp, FaTwitter, FaPinterest } from 'react-icons/fa'
@@ -28,10 +28,10 @@ export default function Footer() {
               <a href="https://www.facebook.com/khatuwalebabain" aria-label="Facebook" className="social-link"><FaFacebook /></a>
               <a href="https://www.youtube.com/@khatuwalebabain" aria-label="YouTube" className="social-link youtube"><FaYoutube /></a>
               <a href="https://www.instagram.com/khatuwalebabain" aria-label="Instagram" className="social-link insta"><FaInstagram /></a>
-              <a href="https://wa.me/918302019637" aria-label="WhatsApp" className="social-link whatsapp"><FaWhatsapp /></a>
+              <a href="https://wa.me/919051858687" aria-label="WhatsApp" className="social-link whatsapp"><FaWhatsapp /></a>
               <a href="#" aria-label="Twitter" className="social-link"><FaTwitter /></a>
             </div>
-            <a href="https://wa.me/918302019637?text=Subscribe - Temple Updates" className="footer-wa-update" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/919051858687?text=Subscribe - Temple Updates" className="footer-wa-update" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">📢 WhatsApp Updates पाएं</span>
             </a>
           </div>
@@ -77,8 +77,8 @@ export default function Footer() {
           <div className="footer-contact-col">
             <h4 className="footer-heading hindi-text">सम्पर्क</h4>
             <div className="contact-items">
-              <a href="tel:8302019637" className="contact-item"><FiPhone className="contact-icon" /><span>8302019637</span></a>
-              <a href="https://wa.me/918302019637" className="contact-item"><FaWhatsapp className="contact-icon" /><span>WhatsApp करें</span></a>
+              <a href="tel:9051858687" className="contact-item"><FiPhone className="contact-icon" /><span>9051858687</span></a>
+              <a href="https://wa.me/919051858687" className="contact-item"><FaWhatsapp className="contact-icon" /><span>WhatsApp करें</span></a>
               <div className="contact-item"><FiMapPin className="contact-icon" /><span className="hindi-text">खाटू श्याम जी, सीकर, राजस्थान — 332602</span></div>
               <div className="contact-item footer-branch-item">
                 <span className="footer-branch-icon">🏪</span>
@@ -97,7 +97,7 @@ export default function Footer() {
         <div className="footer-bottom">
           <p className="hindi-text footer-mantra">🙏 हारे का सहारा बाबा श्याम हमारा — जय श्री श्याम 🙏</p>
           <p className="footer-copy">
-            © 2026 खाटू श्याम जी | Contact: <a href="tel:8302019637">8302019637</a> | 
+            © 2026 खाटू श्याम जी | Contact: <a href="tel:9051858687">9051858687</a> | 
             <Link href="/contact"> सम्पर्क</Link> | 
             <Link href="/contact"> Privacy Policy</Link>
           </p>

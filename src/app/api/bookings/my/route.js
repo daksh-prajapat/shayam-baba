@@ -1,4 +1,4 @@
-﻿import { NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import { connectDB } from '@/lib/mongodb'
 import Booking from '@/models/Booking'
 import { verifySessionToken } from '@/lib/authUtils'
@@ -20,7 +20,7 @@ export async function GET(request) {
     await connectDB()
 
     const phone = payload.phone.replace(/\D/g, '').slice(-10)
-    const OWNER_PHONE = (process.env.OWNER_PHONE || '8302019637').replace(/\D/g, '')
+    const OWNER_PHONE = (process.env.OWNER_PHONE || '9051858687').replace(/\D/g, '')
 
     let bookings
     if (phone === OWNER_PHONE) {

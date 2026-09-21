@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   if (!item) return { title: 'Not Found' }
   return {
     title: `${item.name} | प्रसाद बुकिंग | खाटू श्याम जी`,
-    description: `${item.desc} — ₹${item.price}। Online बुकिंग: 8302019637`,
+    description: `${item.desc} — ₹${item.price}। Online बुकिंग: 9051858687`,
   }
 }
 

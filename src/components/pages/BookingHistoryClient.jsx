@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -134,7 +134,7 @@ function OtpLoginGate({ onLoggedIn }) {
         )}
 
         <div className="bh-gate-note">
-          <p className="hindi-text">📞 मदद के लिए Call करें: <a href="tel:8302019637">8302019637</a></p>
+          <p className="hindi-text">📞 मदद के लिए Call करें: <a href="tel:9051858687">9051858687</a></p>
         </div>
       </div>
     </div>
@@ -431,11 +431,11 @@ export default function BookingHistoryClient() {
         <div className="bh-cta-box">
           <div>
             <h3 className="hindi-text">नई बुकिंग करें</h3>
-            <p className="hindi-text">Call या WhatsApp पर बात करें: 8302019637</p>
+            <p className="hindi-text">Call या WhatsApp पर बात करें: 9051858687</p>
           </div>
           <div className="bh-cta-btns">
-            <a href="tel:8302019637" className="bh-cta-call"><FiPhone /> 8302019637</a>
-            <a href="https://wa.me/918302019637" className="bh-cta-wa" target="_blank" rel="noopener noreferrer">
+            <a href="tel:9051858687" className="bh-cta-call"><FiPhone /> 9051858687</a>
+            <a href="https://wa.me/919051858687" className="bh-cta-wa" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">WhatsApp</span>
             </a>
           </div>

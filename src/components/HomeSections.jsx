@@ -84,7 +84,7 @@ const qaActions = [
   { icon: <IoBookOutline />, label: 'कथा परिचय', sub: 'बर्बरीक कथा', path: '/katha-parichay', color: '#9C27B0' },
   { icon: <FaMapMarkedAlt />, label: 'यात्रा गाइड', sub: '714+ Routes', path: '/travel-guide', color: '#2196F3' },
   { icon: <BsImages />, label: 'गैलरी', sub: 'फोटो देखें', path: '/gallery', color: '#4CAF50' },
-  { icon: <MdFestival />, label: 'फाल्गुन मेला', sub: '18-20 Mar 2027', path: '/festivals', color: '#FF6B35' },
+  { icon: <MdFestival />, label: 'फाल्गुन मेला', sub: '9 Mar 2027', path: '/festivals', color: '#FF6B35' },
   { icon: <FaPhoneAlt />, label: 'Call करें', sub: '9051858687', path: 'tel:9051858687', color: '#25d366', isExternal: true },
 ]
 function QuickActionsSection() {
@@ -125,7 +125,7 @@ function TempleStatusSection() {
               <span className="ts-chip">📍 Delhi: 310 km · 5–6 hrs</span>
               <span className="ts-chip">📍 Jaipur: 80–89 km · 1.5–2 hrs</span>
               <span className="ts-chip">🚆 Ringas Jn: 17 km nearest railway</span>
-              <span className="ts-chip">🎪 Falgun Mela 2027: 18–20 March</span>
+              <span className="ts-chip">🎪 Falgun Mela 2027: 9 March 2027</span>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 20 }}>
               <Link href="/katha-parichay" className="btn-secondary hindi-text">मंदिर की पूरी जानकारी →</Link>
@@ -142,8 +142,8 @@ function TempleStatusSection() {
             </div>
             <div className="card ts-ek-card">
               <h3 className="hindi-text" style={{ color: 'var(--secondary)', marginBottom: 10 }}>📅 अगली एकादशी</h3>
-              <p className="hindi-text ts-ek-name">🪔 अजा एकादशी</p>
-              <p className="hindi-text ts-ek-date">सितम्बर 7, 2026</p>
+              <p className="hindi-text ts-ek-name">🪔 इन्दिरा एकादशी</p>
+              <p className="hindi-text ts-ek-date">अक्टूबर 6, 2026</p>
               <Link href="/darshan-timings" className="ts-ek-link hindi-text">एकादशी पर 24 घंटे दर्शन →</Link>
             </div>
           </div>
@@ -307,7 +307,7 @@ function DarshanTimingSection() {
         <div className="card" style={{ marginTop: 16, padding: '16px 20px', background: 'rgba(212,160,23,0.08)', borderColor: 'rgba(212,160,23,0.4)' }}>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
             <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>📅 एकादशी: 24 घंटे खुला</span>
-            <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🎪 Falgun Mela 2027: 9 March 2027</span>
+          <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🎪 Falgun Mela 2027: 9 March 2027</span>
           </div>
         </div>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
@@ -364,11 +364,11 @@ function AboutShyamSection() {
 /* ─── FESTIVALS ─── */
 const festivalItems = [
   { name: 'फाल्गुन मेला 2027', date: '9 March 2027', desc: 'करोड़ों भक्त — एशिया का सबसे बड़ा मेला', icon: '🚩', highlight: true },
-  { name: 'श्याम जयंती', date: '20 November 2026', desc: 'कार्तिक शुक्ल एकादशी — विशेष दर्शन व श्रृंगार', icon: '👑' },
-  { name: 'जन्माष्टमी', date: '4 September 2026', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
-  { name: 'एकादशी', date: 'अगली: 6 Oct 2026', desc: '24 घंटे दर्शन — निःशुल्क', icon: '🙏' },
   { name: 'दीपावली', date: '20 October 2026', desc: 'हजारों दीपों से जगमगाता मंदिर', icon: '🪔' },
-  { name: 'निर्जला एकादशी', date: '25 June 2026', desc: 'सबसे फलदायी व्रत — विशेष भंडारा', icon: '✨' },
+  { name: 'श्याम जयंती / देवउठनी एकादशी', date: '20 November 2026', desc: 'कार्तिक शुक्ल एकादशी — विशेष दर्शन व श्रृंगार', icon: '👑' },
+  { name: 'इन्दिरा एकादशी', date: '6 October 2026', desc: '24 घंटे दर्शन — अगली एकादशी', icon: '🙏' },
+  { name: 'जन्माष्टमी 2027', date: '24 August 2027', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
+  { name: 'निर्जला एकादशी 2027', date: '14 June 2027', desc: 'सबसे फलदायी व्रत — विशेष भंडारा', icon: '✨' },
 ]
 function FestivalSection() {
   return (
@@ -774,7 +774,7 @@ const faqs = [
   },
   {
     q: 'फाल्गुन मेला 2027 कब है?',
-    a: 'फाल्गुन मेला 2027 — 9 March 2027 से शुरू होगा। यह एशिया का सबसे बड़ा धार्मिक मेला माना जाता है जिसमें करोड़ों भक्त भाग लेते हैं। मेले के दौरान बुकिंग पहले से करें।',
+    a: 'फाल्गुन मेला 2027 — 9 March 2027 (फाल्गुन शुक्ल षष्ठी) से शुरू होकर पूर्णिमा 21 March 2027 तक चलेगा। यह एशिया का सबसे बड़ा धार्मिक मेला माना जाता है जिसमें करोड़ों भक्त भाग लेते हैं। मेले के दौरान बुकिंग पहले से करें।',
   },
   {
     q: 'खाटू श्याम जी तक कैसे पहुंचें?',

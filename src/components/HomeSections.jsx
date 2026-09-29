@@ -364,10 +364,10 @@ function AboutShyamSection() {
 /* ─── FESTIVALS ─── */
 const festivalItems = [
   { name: 'फाल्गुन मेला 2027', date: '9 March 2027', desc: 'करोड़ों भक्त — एशिया का सबसे बड़ा मेला', icon: '🚩', highlight: true },
-  { name: 'दीपावली', date: '20 October 2026', desc: 'हजारों दीपों से जगमगाता मंदिर', icon: '🪔' },
+  { name: 'दीपावली', date: '8 November 2026', desc: 'हजारों दीपों से जगमगाता मंदिर', icon: '🪔' },
   { name: 'श्याम जयंती / देवउठनी एकादशी', date: '20 November 2026', desc: 'कार्तिक शुक्ल एकादशी — विशेष दर्शन व श्रृंगार', icon: '👑' },
   { name: 'इन्दिरा एकादशी', date: '6 October 2026', desc: '24 घंटे दर्शन — अगली एकादशी', icon: '🙏' },
-  { name: 'जन्माष्टमी 2027', date: '24 August 2027', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
+  { name: 'जन्माष्टमी 2027', date: '25 August 2027', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
   { name: 'निर्जला एकादशी 2027', date: '14 June 2027', desc: 'सबसे फलदायी व्रत — विशेष भंडारा', icon: '✨' },
 ]
 function FestivalSection() {

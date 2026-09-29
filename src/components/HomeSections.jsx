@@ -303,7 +303,7 @@ function DarshanTimingSection() {
         <div className="card" style={{ marginTop: 16, padding: '16px 20px', background: 'rgba(212,160,23,0.08)', borderColor: 'rgba(212,160,23,0.4)' }}>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
             <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>📅 एकादशी: 24 घंटे खुला</span>
-            <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🎪 Falgun Mela 2027: 24 घंटे — 18–20 Mar</span>
+            <span className="hindi-text" style={{ color: 'var(--secondary)', fontSize: '0.9rem' }}>🎪 Falgun Mela 2027: 9 March 2027</span>
           </div>
         </div>
         <div style={{ textAlign: 'center', marginTop: 24 }}>
@@ -359,12 +359,12 @@ function AboutShyamSection() {
 
 /* ─── FESTIVALS ─── */
 const festivalItems = [
-  { name: 'फाल्गुन मेला 2027', date: '18–20 March 2027', desc: 'करोड़ों भक्त — एशिया का सबसे बड़ा मेला', icon: '🚩', highlight: true },
-  { name: 'श्याम जयंती', date: 'भादो शुक्ल एकादशी', desc: 'विशेष दर्शन व श्रृंगार', icon: '👑' },
-  { name: 'जन्माष्टमी', date: 'भादो कृष्ण अष्टमी', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
-  { name: 'एकादशी', date: 'हर महीने 2 बार', desc: '24 घंटे दर्शन — निःशुल्क', icon: '🙏' },
-  { name: 'होली', date: 'फाल्गुन पूर्णिमा', desc: 'फूलों की होली — भंडारा', icon: '🌈' },
-  { name: 'दीपावली', date: 'कार्तिक अमावस्या', desc: 'हजारों दीपों से जगमगाता मंदिर', icon: '🪔' },
+  { name: 'फाल्गुन मेला 2027', date: '9 March 2027', desc: 'करोड़ों भक्त — एशिया का सबसे बड़ा मेला', icon: '🚩', highlight: true },
+  { name: 'श्याम जयंती', date: '20 November 2026', desc: 'कार्तिक शुक्ल एकादशी — विशेष दर्शन व श्रृंगार', icon: '👑' },
+  { name: 'जन्माष्टमी', date: '4 September 2026', desc: 'रात्रि 12 बजे विशेष पूजा', icon: '🪈' },
+  { name: 'एकादशी', date: 'अगली: 6 Oct 2026', desc: '24 घंटे दर्शन — निःशुल्क', icon: '🙏' },
+  { name: 'दीपावली', date: '20 October 2026', desc: 'हजारों दीपों से जगमगाता मंदिर', icon: '🪔' },
+  { name: 'निर्जला एकादशी', date: '25 June 2026', desc: 'सबसे फलदायी व्रत — विशेष भंडारा', icon: '✨' },
 ]
 function FestivalSection() {
   return (

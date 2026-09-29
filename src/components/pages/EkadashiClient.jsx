@@ -6,28 +6,28 @@ import { FaWhatsapp } from 'react-icons/fa'
 import './Ekadashi.css'
 
 const ekadashiList2026 = [
-  { name: 'षटतिला एकादशी', date: '25 Jan 2026', tithi: 'माघ कृष्ण', special: false },
-  { name: 'जया एकादशी', date: '9 Feb 2026', tithi: 'माघ शुक्ल', special: false },
-  { name: 'विजया एकादशी', date: '24 Feb 2026', tithi: 'फाल्गुन कृष्ण', special: false },
-  { name: 'आमलकी एकादशी', date: '11 Mar 2026', tithi: 'फाल्गुन शुक्ल', special: false },
-  { name: 'पापमोचनी एकादशी', date: '26 Mar 2026', tithi: 'चैत्र कृष्ण', special: false },
-  { name: 'कामदा एकादशी', date: '10 Apr 2026', tithi: 'चैत्र शुक्ल', special: false },
-  { name: 'वरुथिनी एकादशी', date: '25 Apr 2026', tithi: 'वैशाख कृष्ण', special: false },
-  { name: 'मोहिनी एकादशी', date: '9 May 2026', tithi: 'वैशाख शुक्ल', special: false },
-  { name: 'अपरा एकादशी', date: '24 May 2026', tithi: 'ज्येष्ठ कृष्ण', special: false },
-  { name: 'निर्जला एकादशी', date: '8 Jun 2026', tithi: 'ज्येष्ठ शुक्ल', special: true },
-  { name: 'योगिनी एकादशी', date: '22 Jun 2026', tithi: 'आषाढ़ कृष्ण', special: false },
-  { name: 'देवशयनी एकादशी', date: '7 Jul 2026', tithi: 'आषाढ़ शुक्ल', special: true },
-  { name: 'कामिका एकादशी', date: '21 Jul 2026', tithi: 'श्रावण कृष्ण', special: false },
-  { name: 'श्रावण पुत्रदा एकादशी', date: '5 Aug 2026', tithi: 'श्रावण शुक्ल', special: false },
+  { name: 'षटतिला एकादशी', date: '14 Jan 2026', tithi: 'माघ कृष्ण', special: false },
+  { name: 'जया एकादशी', date: '29 Jan 2026', tithi: 'माघ शुक्ल', special: false },
+  { name: 'विजया एकादशी', date: '13 Feb 2026', tithi: 'फाल्गुन कृष्ण', special: false },
+  { name: 'आमलकी एकादशी', date: '27 Feb 2026', tithi: 'फाल्गुन शुक्ल', special: false },
+  { name: 'पापमोचनी एकादशी', date: '15 Mar 2026', tithi: 'चैत्र कृष्ण', special: false },
+  { name: 'कामदा एकादशी', date: '29 Mar 2026', tithi: 'चैत्र शुक्ल', special: false },
+  { name: 'वरुथिनी एकादशी', date: '13 Apr 2026', tithi: 'वैशाख कृष्ण', special: false },
+  { name: 'मोहिनी एकादशी', date: '27 Apr 2026', tithi: 'वैशाख शुक्ल', special: false },
+  { name: 'अपरा एकादशी', date: '13 May 2026', tithi: 'ज्येष्ठ कृष्ण', special: false },
+  { name: 'निर्जला एकादशी', date: '25 Jun 2026', tithi: 'ज्येष्ठ शुक्ल', special: true },
+  { name: 'योगिनी एकादशी', date: '9 Jul 2026', tithi: 'आषाढ़ कृष्ण', special: false },
+  { name: 'देवशयनी एकादशी', date: '24 Jul 2026', tithi: 'आषाढ़ शुक्ल', special: true },
+  { name: 'कामिका एकादशी', date: '9 Aug 2026', tithi: 'श्रावण कृष्ण', special: false },
+  { name: 'श्रावण पुत्रदा एकादशी', date: '23 Aug 2026', tithi: 'श्रावण शुक्ल', special: false },
   { name: 'अजा एकादशी', date: '7 Sep 2026', tithi: 'भाद्रपद कृष्ण', special: false },
   { name: 'परिवर्तिनी एकादशी', date: '22 Sep 2026', tithi: 'भाद्रपद शुक्ल', special: false },
   { name: 'इन्दिरा एकादशी', date: '6 Oct 2026', tithi: 'आश्विन कृष्ण', special: false },
-  { name: 'पापांकुशा एकादशी', date: '21 Oct 2026', tithi: 'आश्विन शुक्ल', special: false },
+  { name: 'पापांकुशा एकादशी', date: '22 Oct 2026', tithi: 'आश्विन शुक्ल', special: false },
   { name: 'रमा एकादशी', date: '5 Nov 2026', tithi: 'कार्तिक कृष्ण', special: false },
   { name: 'देवउठनी एकादशी', date: '20 Nov 2026', tithi: 'कार्तिक शुक्ल', special: true },
-  { name: 'उत्पन्ना एकादशी', date: '5 Dec 2026', tithi: 'मार्गशीर्ष कृष्ण', special: false },
-  { name: 'मोक्षदा एकादशी', date: '19 Dec 2026', tithi: 'मार्गशीर्ष शुक्ल', special: false },
+  { name: 'उत्पन्ना एकादशी', date: '4 Dec 2026', tithi: 'मार्गशीर्ष कृष्ण', special: false },
+  { name: 'मोक्षदा एकादशी', date: '20 Dec 2026', tithi: 'मार्गशीर्ष शुक्ल', special: false },
   { name: 'सफला एकादशी', date: '3 Jan 2027', tithi: 'पौष कृष्ण', special: false },
   { name: 'पुत्रदा एकादशी', date: '18 Jan 2027', tithi: 'पौष शुक्ल', special: false },
 ]
@@ -46,7 +46,7 @@ export default function EkadashiClient() {
 
   const upcoming = ekadashiList2026.filter(e => {
     const d = new Date(e.date)
-    return d >= new Date('2026-09-04')
+    return d >= new Date('2026-09-29')
   }).slice(0, 5)
 
   return (
@@ -59,7 +59,7 @@ export default function EkadashiClient() {
           <h1 className="hindi-text">एकादशी कैलेंडर 2026</h1>
           <p className="hindi-text">खाटू श्याम जी — एकादशी पर 24 घंटे दर्शन उपलब्ध</p>
           <div className="ek-live-info">
-            <span className="hindi-text">📅 अगली एकादशी: <strong>अजा एकादशी — 7 Sep 2026</strong></span>
+            <span className="hindi-text">📅 अगली एकादशी: <strong>इन्दिरा एकादशी — 6 Oct 2026</strong></span>
             <span className="hindi-text">⏰ एकादशी पर: <strong>24 घंटे दर्शन</strong></span>
           </div>
         </div>

@@ -1,12 +1,12 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { FiPhone, FiArrowRight, FiMapPin } from 'react-icons/fi'
-import { FaWhatsapp, FaConciergeBell, FaMapMarkedAlt, FaPhoneAlt, FaTrain, FaBus, FaCar } from 'react-icons/fa'
+import { FiPhone, FiArrowRight, FiMapPin, FiCheckCircle, FiStar } from 'react-icons/fi'
+import { FaWhatsapp, FaConciergeBell, FaMapMarkedAlt, FaPhoneAlt, FaTrain, FaBus, FaCar, FaHandsHelping, FaLeaf, FaMobileAlt, FaHistory, FaQuoteLeft } from 'react-icons/fa'
 import { GiTempleGate, GiLotusFlower } from 'react-icons/gi'
-import { IoBookOutline } from 'react-icons/io5'
-import { BsImages } from 'react-icons/bs'
-import { MdFestival } from 'react-icons/md'
+import { IoBookOutline, IoChevronDownOutline, IoChevronUpOutline } from 'react-icons/io5'
+import { BsImages, BsShieldCheck } from 'react-icons/bs'
+import { MdFestival, MdVerified, MdDeliveryDining } from 'react-icons/md'
 import LiveTempleStatus from '@/components/LiveTempleStatus'
 
 import './home-sections/HeroSection.css'
@@ -20,6 +20,10 @@ import './home-sections/GalleryPreview.css'
 import './home-sections/TravelPreview.css'
 import './home-sections/BlogPreview.css'
 import './home-sections/ContactStrip.css'
+import './home-sections/HowItWorks.css'
+import './home-sections/WhyChooseUs.css'
+import './home-sections/Testimonials.css'
+import './home-sections/FAQ.css'
 import './home-sections/Home.css'
 import './HomeSections.css'
 
@@ -519,18 +523,326 @@ function ContactStripSection({ onContactClick }) {
   )
 }
 
+/* ─── HOW IT WORKS ─── */
+const steps = [
+  {
+    num: '01',
+    icon: '🛕',
+    title: 'सेवा चुनें',
+    desc: 'स्वामणी भोग, प्रसाद, निशान यात्रा या भंडारा — अपनी श्रद्धा व बजट के अनुसार सेवा चुनें।',
+    color: '#922B21',
+  },
+  {
+    num: '02',
+    icon: '📱',
+    title: 'Call या WhatsApp करें',
+    desc: 'हमारी टीम से कॉल पर बात करें या अपना नाम, गोत्र और तिथि WhatsApp पर भेजें।',
+    color: '#CA8A04',
+  },
+  {
+    num: '03',
+    icon: '📅',
+    title: 'तिथि निर्धारित करें',
+    desc: 'अपनी सुविधा अनुसार भोग या प्रसाद अर्पण की शुभ तिथि तय करें।',
+    color: '#D97706',
+  },
+  {
+    num: '04',
+    icon: '🙏',
+    title: 'बाबा को भोग अर्पित',
+    desc: 'पूर्ण विधि-विधान से भोग चढ़ाया जाता है। फोटो व वीडियो प्रमाण आपको भेजे जाते हैं।',
+    color: '#16a34a',
+  },
+]
+
+function HowItWorksSection() {
+  return (
+    <section className="hiw-section">
+      <div className="container">
+        <p className="section-label hindi-text">🔔 बुकिंग प्रक्रिया</p>
+        <h2 className="section-title hindi-text">ऑनलाइन बुकिंग कैसे करें?</h2>
+        <div className="divider"><span>🙏</span></div>
+        <div className="hiw-grid">
+          {steps.map((s, i) => (
+            <div key={i} className="hiw-card card">
+              <div className="hiw-num" style={{ background: `${s.color}18`, color: s.color }}>{s.num}</div>
+              <div className="hiw-icon-wrap" style={{ background: `${s.color}14` }}>
+                <span className="hiw-icon">{s.icon}</span>
+              </div>
+              <h3 className="hindi-text hiw-title">{s.title}</h3>
+              <p className="hindi-text hiw-desc">{s.desc}</p>
+              {i < steps.length - 1 && <div className="hiw-arrow">→</div>}
+            </div>
+          ))}
+        </div>
+        <div className="hiw-bottom">
+          <a href="https://wa.me/919051858687?text=स्वामणी बुकिंग करनी है" className="btn-primary hindi-text" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp /> अभी WhatsApp पर बुकिंग करें
+          </a>
+          <a href="tel:9051858687" className="btn-secondary hindi-text">
+            <FiPhone /> 9051858687 पर Call करें
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── WHY CHOOSE US ─── */
+const features = [
+  {
+    icon: <MdVerified size={28} />,
+    title: 'पूर्ण विधि-विधान',
+    desc: 'स्वामणी भोग, प्रसाद व निशान यात्रा सभी सेवाएं पूर्ण धार्मिक रीति-रिवाजों के साथ संपन्न होती हैं।',
+    color: '#922B21',
+    bg: 'rgba(146,43,33,0.08)',
+  },
+  {
+    icon: <FaLeaf size={26} />,
+    title: 'शुद्ध सामग्री',
+    desc: 'सभी भोग प्रसाद शुद्ध देसी घी, बेसन व उच्च गुणवत्ता की सामग्री से तैयार किए जाते हैं।',
+    color: '#16a34a',
+    bg: 'rgba(22,163,74,0.08)',
+  },
+  {
+    icon: <FaMobileAlt size={26} />,
+    title: 'घर बैठे ऑनलाइन बुकिंग',
+    desc: 'Phone, WhatsApp या Website के माध्यम से कहीं से भी बुकिंग करें। मंदिर आने की जरूरत नहीं।',
+    color: '#CA8A04',
+    bg: 'rgba(202,138,4,0.08)',
+  },
+  {
+    icon: <BsShieldCheck size={26} />,
+    title: 'फोटो & वीडियो प्रमाण',
+    desc: 'भोग अर्पण के बाद पूरी पूजा के फोटो और वीडियो WhatsApp पर भेजे जाते हैं — पूर्ण विश्वास।',
+    color: '#7C3AED',
+    bg: 'rgba(124,58,237,0.08)',
+  },
+  {
+    icon: <MdDeliveryDining size={28} />,
+    title: 'प्रसाद घर तक डिलीवरी',
+    desc: 'चाहें तो बाबा का प्रसाद आपके घर तक पहुंचाया जाएगा — पवित्र व पैक करके।',
+    color: '#0284C7',
+    bg: 'rgba(2,132,199,0.08)',
+  },
+  {
+    icon: <FaHandsHelping size={26} />,
+    title: 'स्थानीय अनुभवी टीम',
+    desc: 'खाटू श्याम जी में स्थानीय अनुभवी सेवादारों की टीम — हर त्यौहार और एकादशी पर सेवा।',
+    color: '#D97706',
+    bg: 'rgba(217,119,6,0.08)',
+  },
+]
+
+function WhyChooseUsSection() {
+  return (
+    <section className="wcu-section">
+      <div className="container">
+        <p className="section-label hindi-text">✨ हमारी विशेषता</p>
+        <h2 className="section-title hindi-text">हमें क्यों चुनें?</h2>
+        <div className="divider"><span>🌸</span></div>
+        <div className="wcu-grid">
+          {features.map((f, i) => (
+            <div key={i} className="wcu-card card">
+              <div className="wcu-icon-wrap" style={{ background: f.bg, color: f.color }}>
+                {f.icon}
+              </div>
+              <h3 className="hindi-text wcu-title">{f.title}</h3>
+              <p className="hindi-text wcu-desc">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── TESTIMONIALS ─── */
+const testimonials = [
+  {
+    name: 'राजेश कुमार शर्मा',
+    city: 'दिल्ली',
+    rating: 5,
+    text: 'घर बैठे स्वामणी बुकिंग की। पूरी पूजा के फोटो और वीडियो मिले। बाबा श्याम की कृपा से मनोकामना पूरी हुई। बहुत विश्वसनीय सेवा है।',
+    initials: 'र.श.',
+    color: '#922B21',
+  },
+  {
+    name: 'प्रिया वर्मा',
+    city: 'मुंबई',
+    rating: 5,
+    text: 'बाबा के दर्शन नहीं कर सकती थी तो ऑनलाइन प्रसाद बुकिंग की। पूरी विधि-विधान से भोग चढ़ा। प्रसाद घर तक मिला। जय श्री श्याम!',
+    initials: 'प्र.',
+    color: '#CA8A04',
+  },
+  {
+    name: 'सुनील सिंह राठौड़',
+    city: 'जयपुर',
+    rating: 5,
+    text: 'निशान यात्रा की व्यवस्था बहुत अच्छी रही। टीम बेहद विनम्र और अनुभवी है। फाल्गुन मेले में भी बुकिंग करेंगे।',
+    initials: 'सु.सि.',
+    color: '#D97706',
+  },
+  {
+    name: 'अंजली गुप्ता',
+    city: 'पुणे',
+    rating: 5,
+    text: 'एकादशी पर 24 घंटे दर्शन की जानकारी यहाँ से मिली। यात्रा गाइड बहुत काम आई। बाबा श्याम की जय!',
+    initials: 'अं.गु.',
+    color: '#7C3AED',
+  },
+  {
+    name: 'विकास पाठक',
+    city: 'लखनऊ',
+    rating: 5,
+    text: 'छप्पन भोग स्वामणी बुकिंग की थी। बाबा को भोग लगा, वीडियो देख मन भर आया। बहुत शुद्ध और पवित्र सेवा।',
+    initials: 'वि.पा.',
+    color: '#0284C7',
+  },
+  {
+    name: 'मीनाक्षी देवी',
+    city: 'कोलकाता',
+    rating: 5,
+    text: 'खाटू बहुत दूर है हमारे लिए। इस सेवा से बाबा तक पहुंचना संभव हुआ। प्रसाद की गुणवत्ता उत्कृष्ट थी।',
+    initials: 'मी.दे.',
+    color: '#BE185D',
+  },
+]
+
+function TestimonialsSection() {
+  return (
+    <section className="testi-section">
+      <div className="container">
+        <p className="section-label hindi-text">💬 भक्तों के अनुभव</p>
+        <h2 className="section-title hindi-text">श्रद्धालु क्या कहते हैं?</h2>
+        <div className="divider"><span>⭐</span></div>
+        <div className="testi-grid">
+          {testimonials.map((t, i) => (
+            <div key={i} className="testi-card card">
+              <FaQuoteLeft className="testi-quote-icon" style={{ color: t.color }} />
+              <div className="testi-stars">
+                {Array.from({ length: t.rating }).map((_, j) => (
+                  <FiStar key={j} className="testi-star filled" />
+                ))}
+              </div>
+              <p className="hindi-text testi-text">"{t.text}"</p>
+              <div className="testi-author">
+                <div className="testi-avatar" style={{ background: `${t.color}18`, color: t.color }}>
+                  <span className="hindi-text">{t.initials}</span>
+                </div>
+                <div>
+                  <p className="hindi-text testi-name">{t.name}</p>
+                  <p className="hindi-text testi-city">📍 {t.city}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="testi-summary">
+          <div className="testi-stat"><span className="testi-big-num">५ ⭐</span><span className="hindi-text">औसत रेटिंग</span></div>
+          <div className="testi-stat-div"></div>
+          <div className="testi-stat"><span className="testi-big-num">५०,०००+</span><span className="hindi-text">संतुष्ट भक्त</span></div>
+          <div className="testi-stat-div"></div>
+          <div className="testi-stat"><span className="testi-big-num">१०+</span><span className="hindi-text">वर्षों की सेवा</span></div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── FAQ ─── */
+const faqs = [
+  {
+    q: 'खाटू श्याम जी मंदिर कहाँ स्थित है?',
+    a: 'खाटू श्याम जी मंदिर राजस्थान के सीकर जिले के खाटू गाँव में स्थित है। यह जयपुर से लगभग 80–89 किलोमीटर और दिल्ली से करीब 310 किलोमीटर की दूरी पर है।',
+  },
+  {
+    q: 'स्वामणी भोग की ऑनलाइन बुकिंग कैसे करें?',
+    a: 'आप हमारी वेबसाइट, WhatsApp (9051858687) या Phone Call के माध्यम से बुकिंग कर सकते हैं। अपना नाम, गोत्र और मनचाही तिथि शेयर करें — हमारी टीम बाकी सब संभाल लेगी।',
+  },
+  {
+    q: 'स्वामणी भोग में क्या-क्या होता है और कीमत क्या है?',
+    a: 'स्वामणी भोग में चूरमा, लड्डू, पूड़ी, सब्जी आदि शामिल होते हैं। पैकेज ₹9,500 से शुरू होकर छप्पन भोग ₹31,000 तक उपलब्ध हैं। सभी भोग शुद्ध देसी घी से बनाए जाते हैं।',
+  },
+  {
+    q: 'क्या भोग चढ़ाने के बाद फोटो या वीडियो मिलेगा?',
+    a: 'हाँ! स्वामणी या प्रसाद बुकिंग के बाद पूरी पूजा के फोटो और वीडियो आपको WhatsApp पर भेजे जाते हैं — ताकि आप घर बैठे बाबा के दर्शन का आनंद ले सकें।',
+  },
+  {
+    q: 'मंदिर दर्शन का समय क्या है?',
+    a: 'ग्रीष्म काल (अप्रैल–सितंबर): 4:30 AM – 10:00 PM। शीत काल (अक्टूबर–मार्च): 5:30 AM – 9:00 PM। एकादशी के दिन 24 घंटे दर्शन उपलब्ध रहता है।',
+  },
+  {
+    q: 'फाल्गुन मेला 2027 कब है?',
+    a: 'फाल्गुन मेला 2027 — 9 March 2027 से शुरू होगा। यह एशिया का सबसे बड़ा धार्मिक मेला माना जाता है जिसमें करोड़ों भक्त भाग लेते हैं। मेले के दौरान बुकिंग पहले से करें।',
+  },
+  {
+    q: 'खाटू श्याम जी तक कैसे पहुंचें?',
+    a: 'जयपुर से सड़क मार्ग से 80–89 km (1.5–2 घंटे)। निकटतम रेलवे स्टेशन रींगस जंक्शन (17 km) है जहाँ से Auto ₹150–200 में पहुंच सकते हैं। RSRTC की बस सेवा भी उपलब्ध है।',
+  },
+  {
+    q: 'क्या प्रसाद घर पर डिलीवरी होती है?',
+    a: 'हाँ! भोग चढ़ाने के बाद बाबा का प्रसाद आपके घर तक पहुंचाया जा सकता है। इसके लिए बुकिंग के समय अपना पता और संपर्क विवरण साझा करें।',
+  },
+]
+
+function FAQSection() {
+  const [open, setOpen] = useState(null)
+  return (
+    <section className="faq-section">
+      <div className="container">
+        <p className="section-label hindi-text">❓ सामान्य प्रश्न</p>
+        <h2 className="section-title hindi-text">अक्सर पूछे जाने वाले प्रश्न</h2>
+        <div className="divider"><span>🙏</span></div>
+        <div className="faq-list">
+          {faqs.map((f, i) => (
+            <div key={i} className={`faq-item ${open === i ? 'open' : ''}`}>
+              <button
+                className="faq-question"
+                onClick={() => setOpen(open === i ? null : i)}
+                aria-expanded={open === i}
+              >
+                <span className="hindi-text faq-q-text">{f.q}</span>
+                <span className="faq-chevron">
+                  {open === i ? <IoChevronUpOutline /> : <IoChevronDownOutline />}
+                </span>
+              </button>
+              {open === i && (
+                <div className="faq-answer">
+                  <p className="hindi-text">{f.a}</p>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="faq-cta">
+          <p className="hindi-text faq-cta-text">और कोई सवाल है? हमसे सीधे बात करें —</p>
+          <div className="faq-cta-btns">
+            <a href="tel:9051858687" className="btn-primary hindi-text"><FiPhone /> Call करें</a>
+            <a href="https://wa.me/919051858687?text=मुझे जानकारी चाहिए" className="btn-secondary hindi-text" target="_blank" rel="noopener noreferrer"><FaWhatsapp /> WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 /* ─── MAIN EXPORT ─── */
 export default function HomeSections({ onContactClick }) {
   return (
     <div className="home-page">
       <HeroSection onContactClick={onContactClick} />
       <SwamaniPrasadSection />
+      <HowItWorksSection />
       <LiveTempleStatus />
       <QuickActionsSection />
+      <WhyChooseUsSection />
       <DarshanTimingSection />
       <AboutShyamSection />
+      <TestimonialsSection />
       <FestivalSection />
       <GalleryPreviewSection />
+      <FAQSection />
       <TravelPreviewSection />
       <BlogSection />
       <ContactStripSection onContactClick={onContactClick} />

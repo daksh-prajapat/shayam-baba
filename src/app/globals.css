@@ -1,41 +1,45 @@
 :root {
-  /* ── Mandir Warm Theme ── */
-  --primary: #8B0000;           /* deep mandir red */
-  --primary-dark: #6B0000;
-  --primary-light: #AA2020;
-  --secondary: #B8860B;         /* dark goldenrod */
-  --secondary-light: #DAA520;
-  --accent: #CC5500;            /* burnt saffron */
-  --lotus: #C2185B;
+  /* ── Khatu Shyam Temple Theme — Warm Saffron-Gold ── */
+  --primary: #922B21;           /* rich temple crimson */
+  --primary-dark: #7B241C;
+  --primary-light: #C0392B;
+  --secondary: #CA8A04;         /* warm gold */
+  --secondary-light: #F59E0B;
+  --accent: #D97706;            /* deep saffron */
+  --lotus: #BE185D;
 
-  /* ── Backgrounds ── */
-  --bg-dark: #FDF6E3;           /* warm parchment */
-  --bg-medium: #FFF8EF;         /* ivory */
+  /* ── Backgrounds — medium warm, not too light not too dark ── */
+  --bg-dark: #FEF3C7;           /* warm amber tint */
+  --bg-medium: #FFFBF0;         /* soft cream */
   --bg-light: #FFFFFF;
+  --bg-section: #FDF8EE;        /* section bg */
+  --bg-alt: #FEF9EE;            /* alternate section */
 
   /* ── Text ── */
-  --text-primary: #1C0A00;      /* deep warm black */
-  --text-secondary: #3D1C00;    /* dark brown */
-  --text-muted: #7A5230;        /* medium brown */
+  --text-primary: #1A0A00;      /* deep warm black */
+  --text-secondary: #44180A;    /* dark mahogany */
+  --text-muted: #78350F;        /* warm brown */
 
   /* ── Gold ── */
-  --gold: #B8860B;
-  --gold-light: #DAA520;
-  --saffron: #CC5500;
+  --gold: #CA8A04;
+  --gold-light: #F59E0B;
+  --saffron: #D97706;
 
   /* ── Gradients ── */
-  --gradient-main: linear-gradient(160deg, #FFF8EF 0%, #FDF0D8 50%, #FFF8EF 100%);
-  --gradient-card: linear-gradient(145deg, rgba(139,0,0,0.04), rgba(184,134,11,0.06));
-  --gradient-gold: linear-gradient(135deg, #B8860B, #DAA520, #B8860B);
-  --gradient-hero: linear-gradient(135deg, #6B0000 0%, #8B0000 50%, #CC5500 100%);
+  --gradient-main: linear-gradient(160deg, #FFFBF0 0%, #FEF3C7 50%, #FFFBF0 100%);
+  --gradient-card: linear-gradient(145deg, rgba(146,43,33,0.04), rgba(202,138,4,0.07));
+  --gradient-gold: linear-gradient(135deg, #CA8A04, #F59E0B, #CA8A04);
+  --gradient-hero: linear-gradient(135deg, #7B241C 0%, #922B21 45%, #D97706 100%);
+  --gradient-section: linear-gradient(180deg, #FEF3C7 0%, #FFFBF0 100%);
 
   /* ── Shadows ── */
-  --shadow-glow: 0 4px 20px rgba(184,134,11,0.25);
-  --shadow-card: 0 2px 12px rgba(139,0,0,0.08);
+  --shadow-glow: 0 6px 28px rgba(202,138,4,0.30);
+  --shadow-card: 0 2px 14px rgba(146,43,33,0.10);
+  --shadow-hover: 0 8px 32px rgba(202,138,4,0.22);
 
   /* ── Borders ── */
-  --border-gold: 1px solid rgba(184,134,11,0.3);
-  --border-red: 1px solid rgba(139,0,0,0.2);
+  --border-gold: 1px solid rgba(202,138,4,0.35);
+  --border-red: 1px solid rgba(146,43,33,0.20);
 
   /* ── Fonts ── */
   --font-hindi: 'Tiro Devanagari Hindi', serif;
@@ -67,14 +71,14 @@ body {
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #FDF6E3; }
+::-webkit-scrollbar-track { background: #FEF3C7; }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
 ::selection { background: var(--secondary); color: white; }
 
 /* ── Layout ── */
 .app-wrapper { min-height: 100vh; display: flex; flex-direction: column; }
-.main-content { flex: 1; /* padding-top handled dynamically in ClientLayout */ }
+.main-content { flex: 1; }
 
 /* ── Container ── */
 .container {
@@ -86,6 +90,9 @@ body {
 
 /* ── Section Spacing ── */
 section { padding: var(--space-xl) 0; }
+
+/* ── Alternate section backgrounds ── */
+section:nth-child(even) { background: var(--bg-section); }
 
 /* ── Typography ── */
 .section-title {
@@ -131,13 +138,14 @@ section { padding: var(--space-xl) 0; }
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   background: var(--gradient-hero);
   color: #FFFFFF;
-  border: none; padding: 12px 28px; border-radius: 30px;
+  border: none; padding: 13px 30px; border-radius: 30px;
   font-family: var(--font-hindi); font-size: 1rem; font-weight: 700;
   cursor: pointer; text-decoration: none; transition: all 0.3s ease;
   white-space: nowrap; line-height: 1;
-  box-shadow: 0 3px 14px rgba(139,0,0,0.3);
+  box-shadow: 0 4px 16px rgba(146,43,33,0.35);
+  letter-spacing: 0.3px;
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139,0,0,0.4); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(146,43,33,0.45); }
 
 .btn-secondary {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
@@ -171,7 +179,7 @@ section { padding: var(--space-xl) 0; }
   opacity: 0;
   transition: opacity 0.3s;
 }
-.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-glow); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
 .card:hover::before { opacity: 1; }
 
 /* ── Footer WA Update Button ── */
@@ -181,7 +189,7 @@ section { padding: var(--space-xl) 0; }
   gap: 8px;
   background: rgba(37,211,102,0.12);
   border: 1px solid rgba(37,211,102,0.3);
-  color: #25d366;
+  color: #16a34a;
   padding: 9px 16px;
   border-radius: 20px;
   text-decoration: none;

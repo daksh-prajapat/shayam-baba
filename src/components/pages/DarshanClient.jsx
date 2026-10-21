@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { darshanFaqs } from '@/lib/seo'
 import './DarshanTimings.css'
 
 const aartis = [
@@ -161,12 +162,7 @@ export default function DarshanClient() {
         <h2 className="section-title hindi-text" style={{ marginTop: 50 }}>❓ अक्सर पूछे जाने वाले प्रश्न</h2>
         <div className="divider"><span>🙏</span></div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {[
-            { q: 'Khatu Shyam Ji darshan timing क्या है?', a: 'मंदिर सामान्य दिनों में 4:30 AM – 10:00 PM खुला रहता है। एकादशी के दिन मंदिर 24 घंटे खुला रहता है।' },
-            { q: 'मंदिर दोपहर में कब बंद रहता है?', a: 'ग्रीष्मकाल में 12:30 PM – 4:00 PM और शीतकाल में 1:00 PM – 5:00 PM मंदिर बंद रहता है।' },
-            { q: 'आरती कितने बजे होती है?', a: 'मंगला 4:30 AM, श्रृंगार 7:30 AM, राजभोग 12:00 PM, संध्या 7:30 PM, शयन 9:30 PM।' },
-            { q: 'Falgun Mela 2027 कब है?', a: 'Falgun Mela 2027 के मुख्य दिन: 18–20 March 2027। पूरा उत्सव 15–21 March 2027 तक चलेगा।' },
-          ].map((faq, i) => (
+          {darshanFaqs.map((faq, i) => (
             <div key={i} className="card" style={{ padding: '18px 22px' }}>
               <h4 className="hindi-text" style={{ color: 'var(--secondary)', marginBottom: 8 }}>Q: {faq.q}</h4>
               <p className="hindi-text" style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.7 }}>{faq.a}</p>

@@ -4,17 +4,10 @@ import Link from 'next/link'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FiPhone, FiCheck, FiUsers, FiCalendar, FiMapPin, FiEdit3, FiArrowRight } from 'react-icons/fi'
 import { bhandaraList } from '@/lib/bhandaraData'
+import { bhandaraFaqs as faqs } from '@/lib/seo'
 import { saveBooking } from '@/lib/bookingStorage'
 import ReceiptModal from '@/components/receipt/ReceiptModal'
 import './Bhandara.css'
-
-const faqs = [
-  { q: 'भंडारे की बुकिंग कैसे करें?', a: 'Call या WhatsApp पर संपर्क करें: 9051858687। हम आपको पूरी जानकारी और Quotation देंगे।' },
-  { q: 'भंडारा कहाँ होता है?', a: 'खाटू श्याम जी मंदिर परिसर में या आपके निर्धारित स्थान पर — हम दोनों जगह व्यवस्था करते हैं।' },
-  { q: 'Advance कितना देना होता है?', a: 'बुकिंग confirm करने के लिए कुछ Advance आवश्यक है। पूरी राशि कार्यक्रम से पहले।' },
-  { q: 'Menu में बदलाव हो सकता है?', a: 'हाँ, आपकी इच्छानुसार Menu customize किया जा सकता है। अधिक जानकारी के लिए संपर्क करें।' },
-  { q: 'क्या टेंट की व्यवस्था भी होती है?', a: 'हाँ, टेंट/शामियाना, बर्तन, सफाई — सभी की व्यवस्था हम करते हैं।' },
-]
 
 export default function BhandaraClient() {
   const [openFaq, setOpenFaq] = useState(null)

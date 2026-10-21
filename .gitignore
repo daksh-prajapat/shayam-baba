@@ -8,3 +8,4 @@ nextjs/node_modules/
 # Environment variables — NEVER commit these
 .env.local
 .env*.local
+.DS_Store

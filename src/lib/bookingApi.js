@@ -3,6 +3,7 @@
 // Falls back to localStorage ONLY if API fails (offline resilience)
 
 import { saveBooking as saveToLocal } from '@/lib/bookingStorage'
+import { trackBookingConversion } from '@/lib/googleAds'
 
 /**
  * saveBookingToServer(bookingData)
@@ -38,6 +39,8 @@ export async function saveBookingToServer(bookingData) {
       id: booking.bookingId,
     })
 
+    if (booking.paymentVerified) trackBookingConversion(booking)
+
     // ── Auto WhatsApp receipt to customer (if paid) ──
     if (booking.paymentVerified && booking.phone) {
       try {
@@ -65,8 +68,9 @@ export async function saveBookingToServer(bookingData) {
 
   } catch (err) {
     console.error('[bookingApi] Server save failed, falling back to localStorage:', err)
-    // Fallback: save locally so user isn't stuck
-    return saveToLocal(bookingData)
+    const localBooking = saveToLocal(bookingData)
+    if (localBooking?.paymentVerified) trackBookingConversion(localBooking)
+    return localBooking
   }
 }
 

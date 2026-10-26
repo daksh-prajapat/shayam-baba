@@ -14,7 +14,7 @@
 .ts-grid { display: grid; grid-template-columns: 1fr 320px; gap: 36px; align-items: start; }
 .ts-desc { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 14px; }
 .ts-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.ts-chip { font-family: var(--font-hindi); background: rgba(123,45,139,0.1); border: 1px solid rgba(123,45,139,0.25); color: var(--text-secondary); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; }
+.ts-chip { font-family: var(--font-hindi); background: rgba(139,26,26,0.07); border: 1px solid rgba(139,26,26,0.18); color: var(--text-secondary); padding: 5px 12px; border-radius: 20px; font-size: 0.78rem; }
 .ts-right { display: flex; flex-direction: column; gap: 14px; }
 .ts-status-card { padding: 20px; }
 .ts-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid rgba(212,160,23,0.1); font-family: var(--font-hindi); font-size: 0.85rem; color: var(--text-muted); }
@@ -29,7 +29,7 @@
 @media(max-width:900px){.ts-grid{grid-template-columns:1fr}}
 
 /* ── Swamani + Prasad Main ── */
-.sp-main-section { padding: 70px 0 !important; background: rgba(123,45,139,0.04) !important; }
+.sp-main-section { padding: 70px 0 !important; background: var(--bg-section) !important; }
 .sp-info-banner { font-family: var(--font-hindi); background: rgba(212,160,23,0.07); border: 1px solid rgba(212,160,23,0.22); border-left: 4px solid var(--secondary); border-radius: 10px; padding: 12px 20px; color: var(--text-secondary); font-size: 0.9rem; text-align: center; margin-bottom: 24px; }
 .spm-tabs { display: flex; gap: 12px; margin-bottom: 28px; }
 .spm-tab { padding: 11px 28px; border-radius: 25px; border: 1px solid rgba(212,160,23,0.3); background: transparent; color: var(--text-muted); cursor: pointer; font-family: var(--font-hindi); font-size: 0.95rem; transition: all 0.3s; }

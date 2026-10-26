@@ -3,7 +3,7 @@
 }
 
 .home-page section:nth-child(even) {
-  background: rgba(123,45,139,0.04);
+  background: var(--bg-section);
 }
 
 @media (max-width: 768px) {

@@ -358,7 +358,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background: linear-gradient(135deg, rgba(123,45,139,0.18), rgba(212,160,23,0.1));
+  background: linear-gradient(135deg, rgba(139,26,26,0.08), rgba(184,134,11,0.1));
   border: var(--border-gold);
   border-radius: 20px;
   padding: 28px 30px;
@@ -581,8 +581,8 @@
 }
 .swamani-custom-field input,
 .swamani-custom-field textarea {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,160,23,0.2);
+  background: #F9F5EE;
+  border: 1px solid rgba(184,134,11,0.25);
   border-radius: 10px;
   padding: 11px 13px;
   color: var(--text-primary);
@@ -595,8 +595,8 @@
 }
 .swamani-custom-field input:focus,
 .swamani-custom-field textarea:focus {
-  border-color: rgba(212,160,23,0.5);
-  background: rgba(255,255,255,0.07);
+  border-color: rgba(184,134,11,0.55);
+  background: #FFFFFF;
 }
 
 .swamani-custom-actions {

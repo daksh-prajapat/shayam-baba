@@ -1,7 +1,7 @@
 .hotels-page { min-height: 100vh; }
 
 .hotels-hero {
-  background: linear-gradient(135deg, #1a0a24 0%, #2d0a3e 50%, #1a1a0a 100%);
+  background: linear-gradient(135deg, #6B0000 0%, #8B1A1A 50%, #C8680A 100%);
   padding: 100px 20px 60px;
   position: relative;
   overflow: hidden;
@@ -94,8 +94,8 @@
 
 .hotel-amenities { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .hotel-amenity {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(184,134,11,0.07);
+  border: 1px solid rgba(184,134,11,0.2);
   border-radius: 20px;
   padding: 3px 10px;
   font-size: 0.75rem;
@@ -151,8 +151,8 @@
 .hotels-cta {
   text-align: center;
   padding: 28px 24px;
-  background: rgba(123,45,139,0.08) !important;
-  border-color: rgba(123,45,139,0.3) !important;
+  background: rgba(139,26,26,0.05) !important;
+  border-color: rgba(184,134,11,0.3) !important;
   margin-bottom: 20px;
 }
 .hotels-cta h3 { color: var(--secondary); margin-bottom: 8px; }

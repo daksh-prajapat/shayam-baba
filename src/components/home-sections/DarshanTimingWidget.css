@@ -1,4 +1,4 @@
-.timing-section { background: rgba(123,45,139,0.04); }
+.timing-section { background: var(--bg-section); }
 
 .timing-grid {
   display: grid;
@@ -37,9 +37,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 14px;
-  background: rgba(255,255,255,0.03);
+  background: rgba(139,26,26,0.04);
   border-radius: 10px;
-  border: 1px solid rgba(212,160,23,0.1);
+  border: 1px solid rgba(184,134,11,0.15);
 }
 
 .t-label {

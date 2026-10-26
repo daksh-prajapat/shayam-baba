@@ -477,8 +477,8 @@
 .booking-field { display: flex; flex-direction: column; gap: 6px; }
 .booking-field label { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.84rem; }
 .booking-field input, .booking-field select {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,160,23,0.22);
+  background: #F9F5EE;
+  border: 1px solid rgba(184,134,11,0.28);
   border-radius: 10px;
   padding: 11px 14px;
   color: var(--text-primary);
@@ -487,8 +487,8 @@
   outline: none;
   transition: border-color 0.3s;
 }
-.booking-field input:focus, .booking-field select:focus { border-color: rgba(212,160,23,0.55); }
-.booking-field select option { background: #1a0a24; }
+.booking-field input:focus, .booking-field select:focus { border-color: rgba(184,134,11,0.6); background: #FFFFFF; }
+.booking-field select option { background: #FFFFFF; }
 .booking-submit-btn {
   display: flex;
   align-items: center;

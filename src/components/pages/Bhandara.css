@@ -164,13 +164,13 @@
 .bhandara-field { display: flex; flex-direction: column; gap: 6px; }
 .bhandara-field label { font-family: var(--font-hindi); color: var(--text-secondary); font-size: 0.82rem; display: flex; align-items: center; gap: 6px; }
 .bhandara-field input, .bhandara-field select {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(212,160,23,0.2);
+  background: #F9F5EE; border: 1px solid rgba(184,134,11,0.25);
   border-radius: 10px; padding: 11px 13px; color: var(--text-primary);
   font-family: var(--font-hindi); font-size: 0.9rem; outline: none;
   transition: border-color 0.25s;
 }
-.bhandara-field input:focus, .bhandara-field select:focus { border-color: rgba(212,160,23,0.5); background: rgba(255,255,255,0.07); }
-.bhandara-field select option { background: #1a0a24; color: var(--text-primary); }
+.bhandara-field input:focus, .bhandara-field select:focus { border-color: rgba(184,134,11,0.55); background: #FFFFFF; }
+.bhandara-field select option { background: #FFFFFF; color: var(--text-primary); }
 
 .bhandara-submit-btn {
   display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -187,7 +187,7 @@
 .bhandara-form-call:hover { transform: translateY(-2px); }
 
 /* Sidebar */
-.bhandara-form-sidebar { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 90px; }
+.bhandara-form-sidebar { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 120px; }
 .bhandara-sidebar-card { padding: 20px; }
 .bhandara-sidebar-card h4 { font-family: var(--font-hindi); color: var(--secondary); font-size: 0.95rem; margin-bottom: 14px; }
 .bhandara-sidebar-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -352,8 +352,8 @@
 }
 .bhandara-custom-field input,
 .bhandara-custom-field textarea {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(212,160,23,0.2);
+  background: #F9F5EE;
+  border: 1px solid rgba(184,134,11,0.25);
   border-radius: 10px;
   padding: 11px 13px;
   color: var(--text-primary);
@@ -366,8 +366,8 @@
 }
 .bhandara-custom-field input:focus,
 .bhandara-custom-field textarea:focus {
-  border-color: rgba(212,160,23,0.5);
-  background: rgba(255,255,255,0.07);
+  border-color: rgba(184,134,11,0.55);
+  background: #FFFFFF;
 }
 
 .bhandara-custom-actions {

@@ -1,9 +1,12 @@
 import './globals.css'
+import Script from 'next/script'
 import { Poppins, Tiro_Devanagari_Hindi } from 'next/font/google'
 import ClientLayout from '@/components/ClientLayout'
 import GoogleAdsTag from '@/components/GoogleAdsTag'
 import JsonLd from '@/components/JsonLd'
 import { SITE_URL, siteGraphJsonLd } from '@/lib/seo'
+
+const ADSENSE_CLIENT = 'ca-pub-3780800428136642'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -78,6 +81,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="hi-IN" className={`${poppins.variable} ${tiro.variable}`} suppressHydrationWarning>
+      <head>
+        <Script
+          id="adsense-script"
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          crossOrigin="anonymous"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body suppressHydrationWarning>
         <GoogleAdsTag />
         <JsonLd data={siteGraphJsonLd} />

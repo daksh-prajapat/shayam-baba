@@ -23,6 +23,10 @@ export default function PrivacyPage() {
       <p className="hindi-text" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
         यह जानकारी बुकिंग कन्फर्म करने, रसीद भेजने और प्रसाद या भोग की व्यवस्था के लिए इस्तेमाल होती है। हम यह डेटा बेचते नहीं हैं।
       </p>
+      <h2 className="hindi-text" style={{ fontSize: '1.25rem', margin: '24px 0 8px' }}>विज्ञापन</h2>
+      <p className="hindi-text" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
+        इस वेबसाइट पर Google AdSense के विज्ञापन दिख सकते हैं। Google विज्ञापन दिखाने और मापने के लिए कुकीज़ का उपयोग कर सकता है। आप Google की विज्ञापन सेटिंग्स से व्यक्तिगत विज्ञापन बंद कर सकते हैं।
+      </p>
       <h2 className="hindi-text" style={{ fontSize: '1.25rem', margin: '24px 0 8px' }}>सम्पर्क</h2>
       <p className="hindi-text" style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>
         अपनी जानकारी हटवाने या सुधारने के लिए कॉल या WhatsApp करें: {PHONE_DISPLAY}।

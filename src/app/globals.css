@@ -41,9 +41,9 @@
   --border-gold: 1px solid rgba(184,134,11,0.28);
   --border-red: 1px solid rgba(139,26,26,0.18);
 
-  /* ── Fonts ── */
-  --font-hindi: 'Tiro Devanagari Hindi', serif;
-  --font-body: 'Poppins', sans-serif;
+  /* ── Fonts (set by next/font on <html>) ── */
+  --font-hindi: var(--font-tiro), 'Tiro Devanagari Hindi', serif;
+  --font-body: var(--font-poppins), 'Poppins', sans-serif;
 
   /* ── Spacing ── */
   --space-xs: 8px;

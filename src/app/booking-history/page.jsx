@@ -1,6 +1,11 @@
 import BookingHistoryClient from '@/components/pages/BookingHistoryClient'
-export const metadata = {
-  title: 'बुकिंग इतिहास | खाटू श्याम जी',
-  description: 'आपकी सभी बुकिंग का इतिहास — प्रसाद, स्वामणी, भंडारा',
-}
+import { pageMeta } from '@/lib/seo'
+
+export const metadata = pageMeta({
+  title: 'मेरी बुकिंग | खाटू श्याम जी',
+  description: 'अपनी प्रसाद, स्वामणी और भंडारा बुकिंग देखें।',
+  path: '/booking-history',
+  index: false,
+})
+
 export default function Page() { return <BookingHistoryClient /> }

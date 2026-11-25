@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { FiPhone, FiMapPin } from 'react-icons/fi'
-import { FaFacebook, FaYoutube, FaInstagram, FaWhatsapp, FaTwitter, FaPinterest } from 'react-icons/fa'
+import { FaFacebook, FaYoutube, FaInstagram, FaWhatsapp } from 'react-icons/fa'
 import { GiLotus } from 'react-icons/gi'
 import './Footer.css'
 
@@ -29,7 +29,6 @@ export default function Footer() {
               <a href="https://www.youtube.com/@khatuwalebabain" aria-label="YouTube" className="social-link youtube"><FaYoutube /></a>
               <a href="https://www.instagram.com/khatuwalebabain" aria-label="Instagram" className="social-link insta"><FaInstagram /></a>
               <a href="https://wa.me/919051858687" aria-label="WhatsApp" className="social-link whatsapp"><FaWhatsapp /></a>
-              <a href="#" aria-label="Twitter" className="social-link"><FaTwitter /></a>
             </div>
             <a href="https://wa.me/919051858687?text=Subscribe - Temple Updates" className="footer-wa-update" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp /> <span className="hindi-text">📢 WhatsApp Updates पाएं</span>
@@ -99,7 +98,7 @@ export default function Footer() {
           <p className="footer-copy">
             © 2026 खाटू श्याम जी | Contact: <a href="tel:9051858687">9051858687</a> | 
             <Link href="/contact"> सम्पर्क</Link> | 
-            <Link href="/contact"> Privacy Policy</Link>
+            <Link href="/privacy"> Privacy Policy</Link>
           </p>
         </div>
       </div>
